@@ -1,0 +1,57 @@
+<div class="settingsContainer">
+
+
+  <div class="title">
+    Settings
+  </div>
+
+  <div *ngFor="let alarm of settings.alarms; let idx = index">
+
+
+    <ion-item>
+      <ion-label>{{alarm.key}}</ion-label>
+      <ion-datetime displayFormat="HH:mm" 
+                    placeholder="Select date"
+                    [value]="alarm.value" 
+                    (ionChange)="onTimeChange($event, idx)">
+      </ion-datetime>
+    </ion-item>
+    
+    <!-- 
+    <ion-item>
+      <ion-label>{{settings.in.key}}</ion-label>
+      <ion-datetime #entryPicker [displayFormat]="settings.in.format" 
+                    [placeholder]="settings.in.placeholder"
+                    [value]="settings.in.value" 
+                    (ionChange)="setEntryVal(entryPicker.value)">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{settings.out.key}}</ion-label>
+      <ion-datetime #exitPicker [displayFormat]="settings.out.format" 
+                    [placeholder]="settings.out.placeholder"
+                    [value]="settings.out.value" 
+                    (ionChange)="setExitVal(exitPicker.value)">
+      </ion-datetime>
+    </ion-item> 
+    -->
+
+  </div>
+
+
+  <div class="addAlarmContainer">
+    <ion-buttons expand="full">
+      <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>
+    </ion-buttons>
+  </div>
+
+
+  <div class="buttonsContainer">
+    <ion-buttons>
+      <ion-button (click)="Cancel()">Cancel</ion-button>
+      <ion-button (click)="Save()">OK</ion-button>
+    </ion-buttons>
+  </div>
+
+</div>

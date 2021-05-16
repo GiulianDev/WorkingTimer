@@ -1,0 +1,44 @@
+
+.settingsContainer{
+
+    // background-color: rgb(20, 20, 20);
+    background-color: var(--ion-item-background, var(--ion-background-color, #fff));
+
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+    
+    .buttonsContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        ion-buttons{
+            width: 100%;
+            ion-button{
+                width: 50%;
+                min-height: 3rem;
+            }
+        }
+    }
+
+
+    .addAlarmContainer {
+        min-height: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        // background-color: greenyellow;
+        ion-buttons{
+            width: 100%;
+            ion-button{
+                width: 100%;
+                min-height: 3rem;
+            }
+        }
+    }
+
+}

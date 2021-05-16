@@ -1,0 +1,8 @@
+{
+  "name": "timer",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

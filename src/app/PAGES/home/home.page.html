@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <!-- title -->
+    <ion-title>
+      EchoTimer
+    </ion-title>
+    <!-- settings button -->
+    <ion-buttons slot="end">
+      <ion-button (click)="showSettings()">
+        <ion-icon name="settings-outline"></ion-icon>      
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="appContainer">
+
+    <div class="timeContainer">
+
+      <div class="time">{{timerService.GetTime()}}</div>
+
+      <div class="timeListContainer">
+
+        <div class="timesList left">
+          <div class="timesText">
+            Start
+          </div>
+          <div *ngFor="let time of timeList.start" class="timesText">
+            {{time | date : 'HH:mm'}}
+          </div>
+        </div>
+        
+        <div class="timesList">
+          <div class="timesText">
+            Stop
+          </div>
+          <div *ngFor="let time of timeList.stop" class="timesText">
+              {{time | date : 'HH:mm'}}
+          </div>
+        </div>
+
+        <div class="timesList">
+          <div class="timesText">
+            Partial
+          </div>
+          <div *ngFor="let time of timeList.diff" class="timesText">
+              {{time}}
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <!-- start/stop fab button -->
+    <div class="fabContainer">
+      <ion-fab>
+        <ion-fab-button class="timerFab" (click)="OnFabTimerClick()">
+          <div class="timerFabTxt">{{_startStopTxt}}</div>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+      
+    <!-- reset button -->
+    <div class="resetButtonContainer">
+      <ion-button expand="full" color="danger" (click)="Reset()">Reset</ion-button>
+    </div>
+
+  </div>
+    
+</ion-content>
+  

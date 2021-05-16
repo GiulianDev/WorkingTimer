@@ -1,0 +1,144 @@
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-header{
+  ion-icon{
+    font-size: 2rem;
+  }
+}
+
+.appContainer{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  .timeContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40%;
+    .time{
+      color: white;
+      font-size:2rem; // default val
+    }
+    @media(min-width: 350px) //if more than 350 px
+    {
+      .time{
+        font-size:3rem;
+      }
+    }
+    @media(min-width: 500px) //if more than 500 px
+    {
+      .time{
+        font-size:4rem;
+      }
+    }
+    @media(min-width: 600px) //if more than 600 px
+    {
+      .time{
+        font-size:5rem;
+      }
+    }
+    @media(min-width: 850px) //if more than 850 px
+    {
+      .time{
+        font-size:7rem;
+      }
+    }
+    .timeListContainer{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: 50%;
+      width: 100%;
+      // background-color: rgba(66, 65, 65, 0.795);
+      .timesList{
+        display: flex;
+        flex-direction: column;
+        // flex-grow: 1;
+        width: 50%;
+        overflow: hidden;
+        // background-color: rgba(48, 45, 45, 0.795);
+        .timesText{
+          margin: 0.5rem 1rem;
+        }
+      }
+      .left{
+        // background-color: rgba(51, 36, 36, 0.795);
+        align-items: flex-end;
+      }
+    }
+  }
+  
+  .fabContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50%;
+    .timerFab{
+      width: 50vw;
+      height: 50vw;
+      .timerFabTxt{
+        font-size:2rem; // default val
+      }
+      @media(min-width: 350px) //if more than 350 px
+      {
+        .timerFabTxt{
+          font-size:3rem;
+        }
+      }
+      @media(min-width: 500px) //if more than 500 px
+      {
+        .timerFabTxt{
+          font-size:4rem;
+        }
+      }
+      @media(min-width: 600px) //if more than 600 px
+      {
+        .timerFabTxt{
+          font-size:5rem;
+        }
+      }
+      @media(min-width: 850px) //if more than 850 px
+      {
+        .timerFabTxt{
+          font-size:7rem;
+        }
+      }
+    }
+  }
+
+  .resetButtonContainer{
+    height: 10%;
+    ion-button {
+      height: 100%;
+    }
+  }
+}
