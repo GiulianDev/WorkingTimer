@@ -8,7 +8,7 @@
   <div *ngFor="let alarm of settings.alarms; let idx = index">
 
 
-    <ion-item>
+    <ion-item *ngIf="alarm.enabled">
       <ion-label>{{alarm.key}}</ion-label>
       <ion-datetime displayFormat="HH:mm" 
                     placeholder="Select date"
@@ -16,6 +16,38 @@
                     (ionChange)="onTimeChange($event, idx)">
       </ion-datetime>
     </ion-item>
+
+    <!--
+
+      <ion-item *ngIf="!alarm.enabled">
+        <div class="alarm">
+          <div class="label">
+            {{alarm.key}}
+          </div>
+          <div class="value">
+            {{alarm.value}}
+          </div>
+        </div>
+      </ion-item>
+      
+    -->
+
+    <div class="addAlarmContainer" *ngIf="!alarm.enabled">
+      <ion-buttons expand="full"  *ngIf="!alarm.enabled">
+        <ion-button expand="full" (click)="AddPause()">
+          
+          <div class="alarm">
+            <div class="label">
+              {{alarm.key}}
+            </div>
+            <div class="value">
+              {{alarm.value}}
+            </div>
+          </div>
+
+        </ion-button>
+      </ion-buttons>
+    </div>
     
     <!-- 
     <ion-item>

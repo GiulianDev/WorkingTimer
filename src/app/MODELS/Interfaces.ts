@@ -1,6 +1,7 @@
 export enum LABELS {
     START  = "IN",
-    STOP   = "OUT"
+    STOP   = "OUT",
+    PAUSE  = "PAUSE"
 }
 
 export enum DEFAULT_VAL {
@@ -65,6 +66,42 @@ export class Settings {
         this.alarms[idx].value = val;
         this.alarms[idx].index = timeToString(val);
     };
+
+    addAlarm(val: string) {
+        // aggiungo l'elemento alla fine e poi riordino l'array
+        // const idx = this.alarms.length;
+
+        // create pause element
+        const pause: Alarm = {
+            key: LABELS.PAUSE,
+            value: val,
+            index: timeToString(val),
+            enabled: false
+        }
+        console.log(pause);
+        // ChecK if out of range
+        if (pause.index < this.alarms[0].index || pause.index > this.alarms[this.alarms.length - 1].index) {
+            return {succeded: false, msg:'PAUSE OUT OF RANGE!'};
+        }
+        // check if there is an alarm with the same index
+        //     => same starting time
+        var existingAlarm = this.alarms.filter(x => x.index == pause.index);
+        if (existingAlarm.length > 0) {
+            return {succeded: false, msg:'A PAUSE at the same time ALREADY EXISTS!'};;
+        }
+        // push the new alarm
+        this.alarms.push(pause);
+        // reorder the alarm array
+        this.alarms.sort((a, b) => {
+            if (a.index && b.index) {
+                if (a.index > b.index) return 1;
+                if (a.index < b.index) return -1;
+                return 0;
+            }
+            return 0;
+        });
+        return {succeded: true, msg:'Pause updated'};;
+    }
 }
 
 export class Alarm {

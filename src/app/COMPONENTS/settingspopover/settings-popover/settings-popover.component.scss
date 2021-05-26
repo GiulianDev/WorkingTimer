@@ -41,4 +41,16 @@
         }
     }
 
+    .alarm {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 1px 6px;
+    }
+
+    .pickerClassName {
+        color: greenyellow;
+        background-color: honeydew;
+    }
+
 }
