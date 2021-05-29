@@ -13,7 +13,6 @@ export class SettingsPopoverComponent implements OnInit {
 
   private customPickerOptions; 
   private settings: Settings;
-  private tmpSettings: Settings;
 
 
   hours: string[] = 
@@ -26,7 +25,8 @@ export class SettingsPopoverComponent implements OnInit {
     [
       "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
       "12", "13", "14", "16", "17", "18", "19", "20", "21", "22", "23", "24",
-      "25", "26", "27", "28", "29", "30", "31", "32"
+      "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
+      "37", "38", "39", "40"
     ];
 
 
@@ -47,14 +47,17 @@ export class SettingsPopoverComponent implements OnInit {
    * Save new settings on the local storage
    */
   Save() {
-    console.log("Saving...")
+    console.log("Saving settings...")
     this.storageService.SaveSettings(this.settings);
     this.DismissClick();
   }
   
-  Cancel() {
+  /**
+   * Calcel the current temporary user settings and reload stored settings
+   */
+  async Cancel() {
     console.log("Cancel")
-    // this.settings = this.tmpSettings;
+    this.settings = await this.storageService.getStoredSettings();
     this.DismissClick();
   }
 
@@ -75,7 +78,6 @@ export class SettingsPopoverComponent implements OnInit {
    */
   async loadSettings() {
     this.settings = this.storageService.getSettings();
-    this.tmpSettings = Object.assign({}, this.settings);
   }
 
   /**
@@ -85,12 +87,16 @@ export class SettingsPopoverComponent implements OnInit {
    */
    onTimeChange(val, idx) {
     // let copy = Object.assign({}, original );
-    this.tmpSettings.alarms = Object.assign([], this.settings.alarms); //{...this.settings};
+    // this.tmpSettings.alarms = Object.assign([], this.settings.alarms); //{...this.settings};
     let time = val.detail.value;
     this.settings.updateAlaram(time, idx);
     console.log(this.settings.alarms);
   }
 
+
+  /**
+   * Dismiss settings pop-over
+   */
   async DismissClick() {
     await this.popoverController.dismiss();
   }
@@ -118,9 +124,7 @@ export class SettingsPopoverComponent implements OnInit {
 
             let res = this.settings.addAlarm(str);
             
-            if (!res.succeded) {
-              this.presentAlert(res.msg);
-            }
+            
 
           }
         }
@@ -189,23 +193,6 @@ export class SettingsPopoverComponent implements OnInit {
       options.push({text:x,value:x});
     });
     return options;
-  }
-
-
-
-  /**
-   * Show alert message
-   */
-   async presentAlert(msg: string) {
-    const alert =  await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'WAIT',
-      message: msg,
-      buttons: [{
-        text: 'OK'
-      }]
-    })
-    await alert.present();
   }
 
 }

@@ -11,52 +11,52 @@
     <ion-item *ngIf="alarm.enabled">
       <ion-label>{{alarm.key}}</ion-label>
       <ion-datetime displayFormat="HH:mm" 
-      placeholder="Select date"
-      [value]="alarm.value" 
-      (ionChange)="onTimeChange($event, idx)">
-    </ion-datetime>
-  </ion-item>
-  
-  <!-- Sliding item with text options on both sides -->
-  <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">
-    <ion-item>
-      <ion-buttons expand="full">
-        <ion-button expand="full" (click)="AddPause()">
-          <div class="alarm">
-            <div class="label">
-              {{alarm.key}}
-            </div>
-            <div class="value">
-              {{alarm.value}}
-            </div>
-          </div>
-          
-        </ion-button>
-      </ion-buttons>
+        placeholder="Select date"
+        [value]="alarm.value" 
+        (ionChange)="onTimeChange($event, idx)">
+      </ion-datetime>
     </ion-item>
-    <!-- End Option -->
-    <ion-item-options side="end">
-      <ion-item-option (click)="DeletePause(alarm)" color="danger">Delete</ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-  
-</div>
+    
+    <!-- Sliding item with text options on both sides -->
+    <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">
+      <ion-item>
+        <ion-buttons expand="full">
+          <ion-button expand="full" (click)="AddPause()">
+            <div class="alarm">
+              <div class="label">
+                {{alarm.key}}
+              </div>
+              <div class="value">
+                {{alarm.value}}
+              </div>
+            </div>
+            
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+      <!-- End Option -->
+      <ion-item-options side="end">
+        <ion-item-option (click)="DeletePause(alarm)" color="danger">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </div>
 
 
 
-<!-- ADD PAUSE BUTTON -->
-<div class="addAlarmContainer">
-  <ion-buttons expand="full">
-    <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>
-  </ion-buttons>
-</div>
+  <!-- ADD PAUSE BUTTON -->
+  <div class="addAlarmContainer">
+    <ion-buttons expand="full">
+      <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>
+    </ion-buttons>
+  </div>
 
-<!-- CANCEL/CONFIRM BUTTONS -->
-<div class="buttonsContainer">
-  <ion-buttons>
-    <ion-button (click)="Cancel()">Cancel</ion-button>
-    <ion-button (click)="Save()">OK</ion-button>
-  </ion-buttons>
-</div>
+  <!-- CANCEL/CONFIRM BUTTONS -->
+  <div class="buttonsContainer">
+    <ion-buttons>
+      <ion-button (click)="Cancel()">Cancel</ion-button>
+      <ion-button (click)="Save()">OK</ion-button>
+    </ion-buttons>
+  </div>
 
 </div>
