@@ -100,7 +100,7 @@ export class Settings {
             }
             return 0;
         });
-        return {succeded: true, msg:'Pause updated'};;
+        return {succeded: true, msg:'Pause updated'};
     }
 }
 
