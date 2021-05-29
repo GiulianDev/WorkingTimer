@@ -63,7 +63,11 @@ export class SettingsPopoverComponent implements OnInit {
    * Add a pause to the time array
    */
   AddPause() {
-    this.showPicker();
+    this.showAlarmPicker();
+  }
+
+  DeletePause(alarm) {
+    console.log(alarm);
   }
 
   /**
@@ -95,7 +99,7 @@ export class SettingsPopoverComponent implements OnInit {
 
 
 
-  async showPicker() {
+  async showAlarmPicker() {
     let options: PickerOptions = {
       buttons: [
         {
