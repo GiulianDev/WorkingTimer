@@ -11,6 +11,8 @@ export class AlertService {
   /**
    * 
    * @param msg message to display
+   * @param subheader subheader to display (Default null)
+   * @param header header to display (Default 'WAIT')
    * @returns 
    * Use as:
    * this.myservice.presentConfirm('message')
@@ -20,10 +22,11 @@ export class AlertService {
    *   }
    * });
    */
-  async presentConfirmAlert(msg: string = 'Are you sure?'): Promise<any> {
+  async presentConfirmAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WAIT'): Promise<any> {
     return new Promise(async (resolve) => {
       const alert = await this.alertController.create({
-        header: 'WAIT',
+        header: header,
+        subHeader: subheader,
         message: msg,
         buttons: [
           {

@@ -147,7 +147,7 @@ export class TimerService {
    * 
    * @returns current hour and minutes as number (ex. 13:15 => 1315)
    */
-   getCurrentTimeIndex() {
+   getCurrentTimeAsIndex() {
     let current = new Date();
     let hour = current.getHours()
     let min = current.getMinutes()

@@ -25,20 +25,41 @@ export class StorageService {
     this.loadDefaultSettings();
     await this.platform.ready();
     // Fetch ALARMS
-    const res = await Storage.get({key: SETTINGS.ALARMS});
-    if (res.value != null) {
-      this.settings.alarms = JSON.parse(res.value);
+    const alarms = await Storage.get({key: SETTINGS.ALARMS});
+    if (alarms.value != null) {
+      this.settings.alarms = JSON.parse(alarms.value);
+    } else {
+      this.SaveSettings(this.settings);
     }
     console.log(this.settings);
   }
 
-
+  /**
+   * Instantiate a new Settings class
+   * with the default values
+   */
   loadDefaultSettings() {
     this.settings = new Settings();
   }
 
+  /**
+   * @returns current settings
+   */
   getSettings() {
     return this.settings;
+  }
+
+  /**
+   * Return the settings stored on the device
+   */
+  async getStoredSettings() {
+    this.platform.ready();
+    // Fetch ALARMS
+    const res = await Storage.get({key: SETTINGS.ALARMS});
+    if (res.value != null) {
+      return this.settings.alarms = JSON.parse(res.value);
+    }
+    return null;
   }
 
   /**
@@ -54,14 +75,26 @@ export class StorageService {
     });
   }
 
+  /**
+   * @returns Alarms array
+   */
   getAlarms() {
     return this.settings.alarms;
   }
+
+  /**
+   * Get alarm by index
+   * @param idx index of the alarm in the alarms array
+   * @returns alarm at index posistion
+   */
 
   getAlarm(idx: number) {
     return this.settings.alarms[idx];
   }
 
+  /**
+   * @returns the last alarm in the alarms array
+   */
   getLastAlarm() {
     let end = this.settings.alarms.length - 1;
     return this.settings.alarms[end];
