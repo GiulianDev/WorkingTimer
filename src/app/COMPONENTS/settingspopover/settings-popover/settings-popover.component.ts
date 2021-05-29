@@ -69,8 +69,13 @@ export class SettingsPopoverComponent implements OnInit {
     this.showAlarmPicker();
   }
 
+  /**
+   * Delete pause
+   * @param alarm 
+   */
   DeletePause(alarm) {
     console.log(alarm);
+    this.settings.deleteAlarm(alarm);
   }
 
   /**
@@ -115,17 +120,9 @@ export class SettingsPopoverComponent implements OnInit {
         {
           text:'Ok',
           handler:(value:any) => {
-
-
-            console.log(value);
-            
-
+            // console.log(value);
             var str: string = value.hours.value + ':' + value.minutes.value;
-
             let res = this.settings.addAlarm(str);
-            
-            
-
           }
         }
       ],
@@ -143,41 +140,6 @@ export class SettingsPopoverComponent implements OnInit {
     picker.present()
   }
 
-  /*
-  async showEditPicker() {
-    let options: PickerOptions = {
-      buttons: [
-        {
-          text: "Cancel",
-          role: 'cancel'
-        },
-        {
-          text:'Ok',
-          handler:(value:any) => {
-            console.log(value);
-            
-            
-
-            var str: string = value.hours.value + ':' + value.minutes.value;
-
-            this.settings.addAlarm(str);
-          }
-        }
-      ],
-      columns:[{
-        name:'hours',
-        options:this.getHoursOptions()
-      }, {
-        name:'minutes',
-        options:this.getMinutesOptions()
-      }],
-      // ToDo - non funziona
-      // cssClass : 'pickerClassName'
-    };
-    let picker = await this.pickerController.create(options);
-    picker.present();
-  }
-  */
 
   getHoursOptions(){
     let options = [];
