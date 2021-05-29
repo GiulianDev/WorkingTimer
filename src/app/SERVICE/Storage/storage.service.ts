@@ -32,11 +32,17 @@ export class StorageService {
     console.log(this.settings);
   }
 
-
+  /**
+   * Instantiate a new Settings class
+   * with the default values
+   */
   loadDefaultSettings() {
     this.settings = new Settings();
   }
 
+  /**
+   * @returns current settings
+   */
   getSettings() {
     return this.settings;
   }
@@ -54,14 +60,26 @@ export class StorageService {
     });
   }
 
+  /**
+   * @returns Alarms array
+   */
   getAlarms() {
     return this.settings.alarms;
   }
+
+  /**
+   * Get alarm by index
+   * @param idx index of the alarm in the alarms array
+   * @returns alarm at index posistion
+   */
 
   getAlarm(idx: number) {
     return this.settings.alarms[idx];
   }
 
+  /**
+   * @returns the last alarm in the alarms array
+   */
   getLastAlarm() {
     let end = this.settings.alarms.length - 1;
     return this.settings.alarms[end];
