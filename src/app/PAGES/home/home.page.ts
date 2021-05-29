@@ -21,10 +21,10 @@ export class HomePage {
   private stopped: Date[] = [];
   private started: Date[] = [];
   private timeList: TimeList = new TimeList();
-  // time offset between current time and alarm time
-  private offset;
+  
+  private offset;  // time offset between current time and alarm time
 
-  private clickCounter: number = 0;
+  private clickCounter: number = 0; // count the number of click on Start/Stop timer button
 
   /**
    * CONSTRUCTOR
@@ -46,47 +46,60 @@ export class HomePage {
    */
   async OnFabTimerClick() {
     
-    // ToDo
     // check for alarm
     let alarm = this.storageService.getAlarm(this.clickCounter);
-    let currentTime = this.timerService.getCurrentTimeIndex();
+    let currentTime = this.timerService.getCurrentTimeAsIndex();
 
-    let msg = "Not time yet";
-    this.alert.presentConfirmAlert(msg)
-    .then( res => {
-      if (res) {
-        console.log('Confirmed');
-      } else {
-        console.log('Canceled')
-      }
-    })
     
-    
-    let tt;
     if (alarm) {
+
+      let msg = null;
+
       console.log("Alarm: ", alarm);
       console.log("Scheduled: ", alarm.index);
       console.log("Current: ", currentTime);
+      // check if it is too late for today working day
+      if (currentTime > (this.storageService.getLastAlarm().index)) {
+        msg = "You are out of your working hours!";
+      }
 
       if (currentTime < (alarm.index - this.offset))
       {
-        tt = this.presentAlert("Not time yet");    
-      }
-      if (currentTime > (this.storageService.getLastAlarm().index)) {
-        tt = this.presentAlert("Too late");    
+        msg =  "Not time yet!";
       }
 
-    }
-    else 
-    {
-      this.StartStopTimer();
-    }
+      await this.alert.presentConfirmAlert(msg)
+      .then( res => {
+        if (res) {
+          console.log('Confirmed');
+          this.StartStopTimer();
+        } else {
+          console.log('Canceled')
+        }
+      })
 
 
-    
+    } else {
+      // this.StartStopTimer();
+      let subheader = "You are done for today!";
+      let msg = "Do you want to reset timer?"
+      await this.alert.presentConfirmAlert(msg, subheader)
+      .then( res => {
+        if (res) {
+          console.log('Confirmed');
+          this.Reset();
+        } else {
+          console.log('Canceled')
+        }
+      })
+    }
   }
 
 
+  /**
+   * Sart or Stop timer,
+   * and increment click counter
+   */
   StartStopTimer() {
     if (this._isRunning) 
     {
@@ -103,10 +116,14 @@ export class HomePage {
     this.clickCounter++;
   }
 
+  /**
+   * Reset timer and click counter
+   */
   Reset() {
+    console.log("Resetting...");
     this.timerService.reset();
     this.timeList = this.timerService.GetTimeList();
-    console.log(this.timeList)
+    // console.log(this.timeList)
     this._isRunning = false;
     this.clickCounter = 0;
   }
@@ -125,36 +142,5 @@ export class HomePage {
     const { role } = await popover.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-
-
-
-  /**
-   * Show alert message
-   */
-  async presentAlert(msg: string) {
-    const alert =  await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'WAIT',
-      // subHeader: 'Subtitle',
-      message: msg,
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: (data: any) => {
-            console.log('Canceled', data);
-          }
-        },
-        {
-          text: this._startStopTxt + ' anyway',
-          handler: (data: any) => {
-            console.log('Selected Information', data);
-            this.StartStopTimer();
-          }
-        }
-      ]
-    })
-    await alert.present();
-  }
-  
 
 }
