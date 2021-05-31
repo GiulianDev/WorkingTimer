@@ -381,23 +381,29 @@ export class Settings {
             }
         ]
     };
-    // attributes
     alarms?: Alarm[];
-    // methods
+    /**
+     * Update Alarm by positional index
+     * @param val string
+     * @param idx number
+     */
     updateAlaram(val: string, idx: number) {
         this.alarms[idx].value &#x3D; val;
         this.alarms[idx].index &#x3D; timeToString(val);
     };
-
-    addAlarm(val: string) {
+    /**
+     * Add a nex alarm to the alarm array
+     * @param alarmValue - string &quot;hh:mm&quot;
+     * @returns Object {succeded: boolean, msg: string}
+     */
+    addAlarm(alarmValue: string) {
         // aggiungo l&#x27;elemento alla fine e poi riordino l&#x27;array
         // const idx &#x3D; this.alarms.length;
-
         // create pause element
         const pause: Alarm &#x3D; {
             key: LABELS.PAUSE,
-            value: val,
-            index: timeToString(val),
+            value: alarmValue,
+            index: timeToString(alarmValue),
             enabled: false
         }
         console.log(pause);
@@ -423,6 +429,22 @@ export class Settings {
             return 0;
         });
         return {succeded: true, msg:&#x27;Pause updated&#x27;};
+    }
+    /**
+     * Delete a specific alarm from alarms array
+     * @param alarm alarm to delete (type Alarm)
+     * @returns Object {succeded: boolean, msg: string}
+     */
+    deleteAlarm(alarm: Alarm) {
+        // var existingAlarm &#x3D; this.alarms.filter(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
+        // var f &#x3D; this.alarms.find(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
+        for (var idx &#x3D; this.alarms.length - 1; idx &gt;&#x3D; 0; --idx) {
+            if (this.alarms[idx].index &#x3D;&#x3D; alarm.index) {
+                this.alarms.splice(idx,1);
+                return {succeded: true, msg:&#x27;Alarm deleted&#x27;};
+            }
+        }
+        return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
     }
 }
 

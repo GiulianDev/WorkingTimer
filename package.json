@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "./node_modules/.bin/compodoc -p tsconfig.compodoc.json -w -s",
+    "compodoc": "./node_modules/.bin/compodoc -p tsconfig.compodoc.json -w -s --output docs",
     "resources": "capacitor-resources -p android"
   },
   "private": true,
