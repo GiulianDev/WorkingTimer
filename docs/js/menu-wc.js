@@ -93,13 +93,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HomePageRoutingModule.html" data-type="entity-link">HomePageRoutingModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-HomePageRoutingModule-9e933f288839b8fbb2e6472ad3df9b55"' : 'data-target="#xs-injectables-links-module-HomePageRoutingModule-9e933f288839b8fbb2e6472ad3df9b55"' }>
+                                        'data-target="#injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' : 'data-target="#xs-injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HomePageRoutingModule-9e933f288839b8fbb2e6472ad3df9b55"' :
-                                        'id="xs-injectables-links-module-HomePageRoutingModule-9e933f288839b8fbb2e6472ad3df9b55"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' :
+                                        'id="xs-injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' }>
                                         <li class="link">
                                             <a href="injectables/TimerService.html"
                                                 data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>TimerService</a>
@@ -150,6 +150,32 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </ul>
                         </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#guards-links"' :
+                            'data-target="#xs-guards-links"' }>
+                            <span class="icon ion-ios-lock"></span>
+                            <span>Guards</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
+                            <li class="link">
+                                <a href="guards/HomeResolver.html" data-type="entity-link">HomeResolver</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
+                            'data-target="#xs-interfaces-links"' }>
+                            <span class="icon ion-md-information-circle-outline"></span>
+                            <span>Interfaces</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/Status.html" data-type="entity-link">Status</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#miscellaneous-links"'
                             : 'data-target="#xs-miscellaneous-links"' }>

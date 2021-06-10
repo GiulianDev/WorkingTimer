@@ -1,72 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
-import { KEYS, SETTINGS, Settings } from 'src/app/MODELS/Interfaces';
+import { SETTINGS, Status } from 'src/app/MODELS/Interfaces';
+import { KEYS } from 'src/app/MODELS/Keys';
+import { Settings } from 'src/app/MODELS/Settings';
 const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
+  
   private settings: Settings;
-
+  private status: Status;
+  
   constructor(private platform: Platform) {
     this.initializeSettings();
+    this.initializeStatus();
   }
-
-
+  
+  
   /**
-   * Initialize the defailt setting
-   * and Read Setting from local storage
-   */
+  * Read Setting from local storage or initialize the defailt setting
+  */
   async initializeSettings() {
     console.log("Initialising settings...");
     this.loadDefaultSettings();
     await this.platform.ready();
     // Fetch ALARMS
     const alarms = await Storage.get({key: SETTINGS.ALARMS});
-    if (alarms.value != null) {
+    if (alarms?.value != null) {
       this.settings.alarms = JSON.parse(alarms.value);
     } else {
       this.SaveSettings(this.settings);
     }
-    console.log(this.settings);
+    console.log("Settings: ", this.settings);
   }
-
+  
+  
   /**
-   * Instantiate a new Settings class
-   * with the default values
-   */
+  * Read status from local storage
+  */
+  async initializeStatus() {
+    this.status = await this.getStoredStatus();
+  }
+  
+  /**
+  * Instantiate a new Settings class with the default values
+  */
   loadDefaultSettings() {
     this.settings = new Settings();
   }
-
+  
+  
+  //#region ------------- Saving on local storage methods --------------------------
+  
   /**
-   * @returns current settings
-   */
-  getSettings() {
-    return this.settings;
-  }
-
-  /**
-   * Return the settings stored on the device
-   */
-  async getStoredSettings() {
-    this.platform.ready();
-    // Fetch ALARMS
-    const res = await Storage.get({key: SETTINGS.ALARMS});
-    if (res.value != null) {
-      return this.settings.alarms = JSON.parse(res.value);
-    }
-    return null;
-  }
-
-  /**
-   * Save settings on the local storage
-   * @param settings 
-   */
+  * Save settings on the local storage
+  * @param {Settings} settings
+  */
   SaveSettings(settings: Settings) {
+    console.log("Saving settings to storage...");
     let alarmsJSON = JSON.stringify(this.settings.alarms);
     console.log(alarmsJSON);
     Storage.set({
@@ -74,30 +68,95 @@ export class StorageService {
       value: alarmsJSON
     });
   }
-
+  
   /**
-   * @returns Alarms array
+  * Save status on the local storage
+  * @param {Status} status
+  */
+  SaveStatus(status: Status) {
+    let statusJSON: string = JSON.stringify(status);
+    console.log("Saving status to storage...");
+    Storage.set({
+      key: KEYS.STATUS,
+      value: statusJSON
+    });
+  }
+  
+  //#endregion 
+  
+  
+  /**
+  * Return the stored settings from the device local storage
+  */
+  async getStoredSettings() {
+    console.log("Retrieving settings from storage...");
+    // Fetch ALARMS
+    const res = await Storage.get({key: SETTINGS.ALARMS});
+    if (res.value != null) {
+      this.settings.alarms = JSON.parse(res.value);
+      console.log("Settings: ", this.settings)
+      return this.settings
+    }
+    return null;
+  }
+  
+  /**
+  * Return the stored status from the device local storage
+  * @returns 
+  */
+  async getStoredStatus() {
+    console.log("Retrieving status from storage...");
+    const res = await Storage.get({key: KEYS.STATUS});
+    if (res.value != null) {
+      this.status = JSON.parse(res.value);
+      console.log("Status: ", this.status);
+      return this.status
+    }
+    return null;
+  }
+  
+  
+  /**
+  * @returns {Settings} current settings
+  */
+  getSettings() {
+    return this.settings;
+  }
+  
+  /**
+   * @returns {Status} current status
    */
+  getStatus() {
+    return this.status;
+  }
+  
+  /**
+  * @returns Alarms array
+  */
   getAlarms() {
     return this.settings.alarms;
   }
-
+  
   /**
-   * Get alarm by index
-   * @param idx index of the alarm in the alarms array
-   * @returns alarm at index posistion
-   */
-
-  getAlarm(idx: number) {
+  * Get alarm by index
+  * @param idx index of the alarm in the alarms array
+  * @returns alarm at index posistion
+  */
+  getAlarmByIndex(idx: number) {
     return this.settings.alarms[idx];
   }
-
+  
   /**
-   * @returns the last alarm in the alarms array
-   */
+  * @returns the last alarm in the alarms array
+  */
   getLastAlarm() {
     let end = this.settings.alarms.length - 1;
     return this.settings.alarms[end];
   }
-
+  
+  
+  
+  
+  
+  
 }

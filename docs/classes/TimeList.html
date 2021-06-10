@@ -127,7 +127,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/MODELS/Interfaces.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/MODELS/Interfaces.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -161,7 +161,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/MODELS/Interfaces.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/MODELS/Interfaces.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -189,7 +189,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/MODELS/Interfaces.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/MODELS/Interfaces.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -217,7 +217,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/MODELS/Interfaces.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/MODELS/Interfaces.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -245,7 +245,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/MODELS/Interfaces.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/MODELS/Interfaces.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -273,7 +273,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/MODELS/Interfaces.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/MODELS/Interfaces.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -301,7 +301,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/MODELS/Interfaces.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/MODELS/Interfaces.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -338,10 +338,6 @@ export enum DateFormat {
     HourMinuteSeconds &#x3D; &quot;HH:mm:ss&quot;
 }
 
-export enum KEYS {
-    SETTINGS &#x3D; &quot;Setting&quot;,
-}
-
 export enum SETTINGS {
     ALARMS &#x3D; &quot;Alarms&quot;
 }
@@ -363,91 +359,6 @@ export class TimeList {
     totalms?: number;
 }
 
-
-export class Settings {
-    constructor() {
-        this.alarms &#x3D; [
-            {
-                key: LABELS.START,
-                value: DEFAULT_VAL.START,
-                index: timeToString(DEFAULT_VAL.START),
-                enabled: true
-            },
-            {
-                key: LABELS.STOP,
-                value: DEFAULT_VAL.STOP,
-                index: timeToString(DEFAULT_VAL.STOP),
-                enabled: true
-            }
-        ]
-    };
-    alarms?: Alarm[];
-    /**
-     * Update Alarm by positional index
-     * @param val string
-     * @param idx number
-     */
-    updateAlaram(val: string, idx: number) {
-        this.alarms[idx].value &#x3D; val;
-        this.alarms[idx].index &#x3D; timeToString(val);
-    };
-    /**
-     * Add a nex alarm to the alarm array
-     * @param alarmValue - string &quot;hh:mm&quot;
-     * @returns Object {succeded: boolean, msg: string}
-     */
-    addAlarm(alarmValue: string) {
-        // aggiungo l&#x27;elemento alla fine e poi riordino l&#x27;array
-        // const idx &#x3D; this.alarms.length;
-        // create pause element
-        const pause: Alarm &#x3D; {
-            key: LABELS.PAUSE,
-            value: alarmValue,
-            index: timeToString(alarmValue),
-            enabled: false
-        }
-        console.log(pause);
-        // ChecK if out of range
-        if (pause.index &lt; this.alarms[0].index || pause.index &gt; this.alarms[this.alarms.length - 1].index) {
-            return {succeded: false, msg:&#x27;PAUSE OUT OF RANGE!&#x27;};
-        }
-        // check if there is an alarm with the same index
-        //     &#x3D;&gt; same starting time
-        var existingAlarm &#x3D; this.alarms.filter(x &#x3D;&gt; x.index &#x3D;&#x3D; pause.index);
-        if (existingAlarm.length &gt; 0) {
-            return {succeded: false, msg:&#x27;A PAUSE at the same time ALREADY EXISTS!&#x27;};;
-        }
-        // push the new alarm
-        this.alarms.push(pause);
-        // reorder the alarm array
-        this.alarms.sort((a, b) &#x3D;&gt; {
-            if (a.index &amp;&amp; b.index) {
-                if (a.index &gt; b.index) return 1;
-                if (a.index &lt; b.index) return -1;
-                return 0;
-            }
-            return 0;
-        });
-        return {succeded: true, msg:&#x27;Pause updated&#x27;};
-    }
-    /**
-     * Delete a specific alarm from alarms array
-     * @param alarm alarm to delete (type Alarm)
-     * @returns Object {succeded: boolean, msg: string}
-     */
-    deleteAlarm(alarm: Alarm) {
-        // var existingAlarm &#x3D; this.alarms.filter(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
-        // var f &#x3D; this.alarms.find(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
-        for (var idx &#x3D; this.alarms.length - 1; idx &gt;&#x3D; 0; --idx) {
-            if (this.alarms[idx].index &#x3D;&#x3D; alarm.index) {
-                this.alarms.splice(idx,1);
-                return {succeded: true, msg:&#x27;Alarm deleted&#x27;};
-            }
-        }
-        return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
-    }
-}
-
 export class Alarm {
     key: string;
     value: string;
@@ -455,17 +366,12 @@ export class Alarm {
     index: number;
 }
 
-/**
- * To order the different alarms we save the HH:mm string as a number
- * ex. 
- *     12:00 &#x3D;&gt; 1200 
- *     04:00 &#x3D;&gt; 400
- */
-export function timeToString(timeStr: string) {
-    timeStr &#x3D; timeStr.replace(&quot;:&quot;, &quot;&quot;);
-    var timeNumber: number &#x3D; + timeStr;
-    return timeNumber;
+export interface Status {
+    isRunning: boolean,
+    time: any
 }
+
+
 
 
 </code></pre>

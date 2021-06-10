@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/MODELS/Interfaces.ts</code>
+            <code>src/app/MODELS/Settings.ts</code>
         </p>
 
 
@@ -127,7 +127,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/MODELS/Interfaces.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">src/app/MODELS/Settings.ts:4</a></div>
                             </td>
                         </tr>
 
@@ -161,7 +161,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/MODELS/Interfaces.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/MODELS/Settings.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -197,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/MODELS/Interfaces.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:36</a></div>
                 </td>
             </tr>
 
@@ -277,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/app/MODELS/Interfaces.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:75</a></div>
                 </td>
             </tr>
 
@@ -355,8 +355,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/app/MODELS/Interfaces.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:27</a></div>
                 </td>
             </tr>
 
@@ -436,49 +436,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum LABELS {
-    START  &#x3D; &quot;IN&quot;,
-    STOP   &#x3D; &quot;OUT&quot;,
-    PAUSE  &#x3D; &quot;PAUSE&quot;
-}
-
-export enum DEFAULT_VAL {
-    START  &#x3D; &quot;08:30&quot;,
-    STOP   &#x3D; &quot;18:00&quot;,
-}
-
-export enum DateFormat {
-    Year &#x3D; &quot;YYYY&quot;,
-    YearMonth &#x3D;	&quot;YYYY-MM&quot;,
-    HourMinute &#x3D; &quot;HH:mm&quot;,
-    HourMinuteSeconds &#x3D; &quot;HH:mm:ss&quot;
-}
-
-export enum KEYS {
-    SETTINGS &#x3D; &quot;Setting&quot;,
-}
-
-export enum SETTINGS {
-    ALARMS &#x3D; &quot;Alarms&quot;
-}
-
-export class TimeList {
-    constructor() {
-        this.start &#x3D; [];
-        this.stop &#x3D; [];
-        this.diff &#x3D; [];
-        this.diffms &#x3D; [];
-        this.total &#x3D; null;
-        this.totalms &#x3D; 0;
-    };
-    start?: Date[];
-    stop?: Date[];
-    diff?: string[];
-    diffms?: number[];
-    total?: string;
-    totalms?: number;
-}
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { timeToString } from &quot;../COMMON/Utility&quot;;
+import { LABELS, DEFAULT_VAL, Alarm } from &quot;./Interfaces&quot;;
 
 export class Settings {
     constructor() {
@@ -562,29 +521,7 @@ export class Settings {
         }
         return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
     }
-}
-
-export class Alarm {
-    key: string;
-    value: string;
-    enabled: boolean;
-    index: number;
-}
-
-/**
- * To order the different alarms we save the HH:mm string as a number
- * ex. 
- *     12:00 &#x3D;&gt; 1200 
- *     04:00 &#x3D;&gt; 400
- */
-export function timeToString(timeStr: string) {
-    timeStr &#x3D; timeStr.replace(&quot;:&quot;, &quot;&quot;);
-    var timeNumber: number &#x3D; + timeStr;
-    return timeNumber;
-}
-
-
-</code></pre>
+}</code></pre>
     </div>
 </div>
 

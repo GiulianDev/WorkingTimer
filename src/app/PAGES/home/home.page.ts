@@ -16,7 +16,6 @@ export class HomePage {
 
 
   private _startStopTxt: string = LABELS.START;
-  private _isRunning: boolean = false;
   private time: string;
   private stopped: Date[] = [];
   private started: Date[] = [];
@@ -47,10 +46,9 @@ export class HomePage {
   async OnFabTimerClick() {
     
     // check for alarm
-    let alarm = this.storageService.getAlarm(this.clickCounter);
+    let alarm = this.storageService.getAlarmByIndex(this.clickCounter);
     let currentTime = this.timerService.getCurrentTimeAsIndex();
 
-    
     if (alarm) {
 
       let msg = null;
@@ -101,7 +99,7 @@ export class HomePage {
    * and increment click counter
    */
   StartStopTimer() {
-    if (this._isRunning) 
+    if (this.timerService.isRunning()) 
     {
       this._startStopTxt = LABELS.START;
       this.timerService.stop();
@@ -112,7 +110,6 @@ export class HomePage {
       this.timerService.start();
     }
     this.timeList = this.timerService.GetTimeList();
-    this._isRunning = !this._isRunning;
     this.clickCounter++;
   }
 
@@ -124,7 +121,6 @@ export class HomePage {
     this.timerService.reset();
     this.timeList = this.timerService.GetTimeList();
     // console.log(this.timeList)
-    this._isRunning = false;
     this.clickCounter = 0;
   }
 

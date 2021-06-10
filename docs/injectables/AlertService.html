@@ -352,7 +352,7 @@
                                     </td>
 
                                     <td>
-                                        <p>subheader to display (Default null)</p>
+                                        <p>(optional) subheader to display (Default null)</p>
 
                                     </td>
                                 </tr>
@@ -367,11 +367,11 @@
                                     </td>
 
                                     <td>
-                                        <code>&#x27;WAIT&#x27;</code>
+                                        <code>&#x27;WOOOPS&#x27;</code>
                                     </td>
 
                                     <td>
-                                        <p>header to display (Default &#39;WAIT&#39;)</p>
+                                        <p>(optional) header to display (Default &#39;WAIT&#39;)</p>
 
                                     </td>
                                 </tr>
@@ -386,7 +386,7 @@
                     </div>
                     <div class="io-description">
                         <p>Use as:
-this.myservice.presentConfirm(&#39;message&#39;)
+this.myservice.presentConfirmAlert(&#39;message&#39;)
 .then(res =&gt; {
 if (res) {
 // codes
@@ -451,18 +451,18 @@ export class AlertService {
   /**
    * 
    * @param msg message to display
-   * @param subheader subheader to display (Default null)
-   * @param header header to display (Default &#x27;WAIT&#x27;)
+   * @param subheader (optional) subheader to display (Default null)
+   * @param header (optional) header to display (Default &#x27;WAIT&#x27;)
    * @returns 
    * Use as:
-   * this.myservice.presentConfirm(&#x27;message&#x27;)
+   * this.myservice.presentConfirmAlert(&#x27;message&#x27;)
    * .then(res &#x3D;&gt; {
    *   if (res) {
    *     // codes
    *   }
    * });
    */
-  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WAIT&#x27;): Promise&lt;any&gt; {
+  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WOOOPS&#x27;): Promise&lt;any&gt; {
     return new Promise(async (resolve) &#x3D;&gt; {
       const alert &#x3D; await this.alertController.create({
         header: header,
@@ -489,7 +489,7 @@ export class AlertService {
   }
 
 
-  async presentConfirm(header: any,message: any,cancelText: any,okText: any): Promise&lt;any&gt; {
+  async presentConfirm(header: any, message: any,cancelText: any,okText: any): Promise&lt;any&gt; {
     return new Promise(async (resolve) &#x3D;&gt; {
       const alert &#x3D; await this.alertController.create({
         header: header,

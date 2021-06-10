@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, PickerController, PopoverController } from '@ionic/angular';
-import { Alarm, Settings, timeToString } from 'src/app/MODELS/Interfaces';
+import { Alarm } from 'src/app/MODELS/Interfaces';
 import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { PickerOptions } from "@ionic/core";
+import { Settings } from 'src/app/MODELS/Settings';
 
 @Component({
   selector: 'app-settings-popover',

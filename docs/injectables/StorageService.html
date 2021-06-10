@@ -78,6 +78,10 @@
                                     <span class="modifier">Private</span>
                                 <a href="#settings">settings</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#status">status</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -91,7 +95,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getAlarm">getAlarm</a>
+                                <a href="#getAlarmByIndex">getAlarmByIndex</a>
                             </li>
                             <li>
                                 <a href="#getAlarms">getAlarms</a>
@@ -103,18 +107,32 @@
                                 <a href="#getSettings">getSettings</a>
                             </li>
                             <li>
+                                <a href="#getStatus">getStatus</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getStoredSettings">getStoredSettings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getStoredStatus">getStoredStatus</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#initializeSettings">initializeSettings</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#initializeStatus">initializeStatus</a>
+                            </li>
+                            <li>
                                 <a href="#loadDefaultSettings">loadDefaultSettings</a>
                             </li>
                             <li>
                                 <a href="#SaveSettings">SaveSettings</a>
+                            </li>
+                            <li>
+                                <a href="#SaveStatus">SaveStatus</a>
                             </li>
                         </ul>
                     </td>
@@ -139,7 +157,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -186,26 +204,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getAlarm"></a>
+                    <a name="getAlarmByIndex"></a>
                     <span class="name">
                         <b>
-                            getAlarm
+                            getAlarmByIndex
                         </b>
-                        <a href="#getAlarm"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getAlarmByIndex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAlarm(idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>getAlarmByIndex(idx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:145</a></div>
                 </td>
             </tr>
 
@@ -282,8 +300,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -327,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:152</a></div>
                 </td>
             </tr>
 
@@ -372,8 +390,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -389,6 +407,51 @@
                     </div>
                     <div class="io-description">
                         <p>current settings</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStatus"></a>
+                    <span class="name">
+                        <b>
+                            getStatus
+                        </b>
+                        <a href="#getStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStatus()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>current status</p>
 
                     </div>
                 </td>
@@ -419,20 +482,68 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:91</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return the settings stored on the device</p>
+                    <div class="io-description"><p>Return the stored settings from the device local storage</p>
 </div>
 
                     <div class="io-description">
                         <b>Returns : </b>    <code>{}</code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStoredStatus"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getStoredStatus
+                        </b>
+                        <a href="#getStoredStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getStoredStatus()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Return the stored status from the device local storage</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -462,16 +573,58 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:26</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Initialize the defailt setting
-and Read Setting from local storage</p>
+                    <div class="io-description"><p>Read Setting from local storage or initialize the defailt setting</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeStatus"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            initializeStatus
+                        </b>
+                        <a href="#initializeStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initializeStatus()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:44</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Read status from local storage</p>
 </div>
 
                     <div class="io-description">
@@ -504,16 +657,15 @@ and Read Setting from local storage</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:51</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Instantiate a new Settings class
-with the default values</p>
+                    <div class="io-description"><p>Instantiate a new Settings class with the default values</p>
 </div>
 
                     <div class="io-description">
@@ -546,8 +698,8 @@ with the default values</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -572,6 +724,78 @@ with the default values</p>
                                     <td>settings</td>
                                     <td>
                                                 <code><a href="../classes/Settings.html" target="_self" >Settings</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SaveStatus"></a>
+                    <span class="name">
+                        <b>
+                            SaveStatus
+                        </b>
+                        <a href="#SaveStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>SaveStatus(status: <a href="../interfaces/Status.html">Status</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Save status on the local storage</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status</td>
+                                    <td>
+                                                <code><a href="../interfaces/Status.html" target="_self" >Status</a></code>
                                     </td>
 
                                     <td>
@@ -623,7 +847,35 @@ with the default values</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="status"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            status</b>
+                            <a href="#status"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Status.html" target="_self" >Status</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -639,72 +891,66 @@ with the default values</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Plugins } from &#x27;@capacitor/core&#x27;;
 import { Platform } from &#x27;@ionic/angular&#x27;;
-import { KEYS, SETTINGS, Settings } from &#x27;src/app/MODELS/Interfaces&#x27;;
+import { SETTINGS, Status } from &#x27;src/app/MODELS/Interfaces&#x27;;
+import { KEYS } from &#x27;src/app/MODELS/Keys&#x27;;
+import { Settings } from &#x27;src/app/MODELS/Settings&#x27;;
 const { Storage } &#x3D; Plugins;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class StorageService {
-
+  
   private settings: Settings;
-
+  private status: Status;
+  
   constructor(private platform: Platform) {
     this.initializeSettings();
+    this.initializeStatus();
   }
-
-
+  
+  
   /**
-   * Initialize the defailt setting
-   * and Read Setting from local storage
-   */
+  * Read Setting from local storage or initialize the defailt setting
+  */
   async initializeSettings() {
     console.log(&quot;Initialising settings...&quot;);
     this.loadDefaultSettings();
     await this.platform.ready();
     // Fetch ALARMS
     const alarms &#x3D; await Storage.get({key: SETTINGS.ALARMS});
-    if (alarms.value !&#x3D; null) {
+    if (alarms?.value !&#x3D; null) {
       this.settings.alarms &#x3D; JSON.parse(alarms.value);
     } else {
       this.SaveSettings(this.settings);
     }
-    console.log(this.settings);
+    console.log(&quot;Settings: &quot;, this.settings);
   }
-
+  
+  
   /**
-   * Instantiate a new Settings class
-   * with the default values
-   */
+  * Read status from local storage
+  */
+  async initializeStatus() {
+    this.status &#x3D; await this.getStoredStatus();
+  }
+  
+  /**
+  * Instantiate a new Settings class with the default values
+  */
   loadDefaultSettings() {
     this.settings &#x3D; new Settings();
   }
-
+  
+  
+  //#region ------------- Saving on local storage methods --------------------------
+  
   /**
-   * @returns current settings
-   */
-  getSettings() {
-    return this.settings;
-  }
-
-  /**
-   * Return the settings stored on the device
-   */
-  async getStoredSettings() {
-    this.platform.ready();
-    // Fetch ALARMS
-    const res &#x3D; await Storage.get({key: SETTINGS.ALARMS});
-    if (res.value !&#x3D; null) {
-      return this.settings.alarms &#x3D; JSON.parse(res.value);
-    }
-    return null;
-  }
-
-  /**
-   * Save settings on the local storage
-   * @param settings 
-   */
+  * Save settings on the local storage
+  * @param {Settings} settings
+  */
   SaveSettings(settings: Settings) {
+    console.log(&quot;Saving settings to storage...&quot;);
     let alarmsJSON &#x3D; JSON.stringify(this.settings.alarms);
     console.log(alarmsJSON);
     Storage.set({
@@ -712,32 +958,97 @@ export class StorageService {
       value: alarmsJSON
     });
   }
-
+  
   /**
-   * @returns Alarms array
+  * Save status on the local storage
+  * @param {Status} status
+  */
+  SaveStatus(status: Status) {
+    let statusJSON: string &#x3D; JSON.stringify(status);
+    console.log(&quot;Saving status to storage...&quot;);
+    Storage.set({
+      key: KEYS.STATUS,
+      value: statusJSON
+    });
+  }
+  
+  //#endregion 
+  
+  
+  /**
+  * Return the stored settings from the device local storage
+  */
+  async getStoredSettings() {
+    console.log(&quot;Retrieving settings from storage...&quot;);
+    // Fetch ALARMS
+    const res &#x3D; await Storage.get({key: SETTINGS.ALARMS});
+    if (res.value !&#x3D; null) {
+      this.settings.alarms &#x3D; JSON.parse(res.value);
+      console.log(&quot;Settings: &quot;, this.settings)
+      return this.settings
+    }
+    return null;
+  }
+  
+  /**
+  * Return the stored status from the device local storage
+  * @returns 
+  */
+  async getStoredStatus() {
+    console.log(&quot;Retrieving status from storage...&quot;);
+    const res &#x3D; await Storage.get({key: KEYS.STATUS});
+    if (res.value !&#x3D; null) {
+      this.status &#x3D; JSON.parse(res.value);
+      console.log(&quot;Status: &quot;, this.status);
+      return this.status
+    }
+    return null;
+  }
+  
+  
+  /**
+  * @returns {Settings} current settings
+  */
+  getSettings() {
+    return this.settings;
+  }
+  
+  /**
+   * @returns {Status} current status
    */
+  getStatus() {
+    return this.status;
+  }
+  
+  /**
+  * @returns Alarms array
+  */
   getAlarms() {
     return this.settings.alarms;
   }
-
+  
   /**
-   * Get alarm by index
-   * @param idx index of the alarm in the alarms array
-   * @returns alarm at index posistion
-   */
-
-  getAlarm(idx: number) {
+  * Get alarm by index
+  * @param idx index of the alarm in the alarms array
+  * @returns alarm at index posistion
+  */
+  getAlarmByIndex(idx: number) {
     return this.settings.alarms[idx];
   }
-
+  
   /**
-   * @returns the last alarm in the alarms array
-   */
+  * @returns the last alarm in the alarms array
+  */
   getLastAlarm() {
     let end &#x3D; this.settings.alarms.length - 1;
     return this.settings.alarms[end];
   }
-
+  
+  
+  
+  
+  
+  
 }
 </code></pre>
     </div>
