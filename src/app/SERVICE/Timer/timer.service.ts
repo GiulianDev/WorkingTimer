@@ -32,6 +32,11 @@ export class TimerService {
     // this.onResume();
     var savedStatus: Status = this.storageService.getStatus();
     console.log("Saved status: ", savedStatus);
+
+    if (savedStatus?.isRunning) {
+      this.timeList = savedStatus.timeList;
+    }
+
   }
 
 
@@ -192,10 +197,25 @@ export class TimerService {
     this.platform.pause.subscribe(async () => {
       var status: Status = {
         isRunning : this.running, 
-        time: this.timeList
+        timeList: this.timeList
       };   
       this.storageService.SaveStatus(status);
     })
+  }
+
+  onBowserClose() {
+    // ToDo
+    // https://capacitorjs.com/docs/apis/browser
+  }
+
+
+  checkPlatform() {
+    if (this.platform.is('android')) {
+      // This will only print when on iOS
+      console.log('I am an Android device!');
+    } else if (this.platform.is('desktop') || this.platform.is('mobileweb')) {
+      console.log('I am a Web App!');
+    }
   }
 
 }

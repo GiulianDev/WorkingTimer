@@ -46,7 +46,7 @@ export class Alarm {
 
 export interface Status {
     isRunning: boolean,
-    time: any
+    timeList: TimeList
 }
 
 

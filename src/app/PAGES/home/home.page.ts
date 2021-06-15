@@ -38,6 +38,15 @@ export class HomePage {
     // ToDo
     // let User manage the offset
     this.offset = 15;
+
+    // ToDo
+    // recover time lists from timer service
+    // in case of app closed while running
+
+    // this.timerService. ...
+
+    // this.timeList. ...
+
   }
 
   /**
