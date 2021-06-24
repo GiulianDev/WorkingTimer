@@ -46,7 +46,8 @@ export class Alarm {
 
 export interface Status {
     isRunning: boolean,
-    timeList: TimeList
+    timeList: TimeList,
+    clickCounter: number
 }
 
 

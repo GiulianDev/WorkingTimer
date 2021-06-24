@@ -153,6 +153,15 @@ export class StorageService {
     let end = this.settings.alarms.length - 1;
     return this.settings.alarms[end];
   }
+
+  /**
+   * 
+   * @returns alarms number
+   */
+  getAlarmCount() {
+    console.log(this.settings.alarms.length);
+    return this.settings.alarms.length;
+  }
   
   
   

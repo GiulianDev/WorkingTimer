@@ -22,19 +22,25 @@ export class TimerService {
   public stoppedList: Date[] = [];
   public startedList: Date[] = [];
 
-
+  public clickCounter: number = 0;
 
   constructor(
     public platform: Platform,
     public storageService: StorageService
   ) { 
+    // subscribe to on pause event
     this.onPause();
     // this.onResume();
     var savedStatus: Status = this.storageService.getStatus();
     console.log("Saved status: ", savedStatus);
 
     if (savedStatus?.isRunning) {
+
+      this.running = true;
       this.timeList = savedStatus.timeList;
+      this.timeBegan = this.timeList.start[0];
+      this.timeStopped = this.timeList.stop[this.timeList.stop.length];
+      this.clickCounter = savedStatus.clickCounter;
     }
 
   }
@@ -56,6 +62,7 @@ export class TimerService {
     this.timeList.start.push(new Date());
     this.started = setInterval(this.clockRunning.bind(this), 10);
     this.running = true;
+    this.clickCounter++;
   }
     
   /**
@@ -67,6 +74,7 @@ export class TimerService {
     this.timeList.stop.push(this.timeStopped);
     this.calcDiff();
     clearInterval(this.started);
+    // this.clickCounter++;
   }
   
   /**
@@ -80,7 +88,7 @@ export class TimerService {
       this.timeStopped = null;
       this.time = this.blankTime;
       this.timeList = new TimeList;
-
+      this.clickCounter = 0;
   }
   
   /**
@@ -197,25 +205,11 @@ export class TimerService {
     this.platform.pause.subscribe(async () => {
       var status: Status = {
         isRunning : this.running, 
-        timeList: this.timeList
+        timeList: this.timeList,
+        clickCounter: this.clickCounter
       };   
       this.storageService.SaveStatus(status);
     })
-  }
-
-  onBowserClose() {
-    // ToDo
-    // https://capacitorjs.com/docs/apis/browser
-  }
-
-
-  checkPlatform() {
-    if (this.platform.is('android')) {
-      // This will only print when on iOS
-      console.log('I am an Android device!');
-    } else if (this.platform.is('desktop') || this.platform.is('mobileweb')) {
-      console.log('I am a Web App!');
-    }
   }
 
 }
