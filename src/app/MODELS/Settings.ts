@@ -2,6 +2,7 @@ import { timeToString } from "../COMMON/Utility";
 import { LABELS, DEFAULT_VAL, Alarm } from "./Interfaces";
 
 export class Settings {
+    
     constructor() {
         this.alarms = [
             {
@@ -18,7 +19,9 @@ export class Settings {
             }
         ]
     };
+
     alarms?: Alarm[];
+
     /**
      * Update Alarm by positional index
      * @param val string
@@ -28,6 +31,7 @@ export class Settings {
         this.alarms[idx].value = val;
         this.alarms[idx].index = timeToString(val);
     };
+
     /**
      * Add a nex alarm to the alarm array
      * @param alarmValue - string "hh:mm"
@@ -67,6 +71,7 @@ export class Settings {
         });
         return {succeded: true, msg:'Pause updated'};
     }
+    
     /**
      * Delete a specific alarm from alarms array
      * @param alarm alarm to delete (type Alarm)

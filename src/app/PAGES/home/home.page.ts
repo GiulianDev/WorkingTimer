@@ -133,16 +133,13 @@ export class HomePage {
     if (this.timerService.isRunning()) 
     {
       this.timerService.stop();
-      // this._startStopTxt = LABELS.START;
     } 
     else 
     {
       this.timerService.start();
-      // this._startStopTxt = LABELS.STOP;
     }
     this.UpdateGUI();
     this.timeList = this.timerService.GetTimeList();
-    // this.clickCounter++;
   }
 
   /**
