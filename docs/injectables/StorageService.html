@@ -104,6 +104,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getStoredSettings">getStoredSettings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#initializeSettings">initializeSettings</a>
                             </li>
                             <li>
@@ -200,8 +204,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:91</a></div>
                 </td>
             </tr>
 
@@ -278,8 +282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -323,8 +327,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:98</a></div>
                 </td>
             </tr>
 
@@ -368,8 +372,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -385,6 +389,49 @@
                     </div>
                     <div class="io-description">
                         <p>current settings</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStoredSettings"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            getStoredSettings
+                        </b>
+                        <a href="#getStoredSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getStoredSettings()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Return the settings stored on the device</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                 </td>
@@ -457,8 +504,8 @@ and Read Setting from local storage</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -499,8 +546,8 @@ with the default values</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -616,9 +663,11 @@ export class StorageService {
     this.loadDefaultSettings();
     await this.platform.ready();
     // Fetch ALARMS
-    const res &#x3D; await Storage.get({key: SETTINGS.ALARMS});
-    if (res.value !&#x3D; null) {
-      this.settings.alarms &#x3D; JSON.parse(res.value);
+    const alarms &#x3D; await Storage.get({key: SETTINGS.ALARMS});
+    if (alarms.value !&#x3D; null) {
+      this.settings.alarms &#x3D; JSON.parse(alarms.value);
+    } else {
+      this.SaveSettings(this.settings);
     }
     console.log(this.settings);
   }
@@ -636,6 +685,19 @@ export class StorageService {
    */
   getSettings() {
     return this.settings;
+  }
+
+  /**
+   * Return the settings stored on the device
+   */
+  async getStoredSettings() {
+    this.platform.ready();
+    // Fetch ALARMS
+    const res &#x3D; await Storage.get({key: SETTINGS.ALARMS});
+    if (res.value !&#x3D; null) {
+      return this.settings.alarms &#x3D; JSON.parse(res.value);
+    }
+    return null;
   }
 
   /**

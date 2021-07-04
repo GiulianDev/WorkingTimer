@@ -99,6 +99,9 @@
                                 <a href="#addAlarm">addAlarm</a>
                             </li>
                             <li>
+                                <a href="#deleteAlarm">deleteAlarm</a>
+                            </li>
+                            <li>
                                 <a href="#updateAlaram">updateAlaram</a>
                             </li>
                         </ul>
@@ -158,7 +161,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/MODELS/Interfaces.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/MODELS/Interfaces.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -187,21 +190,23 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addAlarm(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>addAlarm(alarmValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/MODELS/Interfaces.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/MODELS/Interfaces.ts:77</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Add a nex alarm to the alarm array</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -211,11 +216,12 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>val</td>
+                                    <td>alarmValue</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -225,6 +231,12 @@
                                     </td>
 
 
+                                    <td>
+                                        <ul>
+<li>string &quot;hh:mm&quot;</li>
+</ul>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -236,7 +248,86 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>Object {succeded: boolean, msg: string}</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteAlarm"></a>
+                    <span class="name">
+                        <b>
+                            deleteAlarm
+                        </b>
+                        <a href="#deleteAlarm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteAlarm(alarm: <a href="../classes/Alarm.html">Alarm</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/MODELS/Interfaces.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Delete a specific alarm from alarms array</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>alarm</td>
+                                    <td>
+                                                <code><a href="../classes/Alarm.html" target="_self" >Alarm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>alarm to delete (type Alarm)</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{ succeded: boolean; msg: string; }</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Object {succeded: boolean, msg: string}</p>
+
                     </div>
                 </td>
             </tr>
@@ -264,14 +355,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/app/MODELS/Interfaces.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/MODELS/Interfaces.ts:68</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Update Alarm by positional index</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -281,6 +374,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -295,6 +389,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>string</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>idx</td>
@@ -307,6 +405,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>number</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -395,23 +497,29 @@ export class Settings {
             }
         ]
     };
-    // attributes
     alarms?: Alarm[];
-    // methods
+    /**
+     * Update Alarm by positional index
+     * @param val string
+     * @param idx number
+     */
     updateAlaram(val: string, idx: number) {
         this.alarms[idx].value &#x3D; val;
         this.alarms[idx].index &#x3D; timeToString(val);
     };
-
-    addAlarm(val: string) {
+    /**
+     * Add a nex alarm to the alarm array
+     * @param alarmValue - string &quot;hh:mm&quot;
+     * @returns Object {succeded: boolean, msg: string}
+     */
+    addAlarm(alarmValue: string) {
         // aggiungo l&#x27;elemento alla fine e poi riordino l&#x27;array
         // const idx &#x3D; this.alarms.length;
-
         // create pause element
         const pause: Alarm &#x3D; {
             key: LABELS.PAUSE,
-            value: val,
-            index: timeToString(val),
+            value: alarmValue,
+            index: timeToString(alarmValue),
             enabled: false
         }
         console.log(pause);
@@ -437,6 +545,22 @@ export class Settings {
             return 0;
         });
         return {succeded: true, msg:&#x27;Pause updated&#x27;};
+    }
+    /**
+     * Delete a specific alarm from alarms array
+     * @param alarm alarm to delete (type Alarm)
+     * @returns Object {succeded: boolean, msg: string}
+     */
+    deleteAlarm(alarm: Alarm) {
+        // var existingAlarm &#x3D; this.alarms.filter(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
+        // var f &#x3D; this.alarms.find(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
+        for (var idx &#x3D; this.alarms.length - 1; idx &gt;&#x3D; 0; --idx) {
+            if (this.alarms[idx].index &#x3D;&#x3D; alarm.index) {
+                this.alarms.splice(idx,1);
+                return {succeded: true, msg:&#x27;Alarm deleted&#x27;};
+            }
+        }
+        return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
     }
 }
 
