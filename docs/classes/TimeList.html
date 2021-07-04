@@ -127,7 +127,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/MODELS/Interfaces.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/MODELS/Interfaces.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -161,7 +161,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/MODELS/Interfaces.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/MODELS/Interfaces.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -189,7 +189,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/MODELS/Interfaces.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/MODELS/Interfaces.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -217,7 +217,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/MODELS/Interfaces.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/MODELS/Interfaces.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -245,7 +245,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/MODELS/Interfaces.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/MODELS/Interfaces.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -273,7 +273,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/MODELS/Interfaces.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/MODELS/Interfaces.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -301,7 +301,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/MODELS/Interfaces.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/MODELS/Interfaces.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -338,10 +338,6 @@ export enum DateFormat {
     HourMinuteSeconds &#x3D; &quot;HH:mm:ss&quot;
 }
 
-export enum KEYS {
-    SETTINGS &#x3D; &quot;Setting&quot;,
-}
-
 export enum SETTINGS {
     ALARMS &#x3D; &quot;Alarms&quot;
 }
@@ -364,6 +360,7 @@ export class TimeList {
 }
 
 
+<<<<<<< HEAD
 export class Settings {
     constructor() {
         this.alarms &#x3D; [
@@ -446,26 +443,16 @@ export class Settings {
         }
         return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
     }
+=======
+
+export interface Status {
+    isRunning: boolean,
+    timeList: TimeList,
+    clickCounter: number
+>>>>>>> Dev
 }
 
-export class Alarm {
-    key: string;
-    value: string;
-    enabled: boolean;
-    index: number;
-}
 
-/**
- * To order the different alarms we save the HH:mm string as a number
- * ex. 
- *     12:00 &#x3D;&gt; 1200 
- *     04:00 &#x3D;&gt; 400
- */
-export function timeToString(timeStr: string) {
-    timeStr &#x3D; timeStr.replace(&quot;:&quot;, &quot;&quot;);
-    var timeNumber: number &#x3D; + timeStr;
-    return timeNumber;
-}
 
 
 </code></pre>

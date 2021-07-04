@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, PickerController, PopoverController } from '@ionic/angular';
-import { Alarm, Settings, timeToString } from 'src/app/MODELS/Interfaces';
+import { Alarm } from 'src/app/MODELS/Alarm';
 import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { PickerOptions } from "@ionic/core";
+import { Settings } from 'src/app/MODELS/Settings';
+import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
 
 @Component({
   selector: 'app-settings-popover',
@@ -34,7 +36,8 @@ export class SettingsPopoverComponent implements OnInit {
     private popoverController: PopoverController,
     private storageService: StorageService,
     private pickerController: PickerController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -65,8 +68,9 @@ export class SettingsPopoverComponent implements OnInit {
   /**
    * Add a pause to the time array
    */
-  AddPause() {
-    this.showAlarmPicker();
+  AddPause(alarm: Alarm = null) {
+    console.log("Selected alarm: ", alarm);
+    this.showAlarmPicker(alarm);
   }
 
   /**
@@ -110,7 +114,7 @@ export class SettingsPopoverComponent implements OnInit {
 
 
 
-  async showAlarmPicker() {
+  async showAlarmPicker(alarm: Alarm = null) {
     let options: PickerOptions = {
       buttons: [
         {
@@ -123,15 +127,27 @@ export class SettingsPopoverComponent implements OnInit {
             // console.log(value);
             var str: string = value.hours.value + ':' + value.minutes.value;
             let res = this.settings.addAlarm(str);
+
+            if (res.succeded == false) {
+
+            }
+            this.alert.presentWarningAlert(res.msg);
+            
           }
         }
       ],
       columns:[{
         name:'hours',
-        options:this.getHoursOptions()
+        prefix:'H',
+        options:this.getHoursOptions(alarm)
       }, {
         name:'minutes',
+        prefix:'m',
         options:this.getMinutesOptions()
+      }, {
+        name:'duration',
+        prefix:'duration',
+        options: this.getMinutesOptions()
       }],
       // ToDo - non funziona
       // cssClass : 'pickerClassName'
@@ -141,10 +157,15 @@ export class SettingsPopoverComponent implements OnInit {
   }
 
 
-  getHoursOptions(){
+  getHoursOptions(alarm: Alarm = null){
+    console.log('Getting hours...');
     let options = [];
     this.hours.forEach(x => {
-      options.push({text:x,value:x});
+      let obj = {text:x,value:x};
+      if (alarm != null) {
+        let h = alarm.getHour();
+      }
+      options.push(obj);
     });
     return options;
   }

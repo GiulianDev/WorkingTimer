@@ -98,6 +98,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#presentConfirmAlert">presentConfirmAlert</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#presentWarningAlert">presentWarningAlert</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -188,8 +192,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -352,7 +356,7 @@
                                     </td>
 
                                     <td>
-                                        <p>subheader to display (Default null)</p>
+                                        <p>(optional) subheader to display (Default null)</p>
 
                                     </td>
                                 </tr>
@@ -367,11 +371,11 @@
                                     </td>
 
                                     <td>
-                                        <code>&#x27;WAIT&#x27;</code>
+                                        <code>&#x27;WOOOPS&#x27;</code>
                                     </td>
 
                                     <td>
-                                        <p>header to display (Default &#39;WAIT&#39;)</p>
+                                        <p>(optional) header to display (Default &#39;WAIT&#39;)</p>
 
                                     </td>
                                 </tr>
@@ -386,13 +390,119 @@
                     </div>
                     <div class="io-description">
                         <p>Use as:
-this.myservice.presentConfirm(&#39;message&#39;)
+this.myservice.presentConfirmAlert(&#39;message&#39;)
 .then(res =&gt; {
 if (res) {
 // codes
 }
 });</p>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="presentWarningAlert"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            presentWarningAlert
+                        </b>
+                        <a href="#presentWarningAlert"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>presentWarningAlert(msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, subheader: string | null, header: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>msg</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;Are you sure?&#x27;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>subheader</td>
+                                    <td>
+                                            <code>string | null</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>null</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>header</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;WOOOPS&#x27;</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -451,18 +561,18 @@ export class AlertService {
   /**
    * 
    * @param msg message to display
-   * @param subheader subheader to display (Default null)
-   * @param header header to display (Default &#x27;WAIT&#x27;)
+   * @param subheader (optional) subheader to display (Default null)
+   * @param header (optional) header to display (Default &#x27;WAIT&#x27;)
    * @returns 
    * Use as:
-   * this.myservice.presentConfirm(&#x27;message&#x27;)
+   * this.myservice.presentConfirmAlert(&#x27;message&#x27;)
    * .then(res &#x3D;&gt; {
    *   if (res) {
    *     // codes
    *   }
    * });
    */
-  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WAIT&#x27;): Promise&lt;any&gt; {
+  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WOOOPS&#x27;): Promise&lt;any&gt; {
     return new Promise(async (resolve) &#x3D;&gt; {
       const alert &#x3D; await this.alertController.create({
         header: header,
@@ -489,7 +599,25 @@ export class AlertService {
   }
 
 
-  async presentConfirm(header: any,message: any,cancelText: any,okText: any): Promise&lt;any&gt; {
+  async presentWarningAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WOOOPS&#x27;): Promise&lt;any&gt; {
+    return new Promise(async (resolve) &#x3D;&gt; {
+      const alert &#x3D; await this.alertController.create({
+        header: header,
+        subHeader: subheader,
+        message: msg,
+        buttons: [
+          {
+            text: &#x27;OK&#x27;,
+            role: &#x27;cancel&#x27;,
+            cssClass: &#x27;secondary&#x27;,
+          }
+        ]
+      });
+      alert.present();
+    });
+  }
+
+  async presentConfirm(header: any, message: any,cancelText: any,okText: any): Promise&lt;any&gt; {
     return new Promise(async (resolve) &#x3D;&gt; {
       const alert &#x3D; await this.alertController.create({
         header: header,

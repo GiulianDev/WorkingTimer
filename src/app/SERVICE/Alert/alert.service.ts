@@ -11,18 +11,18 @@ export class AlertService {
   /**
    * 
    * @param msg message to display
-   * @param subheader subheader to display (Default null)
-   * @param header header to display (Default 'WAIT')
+   * @param subheader (optional) subheader to display (Default null)
+   * @param header (optional) header to display (Default 'WAIT')
    * @returns 
    * Use as:
-   * this.myservice.presentConfirm('message')
+   * this.myservice.presentConfirmAlert('message')
    * .then(res => {
    *   if (res) {
    *     // codes
    *   }
    * });
    */
-  async presentConfirmAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WAIT'): Promise<any> {
+  async presentConfirmAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WOOOPS'): Promise<any> {
     return new Promise(async (resolve) => {
       const alert = await this.alertController.create({
         header: header,
@@ -49,7 +49,25 @@ export class AlertService {
   }
 
 
-  async presentConfirm(header: any,message: any,cancelText: any,okText: any): Promise<any> {
+  async presentWarningAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WOOOPS'): Promise<any> {
+    return new Promise(async (resolve) => {
+      const alert = await this.alertController.create({
+        header: header,
+        subHeader: subheader,
+        message: msg,
+        buttons: [
+          {
+            text: 'OK',
+            role: 'cancel',
+            cssClass: 'secondary',
+          }
+        ]
+      });
+      alert.present();
+    });
+  }
+
+  async presentConfirm(header: any, message: any,cancelText: any,okText: any): Promise<any> {
     return new Promise(async (resolve) => {
       const alert = await this.alertController.create({
         header: header,

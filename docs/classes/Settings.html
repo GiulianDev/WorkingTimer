@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/MODELS/Interfaces.ts</code>
+            <code>src/app/MODELS/Settings.ts</code>
         </p>
 
 
@@ -127,7 +127,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/MODELS/Interfaces.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/app/MODELS/Settings.ts:5</a></div>
                             </td>
                         </tr>
 
@@ -161,7 +161,11 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
+<<<<<<< HEAD
                                     <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/MODELS/Interfaces.ts:62</a></div>
+=======
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/MODELS/Settings.ts:32</a></div>
+>>>>>>> Dev
                             </td>
                         </tr>
 
@@ -197,8 +201,13 @@
 
             <tr>
                 <td class="col-md-4">
+<<<<<<< HEAD
                     <div class="io-line">Defined in <a href="" data-line="77"
                             class="link-to-prism">src/app/MODELS/Interfaces.ts:77</a></div>
+=======
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:49</a></div>
+>>>>>>> Dev
                 </td>
             </tr>
 
@@ -277,8 +286,13 @@
 
             <tr>
                 <td class="col-md-4">
+<<<<<<< HEAD
                     <div class="io-line">Defined in <a href="" data-line="116"
                             class="link-to-prism">src/app/MODELS/Interfaces.ts:116</a></div>
+=======
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:94</a></div>
+>>>>>>> Dev
                 </td>
             </tr>
 
@@ -355,8 +369,13 @@
 
             <tr>
                 <td class="col-md-4">
+<<<<<<< HEAD
                     <div class="io-line">Defined in <a href="" data-line="68"
                             class="link-to-prism">src/app/MODELS/Interfaces.ts:68</a></div>
+=======
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/app/MODELS/Settings.ts:39</a></div>
+>>>>>>> Dev
                 </td>
             </tr>
 
@@ -436,68 +455,43 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum LABELS {
-    START  &#x3D; &quot;IN&quot;,
-    STOP   &#x3D; &quot;OUT&quot;,
-    PAUSE  &#x3D; &quot;PAUSE&quot;
-}
-
-export enum DEFAULT_VAL {
-    START  &#x3D; &quot;08:30&quot;,
-    STOP   &#x3D; &quot;18:00&quot;,
-}
-
-export enum DateFormat {
-    Year &#x3D; &quot;YYYY&quot;,
-    YearMonth &#x3D;	&quot;YYYY-MM&quot;,
-    HourMinute &#x3D; &quot;HH:mm&quot;,
-    HourMinuteSeconds &#x3D; &quot;HH:mm:ss&quot;
-}
-
-export enum KEYS {
-    SETTINGS &#x3D; &quot;Setting&quot;,
-}
-
-export enum SETTINGS {
-    ALARMS &#x3D; &quot;Alarms&quot;
-}
-
-export class TimeList {
-    constructor() {
-        this.start &#x3D; [];
-        this.stop &#x3D; [];
-        this.diff &#x3D; [];
-        this.diffms &#x3D; [];
-        this.total &#x3D; null;
-        this.totalms &#x3D; 0;
-    };
-    start?: Date[];
-    stop?: Date[];
-    diff?: string[];
-    diffms?: number[];
-    total?: string;
-    totalms?: number;
-}
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { timeToString } from &quot;../COMMON/Utility&quot;;
+import { Alarm } from &quot;./Alarm&quot;;
+import { LABELS, DEFAULT_VAL } from &quot;./Interfaces&quot;;
 
 export class Settings {
+    
+    
     constructor() {
+        
+        const start &#x3D; new Alarm(LABELS.START, DEFAULT_VAL.START, timeToString(DEFAULT_VAL.START), true);
+        const end &#x3D; new Alarm(LABELS.STOP, DEFAULT_VAL.STOP, timeToString(DEFAULT_VAL.STOP), true);
+
+
         this.alarms &#x3D; [
-            {
-                key: LABELS.START,
-                value: DEFAULT_VAL.START,
-                index: timeToString(DEFAULT_VAL.START),
-                enabled: true
-            },
-            {
-                key: LABELS.STOP,
-                value: DEFAULT_VAL.STOP,
-                index: timeToString(DEFAULT_VAL.STOP),
-                enabled: true
-            }
+            // {
+            //     key: LABELS.START,
+            //     value: DEFAULT_VAL.START,
+            //     index: timeToString(DEFAULT_VAL.START),
+            //     enabled: true
+            // },
+            // {
+            //     key: LABELS.STOP,
+            //     value: DEFAULT_VAL.STOP,
+            //     index: timeToString(DEFAULT_VAL.STOP),
+            //     enabled: true
+            // }
         ]
+        this.alarms.push(start);
+        this.alarms.push(end);
     };
+<<<<<<< HEAD
     alarms?: Alarm[];
+=======
+
+    alarms?: Alarm[];
+
+>>>>>>> Dev
     /**
      * Update Alarm by positional index
      * @param val string
@@ -507,6 +501,10 @@ export class Settings {
         this.alarms[idx].value &#x3D; val;
         this.alarms[idx].index &#x3D; timeToString(val);
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> Dev
     /**
      * Add a nex alarm to the alarm array
      * @param alarmValue - string &quot;hh:mm&quot;
@@ -516,16 +514,30 @@ export class Settings {
         // aggiungo l&#x27;elemento alla fine e poi riordino l&#x27;array
         // const idx &#x3D; this.alarms.length;
         // create pause element
+<<<<<<< HEAD
         const pause: Alarm &#x3D; {
             key: LABELS.PAUSE,
             value: alarmValue,
             index: timeToString(alarmValue),
             enabled: false
         }
+=======
+
+        // const pause: Alarm &#x3D; {
+        //     key: LABELS.PAUSE,
+        //     value: alarmValue,
+        //     index: timeToString(alarmValue),
+        //     enabled: false
+        // }
+        const pause &#x3D; new Alarm(LABELS.PAUSE, alarmValue, timeToString(alarmValue), false);
+
+>>>>>>> Dev
         console.log(pause);
         // ChecK if out of range
         if (pause.index &lt; this.alarms[0].index || pause.index &gt; this.alarms[this.alarms.length - 1].index) {
-            return {succeded: false, msg:&#x27;PAUSE OUT OF RANGE!&#x27;};
+            let msg &#x3D; &#x27;PAUSE OUT OF RANGE!&#x27;;
+            console.log(msg);
+            return {succeded: false, msg: msg};
         }
         // check if there is an alarm with the same index
         //     &#x3D;&gt; same starting time
@@ -546,6 +558,10 @@ export class Settings {
         });
         return {succeded: true, msg:&#x27;Pause updated&#x27;};
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> Dev
     /**
      * Delete a specific alarm from alarms array
      * @param alarm alarm to delete (type Alarm)
@@ -562,6 +578,7 @@ export class Settings {
         }
         return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
     }
+<<<<<<< HEAD
 }
 
 export class Alarm {
@@ -585,6 +602,9 @@ export function timeToString(timeStr: string) {
 
 
 </code></pre>
+=======
+}</code></pre>
+>>>>>>> Dev
     </div>
 </div>
 

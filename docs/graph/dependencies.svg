@@ -20,9 +20,18 @@
 <text text-anchor="start" x="488.17" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Providers</text>
 <polygon fill="#fb8072" stroke="transparent" points="560.5,-10 560.5,-30 580.5,-30 580.5,-10 560.5,-10"/>
 <text text-anchor="start" x="584.23" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
+<g id="clust22" class="cluster">
+<title>cluster_HomePageRoutingModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="615,-70 615,-198 797,-198 797,-70 615,-70"/>
+</g>
+<g id="clust27" class="cluster">
+<title>cluster_HomePageRoutingModule_providers</title>
+<polygon fill="none" stroke="black" points="634,-78 634,-130 778,-130 778,-78 634,-78"/>
+</g>
 <g id="clust1" class="cluster">
 <title>cluster_AppModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-271 298,-271 298,-70 8,-70"/>
+<<<<<<< HEAD
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_AppModule_bootstrap</title>
@@ -44,6 +53,21 @@
 <title>cluster_HomePageRoutingModule_providers</title>
 <polygon fill="none" stroke="black" points="634,-78 634,-130 778,-130 778,-78 634,-78"/>
 </g>
+=======
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_AppModule_bootstrap</title>
+<polygon fill="none" stroke="black" points="96,-211 96,-263 220,-263 220,-211 96,-211"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_AppModule_declarations</title>
+<polygon fill="none" stroke="black" points="168,-78 168,-130 290,-130 290,-78 168,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_AppModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 160,-130 160,-78 16,-78"/>
+</g>
+>>>>>>> Dev
 <g id="clust14" class="cluster">
 <title>cluster_HomePageModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="306,-138 306,-263 607,-263 607,-138 306,-138"/>
@@ -61,26 +85,46 @@
 <!-- AppModule -->
 <g id="node2" class="node">
 <title>AppModule</title>
+<<<<<<< HEAD
 <polygon fill="#8dd3c7" stroke="black" points="189.66,-190 186.66,-194 165.66,-194 162.66,-190 106.34,-190 106.34,-154 189.66,-154 189.66,-190"/>
 <text text-anchor="middle" x="148" y="-167.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+=======
+<polygon fill="#8dd3c7" stroke="black" points="199.66,-190 196.66,-194 175.66,-194 172.66,-190 116.34,-190 116.34,-154 199.66,-154 199.66,-190"/>
+<text text-anchor="middle" x="158" y="-167.8" font-family="Times,serif" font-size="14.00">AppModule</text>
+>>>>>>> Dev
 </g>
 <!-- AppComponent&#45;&gt;AppModule -->
 <g id="edge1" class="edge">
 <title>AppComponent&#45;&gt;AppModule</title>
+<<<<<<< HEAD
 <path fill="none" stroke="black" d="M117.95,-122.22C117.95,-122.22 117.95,-143.73 117.95,-143.73"/>
 <polygon fill="black" stroke="black" points="114.45,-143.73 117.95,-153.73 121.45,-143.73 114.45,-143.73"/>
+=======
+<path fill="none" stroke="black" d="M188.05,-122.22C188.05,-122.22 188.05,-143.73 188.05,-143.73"/>
+<polygon fill="black" stroke="black" points="184.55,-143.73 188.05,-153.73 191.55,-143.73 184.55,-143.73"/>
+>>>>>>> Dev
 </g>
 <!-- AppComponent  -->
 <g id="node4" class="node">
 <title>AppComponent </title>
+<<<<<<< HEAD
 <polygon fill="#80b1d3" stroke="black" points="202.44,-255 93.56,-255 93.56,-219 202.44,-219 202.44,-255"/>
 <text text-anchor="middle" x="148" y="-232.8" font-family="Times,serif" font-size="14.00">AppComponent </text>
+=======
+<polygon fill="#80b1d3" stroke="black" points="212.44,-255 103.56,-255 103.56,-219 212.44,-219 212.44,-255"/>
+<text text-anchor="middle" x="158" y="-232.8" font-family="Times,serif" font-size="14.00">AppComponent </text>
+>>>>>>> Dev
 </g>
 <!-- AppModule&#45;&gt;AppComponent  -->
 <g id="edge3" class="edge">
 <title>AppModule&#45;&gt;AppComponent </title>
+<<<<<<< HEAD
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M148,-190.11C148,-190.11 148,-208.99 148,-208.99"/>
 <polygon fill="black" stroke="black" points="144.5,-208.99 148,-218.99 151.5,-208.99 144.5,-208.99"/>
+=======
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M158,-190.11C158,-190.11 158,-208.99 158,-208.99"/>
+<polygon fill="black" stroke="black" points="154.5,-208.99 158,-218.99 161.5,-208.99 154.5,-208.99"/>
+>>>>>>> Dev
 </g>
 <!-- AppRoutingModule -->
 <g id="node3" class="node">
@@ -91,8 +135,13 @@
 <!-- AppRoutingModule&#45;&gt;AppModule -->
 <g id="edge2" class="edge">
 <title>AppRoutingModule&#45;&gt;AppModule</title>
+<<<<<<< HEAD
 <path fill="none" stroke="black" d="M171.72,-122.22C171.72,-122.22 171.72,-143.73 171.72,-143.73"/>
 <polygon fill="black" stroke="black" points="168.22,-143.73 171.72,-153.73 175.22,-143.73 168.22,-143.73"/>
+=======
+<path fill="none" stroke="black" d="M134.28,-122.22C134.28,-122.22 134.28,-143.73 134.28,-143.73"/>
+<polygon fill="black" stroke="black" points="130.78,-143.73 134.28,-153.73 137.78,-143.73 130.78,-143.73"/>
+>>>>>>> Dev
 </g>
 <!-- HomePage -->
 <g id="node5" class="node">

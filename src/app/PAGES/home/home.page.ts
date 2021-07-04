@@ -16,7 +16,6 @@ export class HomePage {
 
 
   private _startStopTxt: string = LABELS.START;
-  private _isRunning: boolean = false;
   private time: string;
   private stopped: Date[] = [];
   private started: Date[] = [];
@@ -24,7 +23,7 @@ export class HomePage {
   
   private offset;  // time offset between current time and alarm time
 
-  private clickCounter: number = 0; // count the number of click on Start/Stop timer button
+  // private clickCounter: number = 0; // count the number of click on Start/Stop timer button
 
   /**
    * CONSTRUCTOR
@@ -36,10 +35,31 @@ export class HomePage {
     public alertController: AlertController,
     public alert: AlertService
   ) { 
+
     // ToDo
     // let User manage the offset
     this.offset = 15;
+
+    // ToDo
+    // recover time lists from timer service
+    // in case of app closed while running
+
+    // this.timerService. ...
+
+    // this.timeList. ...
+
+    
+    this.UpdateGUI();
+
   }
+
+
+  UpdateGUI() {
+    this._startStopTxt = this.timerService.isRunning() ? LABELS.STOP : LABELS.START;
+  }
+
+
+
 
   /**
    * Start/Stop timer function
@@ -47,11 +67,15 @@ export class HomePage {
   async OnFabTimerClick() {
     
     // check for alarm
-    let alarm = this.storageService.getAlarm(this.clickCounter);
+    let alarm = this.storageService.getAlarmByIndex(this.timerService.clickCounter);
     let currentTime = this.timerService.getCurrentTimeAsIndex();
 
-    
     if (alarm) {
+
+      let t = this.storageService.getAlarmCount();
+      console.log(t);
+      console.log('click count: ', this.timerService.clickCounter);
+
 
       let msg = null;
 
@@ -79,7 +103,12 @@ export class HomePage {
       })
 
 
-    } else {
+    } 
+    else if (this.timerService.clickCounter == this.storageService.getAlarmCount()) {
+      this.StartStopTimer();
+    }
+    
+    else {
       // this.StartStopTimer();
       let subheader = "You are done for today!";
       let msg = "Do you want to reset timer?"
@@ -101,19 +130,16 @@ export class HomePage {
    * and increment click counter
    */
   StartStopTimer() {
-    if (this._isRunning) 
+    if (this.timerService.isRunning()) 
     {
-      this._startStopTxt = LABELS.START;
       this.timerService.stop();
     } 
     else 
     {
-      this._startStopTxt = LABELS.STOP;
       this.timerService.start();
     }
+    this.UpdateGUI();
     this.timeList = this.timerService.GetTimeList();
-    this._isRunning = !this._isRunning;
-    this.clickCounter++;
   }
 
   /**
@@ -124,8 +150,7 @@ export class HomePage {
     this.timerService.reset();
     this.timeList = this.timerService.GetTimeList();
     // console.log(this.timeList)
-    this._isRunning = false;
-    this.clickCounter = 0;
+    // this.clickCounter = 0;
   }
 
 
