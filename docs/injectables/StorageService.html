@@ -98,6 +98,9 @@
                                 <a href="#getAlarmByIndex">getAlarmByIndex</a>
                             </li>
                             <li>
+                                <a href="#getAlarmCount">getAlarmCount</a>
+                            </li>
+                            <li>
                                 <a href="#getAlarms">getAlarms</a>
                             </li>
                             <li>
@@ -272,6 +275,51 @@
                     </div>
                     <div class="io-description">
                         <p>alarm at index posistion</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAlarmCount"></a>
+                    <span class="name">
+                        <b>
+                            getAlarmCount
+                        </b>
+                        <a href="#getAlarmCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAlarmCount()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/app/SERVICE/Storage/storage.service.ts:161</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>alarms number</p>
 
                     </div>
                 </td>
@@ -533,7 +581,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Return the stored status from the device local storage</p>
+                    <div class="io-description"><p>Return the stored status from the device local storage or null</p>
 </div>
 
                     <div>
@@ -991,7 +1039,7 @@ export class StorageService {
   }
   
   /**
-  * Return the stored status from the device local storage
+  * Return the stored status from the device local storage or null
   * @returns 
   */
   async getStoredStatus() {
@@ -1042,6 +1090,15 @@ export class StorageService {
   getLastAlarm() {
     let end &#x3D; this.settings.alarms.length - 1;
     return this.settings.alarms[end];
+  }
+
+  /**
+   * 
+   * @returns alarms number
+   */
+  getAlarmCount() {
+    console.log(this.settings.alarms.length);
+    return this.settings.alarms.length;
   }
   
   
