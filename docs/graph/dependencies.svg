@@ -20,9 +20,25 @@
 <text text-anchor="start" x="488.17" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Providers</text>
 <polygon fill="#fb8072" stroke="transparent" points="560.5,-10 560.5,-30 580.5,-30 580.5,-10 560.5,-10"/>
 <text text-anchor="start" x="584.23" y="-15.4" font-family="sans-serif" font-size="14.00"> &#160;Exports</text>
+<g id="clust14" class="cluster">
+<title>cluster_HomePageModule</title>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="306,-146 306,-271 797,-271 797,-146 306,-146"/>
+</g>
+<g id="clust18" class="cluster">
+<title>cluster_HomePageModule_imports</title>
+<polygon fill="none" stroke="black" points="607,-154 607,-206 789,-206 789,-154 607,-154"/>
+</g>
+<g id="clust15" class="cluster">
+<title>cluster_HomePageModule_declarations</title>
+<polygon fill="none" stroke="black" points="314,-154 314,-206 599,-206 599,-154 314,-154"/>
+</g>
 <g id="clust1" class="cluster">
 <title>cluster_AppModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-279 298,-279 298,-70 8,-70"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_AppModule_bootstrap</title>
+<polygon fill="none" stroke="black" points="96,-219 96,-271 220,-271 220,-219 96,-219"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_AppModule_declarations</title>
@@ -32,29 +48,13 @@
 <title>cluster_AppModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 160,-130 160,-78 16,-78"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_AppModule_bootstrap</title>
-<polygon fill="none" stroke="black" points="96,-219 96,-271 220,-271 220,-219 96,-219"/>
-</g>
-<g id="clust14" class="cluster">
-<title>cluster_HomePageModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="306,-146 306,-271 797,-271 797,-146 306,-146"/>
-</g>
-<g id="clust15" class="cluster">
-<title>cluster_HomePageModule_declarations</title>
-<polygon fill="none" stroke="black" points="504,-154 504,-206 789,-206 789,-154 504,-154"/>
-</g>
-<g id="clust18" class="cluster">
-<title>cluster_HomePageModule_imports</title>
-<polygon fill="none" stroke="black" points="314,-154 314,-206 496,-206 496,-154 314,-154"/>
-</g>
 <g id="clust22" class="cluster">
 <title>cluster_HomePageRoutingModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="325,-70 325,-138 485,-138 485,-70 325,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="618,-70 618,-138 778,-138 778,-70 618,-70"/>
 </g>
 <g id="clust27" class="cluster">
 <title>cluster_HomePageRoutingModule_providers</title>
-<polygon fill="none" stroke="black" points="333,-78 333,-130 477,-130 477,-78 333,-78"/>
+<polygon fill="none" stroke="black" points="626,-78 626,-130 770,-130 770,-78 626,-78"/>
 </g>
 <!-- AppComponent -->
 <g id="node1" class="node">
@@ -101,56 +101,56 @@
 <!-- HomePage -->
 <g id="node5" class="node">
 <title>HomePage</title>
-<polygon fill="#ffffb3" stroke="black" points="780.92,-198 703.08,-198 703.08,-162 780.92,-162 780.92,-198"/>
-<text text-anchor="middle" x="742" y="-175.8" font-family="Times,serif" font-size="14.00">HomePage</text>
+<polygon fill="#ffffb3" stroke="black" points="590.92,-198 513.08,-198 513.08,-162 590.92,-162 590.92,-198"/>
+<text text-anchor="middle" x="552" y="-175.8" font-family="Times,serif" font-size="14.00">HomePage</text>
 </g>
 <!-- HomePageModule -->
 <g id="node7" class="node">
 <title>HomePageModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="659.47,-263 656.47,-267 635.47,-267 632.47,-263 538.53,-263 538.53,-227 659.47,-227 659.47,-263"/>
-<text text-anchor="middle" x="599" y="-240.8" font-family="Times,serif" font-size="14.00">HomePageModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="612.47,-263 609.47,-267 588.47,-267 585.47,-263 491.53,-263 491.53,-227 612.47,-227 612.47,-263"/>
+<text text-anchor="middle" x="552" y="-240.8" font-family="Times,serif" font-size="14.00">HomePageModule</text>
 </g>
 <!-- HomePage&#45;&gt;HomePageModule -->
 <g id="edge4" class="edge">
 <title>HomePage&#45;&gt;HomePageModule</title>
-<path fill="none" stroke="black" d="M742,-198.11C742,-217.34 742,-245 742,-245 742,-245 669.64,-245 669.64,-245"/>
-<polygon fill="black" stroke="black" points="669.64,-241.5 659.64,-245 669.64,-248.5 669.64,-241.5"/>
+<path fill="none" stroke="black" d="M552,-198.11C552,-198.11 552,-216.99 552,-216.99"/>
+<polygon fill="black" stroke="black" points="548.5,-216.99 552,-226.99 555.5,-216.99 548.5,-216.99"/>
 </g>
 <!-- SettingsPopoverComponent -->
 <g id="node6" class="node">
 <title>SettingsPopoverComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="685.6,-198 512.4,-198 512.4,-162 685.6,-162 685.6,-198"/>
-<text text-anchor="middle" x="599" y="-175.8" font-family="Times,serif" font-size="14.00">SettingsPopoverComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="495.6,-198 322.4,-198 322.4,-162 495.6,-162 495.6,-198"/>
+<text text-anchor="middle" x="409" y="-175.8" font-family="Times,serif" font-size="14.00">SettingsPopoverComponent</text>
 </g>
 <!-- SettingsPopoverComponent&#45;&gt;HomePageModule -->
 <g id="edge5" class="edge">
 <title>SettingsPopoverComponent&#45;&gt;HomePageModule</title>
-<path fill="none" stroke="black" d="M599,-198.11C599,-198.11 599,-216.99 599,-216.99"/>
-<polygon fill="black" stroke="black" points="595.5,-216.99 599,-226.99 602.5,-216.99 595.5,-216.99"/>
+<path fill="none" stroke="black" d="M495.61,-180C501.07,-180 504.42,-180 504.42,-180 504.42,-180 504.42,-216.89 504.42,-216.89"/>
+<polygon fill="black" stroke="black" points="500.92,-216.89 504.42,-226.89 507.92,-216.89 500.92,-216.89"/>
 </g>
 <!-- HomePageRoutingModule -->
 <g id="node8" class="node">
 <title>HomePageRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="488.09,-198 485.09,-202 464.09,-202 461.09,-198 321.91,-198 321.91,-162 488.09,-162 488.09,-198"/>
-<text text-anchor="middle" x="405" y="-175.8" font-family="Times,serif" font-size="14.00">HomePageRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="781.09,-198 778.09,-202 757.09,-202 754.09,-198 614.91,-198 614.91,-162 781.09,-162 781.09,-198"/>
+<text text-anchor="middle" x="698" y="-175.8" font-family="Times,serif" font-size="14.00">HomePageRoutingModule</text>
 </g>
 <!-- HomePageRoutingModule&#45;&gt;HomePageModule -->
 <g id="edge6" class="edge">
 <title>HomePageRoutingModule&#45;&gt;HomePageModule</title>
-<path fill="none" stroke="black" d="M405,-198.11C405,-217.34 405,-245 405,-245 405,-245 528.42,-245 528.42,-245"/>
-<polygon fill="black" stroke="black" points="528.42,-248.5 538.42,-245 528.42,-241.5 528.42,-248.5"/>
+<path fill="none" stroke="black" d="M614.6,-180C606.72,-180 601.6,-180 601.6,-180 601.6,-180 601.6,-216.89 601.6,-216.89"/>
+<polygon fill="black" stroke="black" points="598.1,-216.89 601.6,-226.89 605.1,-216.89 598.1,-216.89"/>
 </g>
 <!-- TimerService -->
 <g id="node9" class="node">
 <title>TimerService</title>
-<ellipse fill="#fdb462" stroke="black" cx="405" cy="-104" rx="63.68" ry="18"/>
-<text text-anchor="middle" x="405" y="-99.8" font-family="Times,serif" font-size="14.00">TimerService</text>
+<ellipse fill="#fdb462" stroke="black" cx="698" cy="-104" rx="63.68" ry="18"/>
+<text text-anchor="middle" x="698" y="-99.8" font-family="Times,serif" font-size="14.00">TimerService</text>
 </g>
 <!-- TimerService&#45;&gt;HomePageRoutingModule -->
 <g id="edge7" class="edge">
 <title>TimerService&#45;&gt;HomePageRoutingModule</title>
-<path fill="none" stroke="black" d="M405,-122.01C405,-122.01 405,-151.85 405,-151.85"/>
-<polygon fill="black" stroke="black" points="401.5,-151.85 405,-161.85 408.5,-151.85 401.5,-151.85"/>
+<path fill="none" stroke="black" d="M698,-122.01C698,-122.01 698,-151.85 698,-151.85"/>
+<polygon fill="black" stroke="black" points="694.5,-151.85 698,-161.85 701.5,-151.85 694.5,-151.85"/>
 </g>
 </g>
 </svg>
