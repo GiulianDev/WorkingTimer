@@ -37,12 +37,7 @@ export class TimeList {
     totalms?: number;
 }
 
-export class Alarm {
-    key: string;
-    value: string;
-    enabled: boolean;
-    index: number;
-}
+
 
 export interface Status {
     isRunning: boolean,

@@ -101,7 +101,7 @@ export class StorageService {
   }
   
   /**
-  * Return the stored status from the device local storage
+  * Return the stored status from the device local storage or null
   * @returns 
   */
   async getStoredStatus() {

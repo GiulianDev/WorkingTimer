@@ -21,7 +21,7 @@
     <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">
       <ion-item>
         <ion-buttons expand="full">
-          <ion-button expand="full" (click)="AddPause()">
+          <ion-button expand="full" (click)="AddPause(alarm)">
             <div class="alarm">
               <div class="label">
                 {{alarm.key}}

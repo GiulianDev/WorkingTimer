@@ -1,23 +1,32 @@
 import { timeToString } from "../COMMON/Utility";
-import { LABELS, DEFAULT_VAL, Alarm } from "./Interfaces";
+import { Alarm } from "./Alarm";
+import { LABELS, DEFAULT_VAL } from "./Interfaces";
 
 export class Settings {
     
+    
     constructor() {
+        
+        const start = new Alarm(LABELS.START, DEFAULT_VAL.START, timeToString(DEFAULT_VAL.START), true);
+        const end = new Alarm(LABELS.STOP, DEFAULT_VAL.STOP, timeToString(DEFAULT_VAL.STOP), true);
+
+
         this.alarms = [
-            {
-                key: LABELS.START,
-                value: DEFAULT_VAL.START,
-                index: timeToString(DEFAULT_VAL.START),
-                enabled: true
-            },
-            {
-                key: LABELS.STOP,
-                value: DEFAULT_VAL.STOP,
-                index: timeToString(DEFAULT_VAL.STOP),
-                enabled: true
-            }
+            // {
+            //     key: LABELS.START,
+            //     value: DEFAULT_VAL.START,
+            //     index: timeToString(DEFAULT_VAL.START),
+            //     enabled: true
+            // },
+            // {
+            //     key: LABELS.STOP,
+            //     value: DEFAULT_VAL.STOP,
+            //     index: timeToString(DEFAULT_VAL.STOP),
+            //     enabled: true
+            // }
         ]
+        this.alarms.push(start);
+        this.alarms.push(end);
     };
 
     alarms?: Alarm[];
@@ -41,16 +50,21 @@ export class Settings {
         // aggiungo l'elemento alla fine e poi riordino l'array
         // const idx = this.alarms.length;
         // create pause element
-        const pause: Alarm = {
-            key: LABELS.PAUSE,
-            value: alarmValue,
-            index: timeToString(alarmValue),
-            enabled: false
-        }
+
+        // const pause: Alarm = {
+        //     key: LABELS.PAUSE,
+        //     value: alarmValue,
+        //     index: timeToString(alarmValue),
+        //     enabled: false
+        // }
+        const pause = new Alarm(LABELS.PAUSE, alarmValue, timeToString(alarmValue), false);
+
         console.log(pause);
         // ChecK if out of range
         if (pause.index < this.alarms[0].index || pause.index > this.alarms[this.alarms.length - 1].index) {
-            return {succeded: false, msg:'PAUSE OUT OF RANGE!'};
+            let msg = 'PAUSE OUT OF RANGE!';
+            console.log(msg);
+            return {succeded: false, msg: msg};
         }
         // check if there is an alarm with the same index
         //     => same starting time
