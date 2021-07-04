@@ -113,7 +113,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#hetMinute">hetMinute</a>
+                                <a href="#getMinutes">getMinutes</a>
                             </li>
                         </ul>
                     </td>
@@ -408,7 +408,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -423,20 +423,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="hetMinute"></a>
+                    <a name="getMinutes"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Public</span>
-                            hetMinute
+                            getMinutes
                         </b>
-                        <a href="#hetMinute"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getMinutes"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>hetMinute()</code>
+                    <code>getMinutes()</code>
                 </td>
             </tr>
 
@@ -455,7 +455,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
@@ -503,7 +503,7 @@
      * 
      * @returns Alarm hour
      */
-    public getHour() {
+    public getHour(): string {
         let tmp &#x3D; this.value.split(&quot;:&quot;);
         return tmp[0];
     };
@@ -512,7 +512,7 @@
      * 
      * @returns {string} Alarm minutes
      */
-    public hetMinute() {
+    public getMinutes(): string {
         let tmp &#x3D; this.value.split(&quot;:&quot;);
         return tmp[1];
     }
