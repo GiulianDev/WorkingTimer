@@ -12,25 +12,22 @@ export class NotificationService {
   constructor() { }
 
 
-  /*
+  
 
   async addLocalNotification() {
 
     this.notification = {
       title: "aaaa",
-      body: `You open this ${test}`,
-      id: photo.id,
+      body: `You open this`,
+      id: this.Date2Id(),
       smallIcon: 'house',
       actionTypeId: 'OPEN_PRODUCT',
       schedule: {
-        at: tomorrow,
-        every: "day",
+        // every: "day",
         // on: 	{ year: year, month: month, day: day, hour: hh, minute: mm },
-        repeats: photo.reminders[0].repeat
+        at: this.getDelayedTime()
       },
-      attachments: [{id: photo.id.toString(), url: photo.webviewPath}],
       extra: {
-        timeStamp: photo.timeStamp
       }
     };
 
@@ -42,14 +39,29 @@ export class NotificationService {
       ]
     });
     
-    let d = tomorrow.toLocaleString();
-    let msg = 'Added notification at ' + d;
-    msg = msg.substring(0, msg.length - 3);
-    this.presentToast(msg);
+    // let msg = 'Added notification at ';
+    // this.presentToast(msg);
   }
 
-
-
-  */
+  /**
+   * 
+   * @returns number of seconds from 1970
+   */
+  Date2Id(): number {
+    let seconds = Math.floor(Date.now() / 1000);
+    return seconds;
+  }
+  
+  /**
+   * 
+   * @param seconds seconds to delay
+   * @returns delayed current time of specified seconds
+   */
+  getDelayedTime(seconds:number = 1): Date {
+    var date = new Date();
+    // add a second
+    date.setDate(date.getTime() + seconds * 1000);
+    return date;
+  }
 
 }
