@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { timeToString } from 'src/app/COMMON/Utility';
 import { Status, TimeList } from 'src/app/MODELS/Interfaces';
+import { NotificationService } from '../Notification/notification.service';
 import { StorageService } from '../Storage/storage.service';
 
 @Injectable({
@@ -26,7 +27,8 @@ export class TimerService {
 
   constructor(
     public platform: Platform,
-    public storageService: StorageService
+    public storageService: StorageService,
+    public notificationService: NotificationService
   ) { 
     // subscribe to on pause event
     this.onPause();
@@ -39,12 +41,11 @@ export class TimerService {
       this.running = true;
       this.timeList = savedStatus.timeList;
 
-      
-
       this.timeBegan = this.timeList.start[0];
       this.timeStopped = this.timeList.stop[this.timeList.stop.length];
       this.clickCounter = savedStatus.clickCounter;
-      this.clockRunning();   
+      // this.clockRunning();   
+      this.start();
     }
 
   }
@@ -68,7 +69,7 @@ export class TimerService {
     this.running = true;
     this.clickCounter++;
   }
-    
+  
   /**
    * Stop timer
    */
@@ -147,22 +148,6 @@ export class TimerService {
       this.timeList.diffms.push(timeElapsed);
 
     console.log(diff);
-
-
-
-    // var total = this.timeList.totalms + timeElapsed;
-    // console.log(total);
-    // hour = total.getUTCHours()
-    // min = total.getUTCMinutes()
-    // sec = total.getUTCSeconds()
-    // ms = total.getUTCMilliseconds();
-    // diff =
-    //   this.zeroPrefix(hour, 2) + ":" +
-    //   this.zeroPrefix(min, 2) + ":" +
-    //   this.zeroPrefix(sec, 2);
-
-    //   this.timeList.total = diff;
-    
   }
 
 
@@ -213,7 +198,11 @@ export class TimerService {
         clickCounter: this.clickCounter
       };   
       this.storageService.SaveStatus(status);
+      // add notification
+      console.log("Adding local notification...");
+      this.notificationService.addLocalNotification();
     })
+      
   }
 
 }
