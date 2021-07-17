@@ -38,9 +38,13 @@ export class TimerService {
 
       this.running = true;
       this.timeList = savedStatus.timeList;
+
+      
+
       this.timeBegan = this.timeList.start[0];
       this.timeStopped = this.timeList.stop[this.timeList.stop.length];
       this.clickCounter = savedStatus.clickCounter;
+      this.clockRunning();   
     }
 
   }

@@ -109,12 +109,28 @@ export class StorageService {
     const res = await Storage.get({key: KEYS.STATUS});
     if (res.value != null) {
       this.status = JSON.parse(res.value);
+      
+      // converto tutte le date in oggetti di tipo Date
+      console.log("Converting date time");
+      this.status.timeList.start = this.convertStr2Date(this.status.timeList.start);
+      this.status.timeList.stop = this.convertStr2Date(this.status.timeList.stop);
+
       console.log("Status: ", this.status);
       return this.status
     }
     return null;
   }
   
+
+  convertStr2Date(dateStr: Array<any>) {
+    console.log("Converting date time");
+    let ln = dateStr.length;
+    var convrtedDate: Date[] = [];
+    for(let idx = 0; idx < ln; idx++) {
+      convrtedDate[idx] = new Date(dateStr[idx]);
+    }
+    return convrtedDate;
+  }
   
   /**
   * @returns {Settings} current settings
