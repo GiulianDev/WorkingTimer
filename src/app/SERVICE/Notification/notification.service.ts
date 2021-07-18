@@ -8,20 +8,21 @@ const { LocalNotifications } = Plugins;
 export class NotificationService {
 
   private notification: LocalNotification;
+  private notificationPromise: Promise<any>;
+  private _ID: number = 439209432321129530;
 
   constructor() { }
 
 
   
 
-  async addLocalNotification() {
+  async addLocalNotification(msg: string = 'Timer is still running') {
 
     this.notification = {
-      title: "aaaa",
-      body: `You open this`,
-      id: this.Date2Id(),
-      smallIcon: 'house',
-      actionTypeId: 'OPEN_PRODUCT',
+      title: "YOU ARE LUCKY",
+      body: msg,
+      id: this._ID,
+      smallIcon: 'res://logo',
       schedule: {
         // every: "day",
         // on: 	{ year: year, month: month, day: day, hour: hh, minute: mm },
@@ -43,6 +44,15 @@ export class NotificationService {
     // this.presentToast(msg);
   }
 
+
+  async deleteLocalNotification() {
+    // await LocalNotifications.cancel(this._ID);
+  }
+
+
+  async getPending() {
+    return await LocalNotifications.getPending();
+  }
   /**
    * 
    * @returns number of seconds from 1970

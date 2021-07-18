@@ -44,8 +44,7 @@ export class TimerService {
       this.timeBegan = this.timeList.start[0];
       this.timeStopped = this.timeList.stop[this.timeList.stop.length];
       this.clickCounter = savedStatus.clickCounter;
-      // this.clockRunning();   
-      this.start();
+      this.started = setInterval(this.clockRunning.bind(this), 10);
     }
 
   }
@@ -55,7 +54,9 @@ export class TimerService {
    * Start timer
    */
   start() {
-    if(this.running) return;
+    if(this.running) {
+      return;
+    }
     if (this.timeBegan === null) {
         this.reset();
         this.timeBegan = new Date();
@@ -198,11 +199,24 @@ export class TimerService {
         clickCounter: this.clickCounter
       };   
       this.storageService.SaveStatus(status);
+
       // add notification
-      console.log("Adding local notification...");
-      this.notificationService.addLocalNotification();
+      if (this.isTimerActive()) {
+        console.log("Adding local notification...");
+        let msg: string = "Your working hour is still tracked";
+        this.notificationService.addLocalNotification(msg);
+      } else {
+        let p = this.notificationService.getPending();
+        console.log(p);
+      }
     })
       
+  }
+
+  isTimerActive(): boolean {
+    if (this.running) return true;
+    else if (this.timeList.start.length > 0) return true;
+    return false;
   }
 
 }

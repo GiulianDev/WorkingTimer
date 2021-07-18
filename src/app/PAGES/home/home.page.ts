@@ -46,7 +46,7 @@ export class HomePage {
 
     // this.timerService. ...
 
-    // this.timeList. ...
+    this.timeList = this.timerService.timeList;
 
     
     this.UpdateGUI();
@@ -97,6 +97,9 @@ export class HomePage {
         if (res) {
           console.log('Confirmed');
           this.StartStopTimer();
+
+
+
         } else {
           console.log('Canceled')
         }
