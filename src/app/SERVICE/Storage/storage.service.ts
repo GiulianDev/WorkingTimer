@@ -53,7 +53,7 @@ export class StorageService {
   }
   
   
-  //#region ------------- Saving on local storage methods --------------------------
+  //#region ------------ Saving on local storage methods --------------------------
   
   /**
   * Save settings on the local storage
@@ -84,6 +84,9 @@ export class StorageService {
   
   //#endregion 
   
+
+
+  //#region ------------ GET METHODS -------------------
   
   /**
   * Return the stored settings from the device local storage
@@ -122,16 +125,10 @@ export class StorageService {
   }
   
 
-  convertStr2Date(dateStr: Array<any>) {
-    console.log("Converting date time");
-    let ln = dateStr.length;
-    var convrtedDate: Date[] = [];
-    for(let idx = 0; idx < ln; idx++) {
-      convrtedDate[idx] = new Date(dateStr[idx]);
-    }
-    return convrtedDate;
-  }
   
+  
+
+
   /**
   * @returns {Settings} current settings
   */
@@ -180,8 +177,20 @@ export class StorageService {
   }
   
   
+  //#endregion
   
   
+  //#region ------------ UTILITY ----------------------
+
+  convertStr2Date(dateStr: Array<any>) {
+    console.log("Converting date time");
+    let ln = dateStr.length;
+    var convrtedDate: Date[] = [];
+    for(let idx = 0; idx < ln; idx++) {
+      convrtedDate[idx] = new Date(dateStr[idx]);
+    }
+    return convrtedDate;
+  }
   
-  
+  //#endregion
 }
