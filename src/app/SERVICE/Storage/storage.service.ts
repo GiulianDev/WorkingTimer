@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Plugins } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { SETTINGS, Status } from 'src/app/MODELS/Interfaces';
 import { KEYS } from 'src/app/MODELS/Keys';
 import { Settings } from 'src/app/MODELS/Settings';
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
+
 
 @Injectable({
   providedIn: 'root'
