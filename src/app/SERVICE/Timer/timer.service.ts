@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { timeToString } from 'src/app/COMMON/Utility';
 import { Status, TimeList } from 'src/app/MODELS/Interfaces';
+import { NotificationService } from '../Notification/notification.service';
 import { StorageService } from '../Storage/storage.service';
 
 @Injectable({
@@ -26,7 +27,8 @@ export class TimerService {
 
   constructor(
     public platform: Platform,
-    public storageService: StorageService
+    public storageService: StorageService,
+    public notificationService: NotificationService
   ) { 
     // subscribe to on pause event
     this.onPause();
@@ -39,12 +41,10 @@ export class TimerService {
       this.running = true;
       this.timeList = savedStatus.timeList;
 
-      
-
       this.timeBegan = this.timeList.start[0];
       this.timeStopped = this.timeList.stop[this.timeList.stop.length];
       this.clickCounter = savedStatus.clickCounter;
-      this.clockRunning();   
+      this.started = setInterval(this.clockRunning.bind(this), 10);
     }
 
   }
@@ -54,7 +54,9 @@ export class TimerService {
    * Start timer
    */
   start() {
-    if(this.running) return;
+    if(this.running) {
+      return;
+    }
     if (this.timeBegan === null) {
         this.reset();
         this.timeBegan = new Date();
@@ -68,7 +70,7 @@ export class TimerService {
     this.running = true;
     this.clickCounter++;
   }
-    
+  
   /**
    * Stop timer
    */
@@ -147,22 +149,6 @@ export class TimerService {
       this.timeList.diffms.push(timeElapsed);
 
     console.log(diff);
-
-
-
-    // var total = this.timeList.totalms + timeElapsed;
-    // console.log(total);
-    // hour = total.getUTCHours()
-    // min = total.getUTCMinutes()
-    // sec = total.getUTCSeconds()
-    // ms = total.getUTCMilliseconds();
-    // diff =
-    //   this.zeroPrefix(hour, 2) + ":" +
-    //   this.zeroPrefix(min, 2) + ":" +
-    //   this.zeroPrefix(sec, 2);
-
-    //   this.timeList.total = diff;
-    
   }
 
 
@@ -213,7 +199,24 @@ export class TimerService {
         clickCounter: this.clickCounter
       };   
       this.storageService.SaveStatus(status);
+
+      // add notification
+      if (this.isTimerActive()) {
+        console.log("Adding local notification...");
+        let msg: string = "Your working hour is still tracked";
+        this.notificationService.addLocalNotification(msg);
+      } else {
+        let p = this.notificationService.getPending();
+        console.log(p);
+      }
     })
+      
+  }
+
+  isTimerActive(): boolean {
+    if (this.running) return true;
+    else if (this.timeList.start.length > 0) return true;
+    return false;
   }
 
 }

@@ -2,6 +2,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
 import { AlertController, PopoverController } from '@ionic/angular';
 import { SettingsPopoverComponent } from 'src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component';
+import { AdvertisementService } from 'src/app/SERVICE/Advertisement/advertisement.service';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
 import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { TimerService } from 'src/app/SERVICE/Timer/timer.service';
@@ -33,9 +34,14 @@ export class HomePage {
     private popoverController: PopoverController,
     private storageService: StorageService,
     public alertController: AlertController,
-    public alert: AlertService
+    public alert: AlertService,
+    public advertisementService: AdvertisementService
   ) { 
 
+    // this.advertisementService.initialize();
+    // this.advertisementService.banner();
+
+    
     // ToDo
     // let User manage the offset
     this.offset = 15;
@@ -46,7 +52,7 @@ export class HomePage {
 
     // this.timerService. ...
 
-    // this.timeList. ...
+    this.timeList = this.timerService.timeList;
 
     
     this.UpdateGUI();
@@ -97,6 +103,9 @@ export class HomePage {
         if (res) {
           console.log('Confirmed');
           this.StartStopTimer();
+
+
+
         } else {
           console.log('Canceled')
         }
