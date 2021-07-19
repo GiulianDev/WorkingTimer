@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { LocalNotification, Plugins } from '@capacitor/core';
-const { LocalNotifications } = Plugins;
+// import { LocalNotification, Plugins } from '@capacitor/core';
+// const { LocalNotifications } = Plugins;
+
+import { LocalNotifications, LocalNotificationSchema } from '@capacitor/local-notifications';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  private notification: LocalNotification;
+  private notification: LocalNotificationSchema;
   private notificationPromise: Promise<any>;
   private _ID: number = 439209432321129530;
 
