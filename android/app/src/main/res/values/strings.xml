@@ -4,5 +4,4 @@
     <string name="title_activity_main">timer</string>
     <string name="package_name">io.ionic.workingtimer</string>
     <string name="custom_url_scheme">io.ionic.workingtimer</string>
-    <string name="admob_app_id">ca-app-pub-6682098253892169/5608202987</string>
 </resources>

@@ -38,9 +38,10 @@ export class HomePage {
     public advertisementService: AdvertisementService
   ) { 
 
-    this.advertisementService.initialize();
-    this.advertisementService.banner();
+    // this.advertisementService.initialize();
+    // this.advertisementService.banner();
 
+    
     // ToDo
     // let User manage the offset
     this.offset = 15;
