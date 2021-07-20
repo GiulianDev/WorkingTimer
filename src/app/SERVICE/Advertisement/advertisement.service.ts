@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 export class AdvertisementService {
 
   constructor() { }
-
-  /* 
   
   async initialize(): Promise<void> {
      AdMob.initialize({
@@ -38,6 +36,5 @@ export class AdvertisementService {
     AdMob.showBanner(options);
   }
   
-  */
 
 }
