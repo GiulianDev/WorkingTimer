@@ -1,9 +1,9 @@
 
 .settingsContainer{
-
+    
     // background-color: rgb(20, 20, 20);
     background-color: var(--ion-item-background, var(--ion-background-color, #fff));
-
+    
     .title{
         display: flex;
         justify-content: center;
@@ -24,8 +24,8 @@
             }
         }
     }
-
-
+    
+    
     .addAlarmContainer {
         min-height: 2rem;
         width: 100%;
@@ -44,17 +44,46 @@
             }
         }
     }
-
+    
     .alarm {
         display: flex;
         width: 100%;
         justify-content: space-between;
         padding: 1px 6px;
     }
-
+    
     .pickerClassName {
         color: greenyellow;
         background-color: honeydew;
     }
-
+    
+    .checkbox-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .checkbox-title {
+            margin: 5px;
+        }
+        .checkbox-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: flex-start;
+            width: 90%;
+            .checkbox {
+                display: flex;
+                flex-direction: row;
+                margin: 3px;
+                width: 3rem;
+                justify-content: flex-end;
+                .day-name {
+                    font-size: 0.9rem;
+                    margin-right: 1px;
+                }
+            }
+        }
+        
+    }
+ 
 }

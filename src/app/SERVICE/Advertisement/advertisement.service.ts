@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { AdMob, BannerAdPluginEvents, AdMobBannerSize, BannerAdOptions, BannerAdSize, BannerAdPosition } from '@capacitor-community/admob';
+import { AdMob, AdMobBannerSize, BannerAdOptions, BannerAdPluginEvents, BannerAdPosition, BannerAdSize } from '@capacitor-community/admob';
 
 @Injectable({
   providedIn: 'root'

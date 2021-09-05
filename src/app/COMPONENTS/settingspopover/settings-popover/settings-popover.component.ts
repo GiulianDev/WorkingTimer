@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { PickerOptions } from "@ionic/core";
 import { Settings } from 'src/app/MODELS/Settings';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
+import { getHoursOptions, getMinutesOptions, DAYS} from 'src/app/COMMON/Utility';
 
 @Component({
   selector: 'app-settings-popover',
@@ -15,21 +16,7 @@ export class SettingsPopoverComponent implements OnInit {
 
   private customPickerOptions; 
   private settings: Settings;
-
-
-  hours: string[] = 
-    [
-      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-      "12", "13", "14", "16", "17", "18", "19", "20", "21", "22", "23"
-    ];
-
-  minutes: string[] = 
-    [
-      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-      "12", "13", "14", "16", "17", "18", "19", "20", "21", "22", "23", "24",
-      "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-      "37", "38", "39", "40"
-    ];
+  private days = DAYS;
 
 
   constructor(
@@ -43,7 +30,7 @@ export class SettingsPopoverComponent implements OnInit {
   ngOnInit() {
     console.log("Loading settings...")
     this.loadSettings();
-    console.log(this.settings)
+    console.log(this.settings);
   }
 
   /**
@@ -131,51 +118,66 @@ export class SettingsPopoverComponent implements OnInit {
             if (res.succeded == false) {
 
             }
-            this.alert.presentWarningAlert(res.msg);
+            this.showAlarmDurationPicker();
+            // this.alert.presentWarningAlert(res.msg);
             
           }
         }
       ],
-      columns:[{
+      columns:[
+      {
         name:'hours',
-        prefix:'H',
-        options:this.getHoursOptions(alarm)
+        optionsWidth: '2rem',
+        align: 'right',
+        selectedIndex: alarm ? alarm.getMinutesIdex() : null,
+        options: getHoursOptions(alarm)
       }, {
         name:'minutes',
-        prefix:'m',
-        options:this.getMinutesOptions()
-      }, {
-        name:'duration',
-        prefix:'duration',
-        options: this.getMinutesOptions()
-      }],
-      // ToDo - non funziona
-      // cssClass : 'pickerClassName'
+        optionsWidth: '2rem',
+        align: 'left',
+        options: getMinutesOptions()
+      }
+    ],
+    // cssClass: 'my-custom-picker',
     };
     let picker = await this.pickerController.create(options);
     picker.present()
   }
 
 
-  getHoursOptions(alarm: Alarm = null){
-    console.log('Getting hours...');
-    let options = [];
-    this.hours.forEach(x => {
-      let obj = {text:x,value:x};
-      if (alarm != null) {
-        let h = alarm.getHour();
+
+  async showAlarmDurationPicker(alarm: Alarm = null) {
+    let options: PickerOptions = {
+      buttons: [
+        {
+          text: "Cancel",
+          role: 'cancel'
+        },
+        {
+          text:'Ok',
+          handler:(value:any) => {
+            // console.log(value);
+            var str: string = value.hours.value + ':' + value.minutes.value;
+            let res = this.settings.addAlarm(str);
+
+            if (res.succeded == false) {
+
+            }
+            this.alert.presentWarningAlert(res.msg);
+            
+          }
+        }
+      ],
+      columns:[
+      {
+        name:'minutes',
+        prefix: 'Duration: ',
+        options: getMinutesOptions()
       }
-      options.push(obj);
-    });
-    return options;
+    ],
+    // cssClass: 'my-custom-picker',
+    };
+    let picker = await this.pickerController.create(options);
+    picker.present()
   }
-
-  getMinutesOptions(){
-    let options = [];
-    this.minutes.forEach(x => {
-      options.push({text:x,value:x});
-    });
-    return options;
-  }
-
 }
