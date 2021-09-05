@@ -234,3 +234,18 @@
     --ion-card-background: #1e1e1e;
   }
 // }
+
+
+.my-custom-picker
+{
+    --width: 90%;
+    --height: 50%;
+
+    --background: #272727;
+    --background-rgb: 39, 39, 39;
+    --border-width: 2px;
+    --border-color: #000000;
+    --border-radius: 16px 16px 0 0;
+
+    color: #d6d6d6;
+}
