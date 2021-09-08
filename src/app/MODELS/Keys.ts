@@ -1,4 +1,4 @@
-export enum KEYS {
-    SETTINGS    = "Setting",
-    STATUS      = "Status"
-}
+// export enum KEYS {
+//     SETTINGS    = "Setting",
+//     STATUS      = "Status"
+// }

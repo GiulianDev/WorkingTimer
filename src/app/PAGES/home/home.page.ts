@@ -1,12 +1,14 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
 import { AlertController, PopoverController } from '@ionic/angular';
+import { LABELS } from 'src/app/COMMON/LABELS';
 import { SettingsPopoverComponent } from 'src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component';
 import { AdvertisementService } from 'src/app/SERVICE/Advertisement/advertisement.service';
+import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
 import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { TimerService } from 'src/app/SERVICE/Timer/timer.service';
-import { TimeList, LABELS, DEFAULT_VAL } from '../../MODELS/Interfaces';
+import { TimeList } from '../../MODELS/Interfaces';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +33,7 @@ export class HomePage {
    */
   constructor(
     private timerService: TimerService,
+    private alarmService: AlarmService,
     private popoverController: PopoverController,
     private storageService: StorageService,
     public alertController: AlertController,
@@ -74,7 +77,10 @@ export class HomePage {
     
     // check for alarm
     let alarm = this.storageService.getAlarmByIndex(this.timerService.clickCounter);
-    let currentTime = this.timerService.getCurrentTimeAsIndex();
+
+    // ToDo
+    // sistemare questo discorso dell'indice per gestire l'if
+    let currentTime: number = 1; //this.alarmService.getCurrentTimeIndex();
 
     if (alarm) {
 

@@ -1,37 +1,40 @@
-import { timeToString } from "../COMMON/Utility";
+import { LABELS } from "../COMMON/LABELS";
 import { Alarm } from "./Alarm";
-import { LABELS, DEFAULT_VAL } from "./Interfaces";
 
+/**
+ * Settings contains:
+ * 1. List of alarms
+ */
 export class Settings {
     
     alarms?: Alarm[] = [];
     
     constructor() {
         
-        const start = new Alarm(LABELS.START, DEFAULT_VAL.START, timeToString(DEFAULT_VAL.START), false);
-        const end = new Alarm(LABELS.STOP, DEFAULT_VAL.STOP, timeToString(DEFAULT_VAL.STOP), false);
+        // const start = new Alarm(LABELS.START, DEFAULT_VAL.START, false);
+        // const end = new Alarm(LABELS.STOP, DEFAULT_VAL.STOP, false);
 
-        this.alarms.push(start);
-        this.alarms.push(end);
+        // this.alarms.push(start);
+        // this.alarms.push(end);
     };
 
 
-    /**
-     * Update Alarm by positional index
-     * @param val string
-     * @param idx number
-     */
-    updateAlaram(val: string, idx: number) {
-        this.alarms[idx].value = val;
-        this.alarms[idx].index = timeToString(val);
-    };
+    // /**
+    //  * Update Alarm by positional index
+    //  * @param val string
+    //  * @param idx number
+    //  */
+    // updateAlaram(val: string, idx: number) {
+    //     this.alarms[idx].value = val;
+    //     this.alarms[idx].index = timeToString(val);
+    // };
 
     /**
      * Add a nex alarm to the alarm array
      * @param alarmValue - string "hh:mm"
      * @returns Object {succeded: boolean, msg: string}
      */
-    addAlarm(alarmValue: string) {
+    addAlarmn(alarmValue: string) {
         // aggiungo l'elemento alla fine e poi riordino l'array
         // const idx = this.alarms.length;
         // create pause element
@@ -42,7 +45,8 @@ export class Settings {
         //     index: timeToString(alarmValue),
         //     enabled: false
         // }
-        const pause = new Alarm(LABELS.PAUSE, alarmValue, timeToString(alarmValue), true);
+        const pause: Alarm = new Alarm(LABELS.PAUSE, alarmValue, true);
+
 
         console.log(pause);
         // ChecK if out of range

@@ -5,7 +5,7 @@
     Settings
   </div>
   
-  <div *ngFor="let alarm of settings.alarms; let idx = index">
+  <div *ngFor="let alarm of alarmService.Alarms; let idx = index">
     
     
     <ion-item *ngIf="!alarm.isPause">

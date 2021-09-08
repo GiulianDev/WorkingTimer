@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { SETTINGS, Status } from 'src/app/MODELS/Interfaces';
-import { KEYS } from 'src/app/MODELS/Keys';
+import { Status } from 'src/app/MODELS/Interfaces';
 import { Settings } from 'src/app/MODELS/Settings';
 import { Storage } from '@capacitor/storage';
+import { KEYS } from 'src/app/COMMON/KEYS';
 
 
 @Injectable({
@@ -28,11 +28,14 @@ export class StorageService {
     this.loadDefaultSettings();
     await this.platform.ready();
     // Fetch ALARMS
-    const alarms = await Storage.get({key: SETTINGS.ALARMS});
+    console.log("Retrieving settings from storage...");
+    const alarms = await Storage.get({key: KEYS.ALARMS});
     if (alarms?.value != null) {
-      this.settings.alarms = JSON.parse(alarms.value);
+      // ToDo
+      // sostituire con l'alarm service
+      // this.settings.alarms = JSON.parse(alarms.value);
     } else {
-      this.SaveSettings(this.settings);
+      // this.SaveSettings(this.settings);
     }
     console.log("Settings: ", this.settings);
   }
@@ -59,12 +62,26 @@ export class StorageService {
   * Save settings on the local storage
   * @param {Settings} settings
   */
+  SaveData(data: any, key: string) {
+    console.log("Saving data to storage...");
+    let JSONdata = JSON.stringify(data);
+    console.log('Data: ', JSONdata);
+    Storage.set({
+      key: key,
+      value: JSONdata
+    });
+  }
+  
+  /**
+  * Save settings on the local storage
+  * @param {Settings} settings
+  */
   SaveSettings(settings: Settings) {
     console.log("Saving settings to storage...");
     let alarmsJSON = JSON.stringify(this.settings.alarms);
     console.log(alarmsJSON);
     Storage.set({
-      key: SETTINGS.ALARMS,
+      key: KEYS.ALARMS,
       value: alarmsJSON
     });
   }
@@ -84,9 +101,26 @@ export class StorageService {
   
   //#endregion 
   
-
-
+  
+  
   //#region ------------ GET METHODS -------------------
+  
+  
+  /**
+  * Return the stored settings from the device local storage
+  */
+  async getStoredData(key: string) {
+    console.log("Retrieving data from storage...");
+    // Fetch ALARMS
+    let data = null;
+    const res = await Storage.get({key: key});
+    if (res.value != null) {
+      data = JSON.parse(res.value);
+    }
+    console.log("Retrieved Data: ", data)
+    return data;
+  }
+  
   
   /**
   * Return the stored settings from the device local storage
@@ -94,7 +128,7 @@ export class StorageService {
   async getStoredSettings() {
     console.log("Retrieving settings from storage...");
     // Fetch ALARMS
-    const res = await Storage.get({key: SETTINGS.ALARMS});
+    const res = await Storage.get({key: KEYS.ALARMS});
     if (res.value != null) {
       this.settings.alarms = JSON.parse(res.value);
       console.log("Settings: ", this.settings)
@@ -117,18 +151,18 @@ export class StorageService {
       console.log("Converting date time");
       this.status.timeList.start = this.convertStr2Date(this.status.timeList.start);
       this.status.timeList.stop = this.convertStr2Date(this.status.timeList.stop);
-
+      
       console.log("Status: ", this.status);
       return this.status
     }
     return null;
   }
   
-
   
   
-
-
+  
+  
+  
   /**
   * @returns {Settings} current settings
   */
@@ -137,8 +171,8 @@ export class StorageService {
   }
   
   /**
-   * @returns {Status} current status
-   */
+  * @returns {Status} current status
+  */
   getStatus() {
     return this.status;
   }
@@ -166,11 +200,11 @@ export class StorageService {
     let end = this.settings.alarms.length - 1;
     return this.settings.alarms[end];
   }
-
+  
   /**
-   * 
-   * @returns alarms number
-   */
+  * 
+  * @returns alarms number
+  */
   getAlarmCount() {
     console.log(this.settings.alarms.length);
     return this.settings.alarms.length;
@@ -181,7 +215,7 @@ export class StorageService {
   
   
   //#region ------------ UTILITY ----------------------
-
+  
   convertStr2Date(dateStr: Array<any>) {
     console.log("Converting date time");
     let ln = dateStr.length;
