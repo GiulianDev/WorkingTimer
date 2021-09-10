@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -58,7 +59,16 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#timeToString" title="src/app/COMMON/Utility.ts"><b>timeToString</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
+                            <a href="#getHousOptions" title="src/app/COMMON/CONSTANT.ts" ><b>getHousOptions</b>&nbsp;&nbsp;&nbsp;(src/.../CONSTANT.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#getMinutesOptions" title="src/app/COMMON/CONSTANT.ts" ><b>getMinutesOptions</b>&nbsp;&nbsp;&nbsp;(src/.../CONSTANT.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#GetTime" title="src/app/COMMON/Utility.ts" ><b>GetTime</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#zeroPrefix" title="src/app/COMMON/Utility.ts" ><b>zeroPrefix</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -67,24 +77,68 @@
     </table>
 </section>
 
-    <h3>src/app/COMMON/Utility.ts</h3>
+    <h3>src/app/COMMON/CONSTANT.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="timeToString"></a>
+                    <a name="getHousOptions"></a>
                     <span class="name">
-                        <b>
-                            timeToString
-                        </b>
-                        <a href="#timeToString"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getHousOptions</b></span>
+                        <a href="#getHousOptions"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>timeToString(timeStr)</code>
+<code>getHousOptions()</code>
+                </td>
+            </tr>
+
+
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMinutesOptions"></a>
+                    <span class="name">
+                        <span ><b>getMinutesOptions</b></span>
+                        <a href="#getMinutesOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMinutesOptions()</code>
+                </td>
+            </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>    <h3>src/app/COMMON/Utility.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetTime"></a>
+                    <span class="name">
+                        <span ><b>GetTime</b></span>
+                        <a href="#GetTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>GetTime(maxVal, digits)</code>
                 </td>
             </tr>
 
@@ -93,11 +147,6 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>To order the different alarms we save the HH:mm string as a number
-ex. 
-     12:00 =&gt; 1200 
-     04:00 =&gt; 400</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -110,13 +159,98 @@ ex.
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>timeStr</td>
+                                    <td>maxVal</td>
 
                                     <td>
                                         No
                                     </td>
 
 
+                                </tr>
+                                <tr>
+                                    <td>digits</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zeroPrefix"></a>
+                    <span class="name">
+                        <span ><b>zeroPrefix</b></span>
+                        <a href="#zeroPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>zeroPrefix(num, digit)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add digit-1 zeros at the begin of the number</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>num</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>digit</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>number of zeros</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -153,9 +287,9 @@ ex.
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

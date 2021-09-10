@@ -1,5 +1,5 @@
 /**
-* Alarm time is saved as string HH:mm
+* Alarm value is saved as string HH:mm
 * 
 * To order the different alarms we save the HH:mm string as a number
 * ex. 
@@ -7,6 +7,9 @@
 *     04:00 => 400
 */
 
+/**
+ * Alarm is identified by an idex, a value and a key
+ */
 export interface Alarm {
     key: string;
     value: string;
@@ -15,9 +18,18 @@ export interface Alarm {
     duration?: number;
 }
 
+/**
+ * 
+ */
 export class Alarm implements Alarm {
         
-    // Constructor
+    /**
+     * Alarm class
+     * @param {string} key 
+     * @param {string} value 
+     * @param {boolean} isPause 
+     * @param {number} duration 
+     */
     constructor(
         key: string = null, 
         value: string = null, 
@@ -32,8 +44,8 @@ export class Alarm implements Alarm {
     }
     
     /**
-     * 
-     * @returns Alarm hour
+     * Return the hour of the alarm as string
+     * @returns {string} Alarm hour
      */
     public get Hour(): string {
         let tmp = this.value.split(":");
@@ -41,7 +53,7 @@ export class Alarm implements Alarm {
     };
 
     /**
-     * 
+     * Return the minute of the alarm as string
      * @returns {string} Alarm minutes
      */
     public get Minutes(): string {
@@ -74,31 +86,17 @@ export class Alarm implements Alarm {
     /**
     * Convert the time value from string to number, used as index
     * 
-    * ex.
-    * 
-    *     12:00 => 1200 
-    *     04:00 => 400
-    * @param timeStr 
-    * @returns 
+    * @example
+    * Call by passing a time string in the format "HH:mm"
+    *     timeToIndex(12:00) = 1200 
+    *     timeToIndex(04:00) = 400
+    * @param {string} timeStr Alarm timer string ("HH:mm")
+    * @returns {number} Alarm index
     */
-    private timeToIndex(timeStr: string) {
+    private timeToIndex(timeStr: string): number {
         timeStr = timeStr.replace(":", "");
         var timeNumber: number = + timeStr;
         return timeNumber;
     }
-
-    
-    
-    //     // Properties
-    //     key: string;
-    //     value: string;
-    //     isPause: boolean;
-    //     index: number;
-    //     duration?: number;
-    
-
-    
-    
-    
     
 }

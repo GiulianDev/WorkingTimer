@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
 
@@ -35,7 +36,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>SettingsPopoverComponent</li>
+  <li
+  >
+  SettingsPopoverComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -63,6 +66,7 @@
 <p class="comment">
     <code>src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts</code>
 </p>
+
 
 
 
@@ -130,26 +134,40 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#alert">alert</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#alertController">alertController</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#alarms" >alarms</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#customPickerOptions">customPickerOptions</a>
-                            </li>
-                            <li>
-                                <a href="#hours">hours</a>
-                            </li>
-                            <li>
-                                <a href="#minutes">minutes</a>
+                                <a href="#alarmTmp" >alarmTmp</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#settings">settings</a>
+                                <a href="#alarmTmpIndex" >alarmTmpIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#alarmTmpValue" >alarmTmpValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#alert" >alert</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#alertController" >alertController</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#customPickerOptions" >customPickerOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#days" >days</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#settings" >settings</a>
                             </li>
                         </ul>
                     </td>
@@ -164,41 +182,39 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#AddPause">AddPause</a>
+                                <a href="#AddPause" >AddPause</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#Cancel">Cancel</a>
+                                <a href="#Cancel" >Cancel</a>
                             </li>
                             <li>
-                                <a href="#DeletePause">DeletePause</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#DismissClick">DismissClick</a>
-                            </li>
-                            <li>
-                                <a href="#getHoursOptions">getHoursOptions</a>
-                            </li>
-                            <li>
-                                <a href="#getMinutesOptions">getMinutesOptions</a>
+                                <a href="#DeletePause" >DeletePause</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#loadSettings">loadSettings</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#onTimeChange">onTimeChange</a>
-                            </li>
-                            <li>
-                                <a href="#Save">Save</a>
+                                <a href="#DismissClick" >DismissClick</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#showAlarmPicker">showAlarmPicker</a>
+                                <a href="#loadSettings" >loadSettings</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onTimeChange" >onTimeChange</a>
+                            </li>
+                            <li>
+                                <a href="#Save" >Save</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#showAlarmDurationPicker" >showAlarmDurationPicker</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#showAlarmPicker" >showAlarmPicker</a>
                             </li>
                         </ul>
                     </td>
@@ -218,12 +234,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(popoverController: PopoverController, storageService: <a href="../injectables/StorageService.html">StorageService</a>, pickerController: PickerController, alertController: AlertController, alert: <a href="../injectables/AlertService.html">AlertService</a>)</code>
+<code>constructor(popoverController: PopoverController, storageService: <a href="../injectables/StorageService.html" target="_self">StorageService</a>, alarmService: <a href="../injectables/AlarmService.html" target="_self">AlarmService</a>, pickerController: PickerController, alertController: AlertController, alert: <a href="../injectables/AlertService.html" target="_self">AlertService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -257,6 +273,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>alarmService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AlarmService.html" target="_self" >AlarmService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -324,29 +352,22 @@
                 <td class="col-md-4">
                     <a name="AddPause"></a>
                     <span class="name">
-                        <b>
-                            AddPause
-                        </b>
+                        <span ><b>AddPause</b></span>
                         <a href="#AddPause"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>AddPause(alarm: <a href="../classes/Alarm.html">Alarm</a>)</code>
+<code>AddPause(alarm: Alarm)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:68</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:71</a></div>
->>>>>>> Dev
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:91</a></div>
                 </td>
             </tr>
 
@@ -371,7 +392,7 @@
                                 <tr>
                                     <td>alarm</td>
                                     <td>
-                                                <code><a href="../classes/Alarm.html" target="_self" >Alarm</a></code>
+                                            <code>Alarm</code>
                                     </td>
 
                                     <td>
@@ -405,10 +426,8 @@
                 <td class="col-md-4">
                     <a name="Cancel"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            Cancel
-                        </b>
+                        <span class="modifier">Async</span>
+                        <span ><b>Cancel</b></span>
                         <a href="#Cancel"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -417,15 +436,14 @@
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>Cancel()</code>
-<<<<<<< HEAD
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:82</a></div>
                 </td>
             </tr>
 
@@ -449,86 +467,7 @@
                 <td class="col-md-4">
                     <a name="DeletePause"></a>
                     <span class="name">
-                        <b>
-                            DeletePause
-                        </b>
-                        <a href="#DeletePause"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>DeletePause(alarm)</code>
-=======
->>>>>>> Dev
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:76</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:61</a></div>
->>>>>>> Dev
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-description"><p>Delete pause</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>alarm</td>
-
-                                    <td>
-                                        No
-                                    </td>
-=======
-                    <div class="io-description"><p>Calcel the current temporary user settings and reload stored settings</p>
-</div>
->>>>>>> Dev
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DeletePause"></a>
-                    <span class="name">
-                        <b>
-                            DeletePause
-                        </b>
+                        <span ><b>DeletePause</b></span>
                         <a href="#DeletePause"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -542,8 +481,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:100</a></div>
                 </td>
             </tr>
 
@@ -594,10 +533,8 @@
                 <td class="col-md-4">
                     <a name="DismissClick"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            DismissClick
-                        </b>
+                        <span class="modifier">Async</span>
+                        <span ><b>DismissClick</b></span>
                         <a href="#DismissClick"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -612,13 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:105</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:109</a></div>
->>>>>>> Dev
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:116</a></div>
                 </td>
             </tr>
 
@@ -640,135 +572,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHoursOptions"></a>
-                    <span class="name">
-                        <b>
-                            getHoursOptions
-                        </b>
-                        <a href="#getHoursOptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getHoursOptions(alarm: <a href="../classes/Alarm.html">Alarm</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:144</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:160</a></div>
->>>>>>> Dev
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Default value</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>alarm</td>
-                                    <td>
-                                                <code><a href="../classes/Alarm.html" target="_self" >Alarm</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>null</code>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMinutesOptions"></a>
-                    <span class="name">
-                        <b>
-                            getMinutesOptions
-                        </b>
-                        <a href="#getMinutesOptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getMinutesOptions()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:152</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:173</a></div>
->>>>>>> Dev
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="loadSettings"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            loadSettings
-                        </b>
+                        <span class="modifier">Async</span>
+                        <span ><b>loadSettings</b></span>
                         <a href="#loadSettings"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -783,13 +590,8 @@
 
             <tr>
                 <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:84</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:88</a></div>
->>>>>>> Dev
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:108</a></div>
                 </td>
             </tr>
 
@@ -813,9 +615,7 @@
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -829,8 +629,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:36</a></div>
                 </td>
             </tr>
 
@@ -852,9 +652,7 @@
                 <td class="col-md-4">
                     <a name="onTimeChange"></a>
                     <span class="name">
-                        <b>
-                            onTimeChange
-                        </b>
+                        <span ><b>onTimeChange</b></span>
                         <a href="#onTimeChange"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -868,13 +666,8 @@
 
             <tr>
                 <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:93</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:97</a></div>
->>>>>>> Dev
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:54</a></div>
                 </td>
             </tr>
 
@@ -943,9 +736,7 @@
                 <td class="col-md-4">
                     <a name="Save"></a>
                     <span class="name">
-                        <b>
-                            Save
-                        </b>
+                        <span ><b>Save</b></span>
                         <a href="#Save"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -959,8 +750,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:71</a></div>
                 </td>
             </tr>
 
@@ -982,37 +773,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="showAlarmPicker"></a>
+                    <a name="showAlarmDurationPicker"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Async</span>
-                            showAlarmPicker
-                        </b>
-                        <a href="#showAlarmPicker"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>showAlarmDurationPicker</b></span>
+                        <a href="#showAlarmDurationPicker"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-<<<<<<< HEAD
-                    <code>showAlarmPicker()</code>
-=======
-                    <code>showAlarmPicker(alarm: <a href="../classes/Alarm.html">Alarm</a>)</code>
->>>>>>> Dev
+                    <code>showAlarmDurationPicker(alarm: Alarm)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-<<<<<<< HEAD
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:113</a></div>
-=======
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:117</a></div>
->>>>>>> Dev
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:170</a></div>
                 </td>
             </tr>
 
@@ -1035,7 +815,81 @@
                                 <tr>
                                     <td>alarm</td>
                                     <td>
-                                                <code><a href="../classes/Alarm.html" target="_self" >Alarm</a></code>
+                                            <code>Alarm</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>null</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showAlarmPicker"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>showAlarmPicker</b></span>
+                        <a href="#showAlarmPicker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showAlarmPicker(alarm: Alarm)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:124</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>alarm</td>
+                                    <td>
+                                            <code>Alarm</code>
                                     </td>
 
                                     <td>
@@ -1066,199 +920,245 @@
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alarms"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>alarms</b></span>
+                        <a href="#alarms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="alert"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            alert</b>
-                            <a href="#alert"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Alarm[]</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../injectables/AlertService.html" target="_self" >AlertService</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:20</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:40</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alarmTmp"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>alarmTmp</b></span>
+                        <a href="#alarmTmp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="alertController"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            alertController</b>
-                            <a href="#alertController"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Alarm</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>AlertController</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:21</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:39</a></div>
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alarmTmpIndex"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>alarmTmpIndex</b></span>
+                        <a href="#alarmTmpIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="customPickerOptions"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            customPickerOptions</b>
-                            <a href="#customPickerOptions"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:16</a></div>
-                            </td>
-                        </tr>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="hours"></a>
-                        <span class="name">
-                            <b>
-                            hours</b>
-                            <a href="#hours"><span class="icon ion-ios-link"></span></a>
-                        </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>string[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:23</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
-      &quot;00&quot;, &quot;01&quot;, &quot;02&quot;, &quot;03&quot;, &quot;04&quot;, &quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;, &quot;10&quot;, &quot;11&quot;, 
-      &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;
-    ]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-<<<<<<< HEAD
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:18</a></div>
-=======
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:20</a></div>
->>>>>>> Dev
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alarmTmpValue"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>alarmTmpValue</b></span>
+                        <a href="#alarmTmpValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="minutes"></a>
-                        <span class="name">
-                            <b>
-                            minutes</b>
-                            <a href="#minutes"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>string[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:22</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
-      &quot;00&quot;, &quot;01&quot;, &quot;02&quot;, &quot;03&quot;, &quot;04&quot;, &quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;, &quot;10&quot;, &quot;11&quot;, 
-      &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;,
-      &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot;, &quot;32&quot;, &quot;33&quot;, &quot;34&quot;, &quot;35&quot;, &quot;36&quot;,
-      &quot;37&quot;, &quot;38&quot;, &quot;39&quot;, &quot;40&quot;
-    ]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-<<<<<<< HEAD
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:24</a></div>
-=======
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:26</a></div>
->>>>>>> Dev
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alert"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>alert</b></span>
+                        <a href="#alert"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="settings"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            settings</b>
-                            <a href="#settings"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../injectables/AlertService.html" target="_self" >AlertService</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Settings.html" target="_self" >Settings</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:33</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-<<<<<<< HEAD
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:15</a></div>
-=======
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:17</a></div>
->>>>>>> Dev
-                            </td>
-                        </tr>
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="alertController"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>alertController</b></span>
+                        <a href="#alertController"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>AlertController</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="customPickerOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>customPickerOptions</b></span>
+                        <a href="#customPickerOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="days"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>days</b></span>
+                        <a href="#days"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CONSTANT.DAYS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="settings"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>settings</b></span>
+                        <a href="#settings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Settings.html" target="_self" >Settings</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -1272,6 +1172,8 @@ import { StorageService } from &#x27;src/app/SERVICE/Storage/storage.service&#x2
 import { PickerOptions } from &quot;@ionic/core&quot;;
 import { Settings } from &#x27;src/app/MODELS/Settings&#x27;;
 import { AlertService } from &#x27;src/app/SERVICE/Alert/alert.service&#x27;;
+import { CONSTANT } from &#x27;src/app/COMMON/CONSTANT&#x27;;
+import { AlarmService } from &#x27;src/app/SERVICE/Alarm/alarm.service&#x27;;
 
 @Component({
   selector: &#x27;app-settings-popover&#x27;,
@@ -1282,43 +1184,62 @@ export class SettingsPopoverComponent implements OnInit {
 
   private customPickerOptions; 
   private settings: Settings;
-
-
-  hours: string[] &#x3D; 
-    [
-      &quot;00&quot;, &quot;01&quot;, &quot;02&quot;, &quot;03&quot;, &quot;04&quot;, &quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;, &quot;10&quot;, &quot;11&quot;, 
-      &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;
-    ];
-
-  minutes: string[] &#x3D; 
-    [
-      &quot;00&quot;, &quot;01&quot;, &quot;02&quot;, &quot;03&quot;, &quot;04&quot;, &quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;, &quot;10&quot;, &quot;11&quot;, 
-      &quot;12&quot;, &quot;13&quot;, &quot;14&quot;, &quot;16&quot;, &quot;17&quot;, &quot;18&quot;, &quot;19&quot;, &quot;20&quot;, &quot;21&quot;, &quot;22&quot;, &quot;23&quot;, &quot;24&quot;,
-      &quot;25&quot;, &quot;26&quot;, &quot;27&quot;, &quot;28&quot;, &quot;29&quot;, &quot;30&quot;, &quot;31&quot;, &quot;32&quot;, &quot;33&quot;, &quot;34&quot;, &quot;35&quot;, &quot;36&quot;,
-      &quot;37&quot;, &quot;38&quot;, &quot;39&quot;, &quot;40&quot;
-    ];
+  private alarms: Alarm[];
+  private alarmTmp: Alarm;
+  private alarmTmpValue: string;
+  private alarmTmpIndex: number;
+  private days &#x3D; CONSTANT.DAYS;
 
 
   constructor(
     private popoverController: PopoverController,
     private storageService: StorageService,
+    private alarmService: AlarmService,
     private pickerController: PickerController,
     public alertController: AlertController,
     public alert: AlertService
   ) {}
 
   ngOnInit() {
-    console.log(&quot;Loading settings...&quot;)
-    this.loadSettings();
-    console.log(this.settings)
+    // console.log(&quot;Loading settings...&quot;)
+    // this.loadSettings();
+    // console.log(this.settings);
+
+    // this.alarms &#x3D; this.alarmService.GetAlarms();
+    // this.alarms &#x3D; Object.assign([], this.alarmService.GetAlarms());
+    // this.alarms &#x3D; [...this.alarmService.GetAlarms()];
+
+    //     console.log(this.alarms);
+
+  }
+
+  /**
+   * Update time values
+   * @param val : string (HH:mm)
+   * @param idx : index of the Alarms array to update
+   */
+  onTimeChange(val, idx) {
+    // Todo
+    // update alarm
+    // let copy &#x3D; Object.assign({}, original );
+    // this.tmpSettings.alarms &#x3D; Object.assign([], this.settings.alarms); //{...this.settings};
+    let time: string &#x3D; val.detail.value;
+    // this.settings.updateAlaram(time, idx);
+    // alarm.update(val.detail.value);
+    console.log(val);
+    console.log(idx);
+    this.alarmTmpValue &#x3D; time;
+    this.alarmTmpIndex  &#x3D; idx;
   }
 
   /**
    * Save new settings on the local storage
    */
   Save() {
-    console.log(&quot;Saving settings...&quot;)
-    this.storageService.SaveSettings(this.settings);
+    // ToDo
+    // la logica di salvataggio deve essere spostata all&#x27;interno dell&#x27;alarm service 
+
+    this.alarmService.updateAlarm(this.alarmTmpValue, this.alarmTmpIndex);
     this.DismissClick();
   }
   
@@ -1327,7 +1248,6 @@ export class SettingsPopoverComponent implements OnInit {
    */
   async Cancel() {
     console.log(&quot;Cancel&quot;)
-    this.settings &#x3D; await this.storageService.getStoredSettings();
     this.DismissClick();
   }
 
@@ -1335,14 +1255,9 @@ export class SettingsPopoverComponent implements OnInit {
   /**
    * Add a pause to the time array
    */
-<<<<<<< HEAD
-  AddPause() {
-    this.showAlarmPicker();
-=======
   AddPause(alarm: Alarm &#x3D; null) {
     console.log(&quot;Selected alarm: &quot;, alarm);
     this.showAlarmPicker(alarm);
->>>>>>> Dev
   }
 
   /**
@@ -1361,19 +1276,6 @@ export class SettingsPopoverComponent implements OnInit {
     this.settings &#x3D; this.storageService.getSettings();
   }
 
-  /**
-   * Update time values
-   * @param val : string (HH:mm)
-   * @param idx : index of the Alarms array to update
-   */
-   onTimeChange(val, idx) {
-    // let copy &#x3D; Object.assign({}, original );
-    // this.tmpSettings.alarms &#x3D; Object.assign([], this.settings.alarms); //{...this.settings};
-    let time &#x3D; val.detail.value;
-    this.settings.updateAlaram(time, idx);
-    console.log(this.settings.alarms);
-  }
-
 
   /**
    * Dismiss settings pop-over
@@ -1386,11 +1288,7 @@ export class SettingsPopoverComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-  async showAlarmPicker() {
-=======
   async showAlarmPicker(alarm: Alarm &#x3D; null) {
->>>>>>> Dev
     let options: PickerOptions &#x3D; {
       buttons: [
         {
@@ -1402,78 +1300,74 @@ export class SettingsPopoverComponent implements OnInit {
           handler:(value:any) &#x3D;&gt; {
             // console.log(value);
             var str: string &#x3D; value.hours.value + &#x27;:&#x27; + value.minutes.value;
-            let res &#x3D; this.settings.addAlarm(str);
-<<<<<<< HEAD
-          }
-        }
-      ],
-      columns:[{
-        name:&#x27;hours&#x27;,
-        options:this.getHoursOptions()
-      }, {
-        name:&#x27;minutes&#x27;,
-        options:this.getMinutesOptions()
-      }],
-      // ToDo - non funziona
-      // cssClass : &#x27;pickerClassName&#x27;
-    };
-    let picker &#x3D; await this.pickerController.create(options);
-    picker.present()
-  }
+            // let res &#x3D; this.settings.addAlarm(str);
 
-=======
+            // if (res.succeded &#x3D;&#x3D; false) {
 
-            if (res.succeded &#x3D;&#x3D; false) {
-
-            }
-            this.alert.presentWarningAlert(res.msg);
+            // }
+            this.showAlarmDurationPicker();
+            // this.alert.presentWarningAlert(res.msg);
             
           }
         }
       ],
-      columns:[{
+      columns:[
+      {
         name:&#x27;hours&#x27;,
-        prefix:&#x27;H&#x27;,
-        options:this.getHoursOptions(alarm)
-      }, {
+        optionsWidth: &#x27;2rem&#x27;,
+        align: &#x27;right&#x27;,
+        options: CONSTANT.MINUTES_OPTS
+      }
+      , {
         name:&#x27;minutes&#x27;,
-        prefix:&#x27;m&#x27;,
-        options:this.getMinutesOptions()
-      }, {
-        name:&#x27;duration&#x27;,
-        prefix:&#x27;duration&#x27;,
-        options: this.getMinutesOptions()
-      }],
-      // ToDo - non funziona
-      // cssClass : &#x27;pickerClassName&#x27;
+        optionsWidth: &#x27;2rem&#x27;,
+        align: &#x27;left&#x27;,
+        // selectedIndex: alarm ? alarm.getMinutesIdex() : null,
+        options: CONSTANT.MINUTES_OPTS
+      }
+    ],
+    // cssClass: &#x27;my-custom-picker&#x27;,
     };
     let picker &#x3D; await this.pickerController.create(options);
     picker.present()
   }
->>>>>>> Dev
 
 
-  getHoursOptions(alarm: Alarm &#x3D; null){
-    console.log(&#x27;Getting hours...&#x27;);
-    let options &#x3D; [];
-    this.hours.forEach(x &#x3D;&gt; {
-      let obj &#x3D; {text:x,value:x};
-      if (alarm !&#x3D; null) {
-        let h &#x3D; alarm.getHour();
+
+  async showAlarmDurationPicker(alarm: Alarm &#x3D; null) {
+    let options: PickerOptions &#x3D; {
+      buttons: [
+        {
+          text: &quot;Cancel&quot;,
+          role: &#x27;cancel&#x27;
+        },
+        {
+          text:&#x27;Ok&#x27;,
+          handler:(value:any) &#x3D;&gt; {
+            // console.log(value);
+            var str: string &#x3D; value.hours.value + &#x27;:&#x27; + value.minutes.value;
+            // let res &#x3D; this.settings.addAlarm(str);
+
+            // if (res.succeded &#x3D;&#x3D; false) {
+
+            // }
+            // this.alert.presentWarningAlert(res.msg);
+            
+          }
+        }
+      ],
+      columns:[
+      {
+        name:&#x27;minutes&#x27;,
+        prefix: &#x27;Duration: &#x27;,
+        options: CONSTANT.MINUTES_OPTS
       }
-      options.push(obj);
-    });
-    return options;
+    ],
+    // cssClass: &#x27;my-custom-picker&#x27;,
+    };
+    let picker &#x3D; await this.pickerController.create(options);
+    picker.present()
   }
-
-  getMinutesOptions(){
-    let options &#x3D; [];
-    this.minutes.forEach(x &#x3D;&gt; {
-      options.push({text:x,value:x});
-    });
-    return options;
-  }
-
 }
 </code></pre>
     </div>
@@ -1486,10 +1380,10 @@ export class SettingsPopoverComponent implements OnInit {
     Settings
   &lt;/div&gt;
   
-  &lt;div *ngFor&#x3D;&quot;let alarm of settings.alarms; let idx &#x3D; index&quot;&gt;
+  &lt;div *ngFor&#x3D;&quot;let alarm of alarmService.Alarms; let idx &#x3D; index&quot;&gt;
     
     
-    &lt;ion-item *ngIf&#x3D;&quot;alarm.enabled&quot;&gt;
+    &lt;ion-item *ngIf&#x3D;&quot;!alarm.isPause&quot;&gt;
       &lt;ion-label&gt;{{alarm.key}}&lt;/ion-label&gt;
       &lt;ion-datetime displayFormat&#x3D;&quot;HH:mm&quot; 
         placeholder&#x3D;&quot;Select date&quot;
@@ -1499,14 +1393,10 @@ export class SettingsPopoverComponent implements OnInit {
     &lt;/ion-item&gt;
     
     &lt;!-- Sliding item with text options on both sides --&gt;
-    &lt;ion-item-sliding *ngIf&#x3D;&quot;!alarm.enabled&quot; class&#x3D;&quot;addAlarmContainer&quot;&gt;
+    &lt;ion-item-sliding *ngIf&#x3D;&quot;alarm.isPause&quot; class&#x3D;&quot;addAlarmContainer&quot;&gt;
       &lt;ion-item&gt;
         &lt;ion-buttons expand&#x3D;&quot;full&quot;&gt;
-<<<<<<< HEAD
-          &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;AddPause()&quot;&gt;
-=======
           &lt;ion-button expand&#x3D;&quot;full&quot; (click)&#x3D;&quot;AddPause(alarm)&quot;&gt;
->>>>>>> Dev
             &lt;div class&#x3D;&quot;alarm&quot;&gt;
               &lt;div class&#x3D;&quot;label&quot;&gt;
                 {{alarm.key}}
@@ -1514,8 +1404,7 @@ export class SettingsPopoverComponent implements OnInit {
               &lt;div class&#x3D;&quot;value&quot;&gt;
                 {{alarm.value}}
               &lt;/div&gt;
-            &lt;/div&gt;
-            
+            &lt;/div&gt;            
           &lt;/ion-button&gt;
         &lt;/ion-buttons&gt;
       &lt;/ion-item&gt;
@@ -1536,6 +1425,23 @@ export class SettingsPopoverComponent implements OnInit {
     &lt;/ion-buttons&gt;
   &lt;/div&gt;
 
+  &lt;!-- DAY CHECKBOX --&gt;
+  &lt;div class&#x3D;&quot;checkbox-container&quot;&gt;
+    &lt;div class&#x3D;&quot;checkbox-title&quot;&gt;
+      Repeat every
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;checkbox-list&quot;&gt;
+      &lt;div *ngFor&#x3D;&quot;let day of days; let idx &#x3D; index&quot;&gt;
+        &lt;div class&#x3D;&quot;checkbox&quot;&gt;
+          &lt;div class&#x3D;&quot;day-name&quot;&gt;
+            {{day}}
+          &lt;/div&gt;
+          &lt;ion-checkbox color&#x3D;&quot;primary&quot;&gt;&lt;/ion-checkbox&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
   &lt;!-- CANCEL/CONFIRM BUTTONS --&gt;
   &lt;div class&#x3D;&quot;buttonsContainer&quot;&gt;
     &lt;ion-buttons&gt;
@@ -1553,10 +1459,10 @@ export class SettingsPopoverComponent implements OnInit {
                 </p>
                 <pre class="line-numbers"><code class="language-scss">
 .settingsContainer{
-
+    
     // background-color: rgb(20, 20, 20);
     background-color: var(--ion-item-background, var(--ion-background-color, #fff));
-
+    
     .title{
         display: flex;
         justify-content: center;
@@ -1577,8 +1483,8 @@ export class SettingsPopoverComponent implements OnInit {
             }
         }
     }
-
-
+    
+    
     .addAlarmContainer {
         min-height: 2rem;
         width: 100%;
@@ -1597,20 +1503,50 @@ export class SettingsPopoverComponent implements OnInit {
             }
         }
     }
-
+    
     .alarm {
         display: flex;
         width: 100%;
         justify-content: space-between;
         padding: 1px 6px;
     }
-
+    
     .pickerClassName {
         color: greenyellow;
         background-color: honeydew;
     }
-
-}</code></pre>
+    
+    .checkbox-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .checkbox-title {
+            margin: 5px;
+        }
+        .checkbox-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: flex-start;
+            width: 90%;
+            .checkbox {
+                display: flex;
+                flex-direction: row;
+                margin: 3px;
+                width: 3rem;
+                justify-content: flex-end;
+                .day-name {
+                    font-size: 0.9rem;
+                    margin-right: 1px;
+                }
+            }
+        }
+        
+    }
+ 
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1638,13 +1574,8 @@ export class SettingsPopoverComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-<<<<<<< HEAD
-        var COMPONENT_TEMPLATE = '<div><div class="settingsContainer">      <div class="title">    Settings  </div>    <div *ngFor="let alarm of settings.alarms; let idx = index">            <ion-item *ngIf="alarm.enabled">      <ion-label>{{alarm.key}}</ion-label>      <ion-datetime displayFormat="HH:mm"         placeholder="Select date"        [value]="alarm.value"         (ionChange)="onTimeChange($event, idx)">      </ion-datetime>    </ion-item>        <!-- Sliding item with text options on both sides -->    <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">      <ion-item>        <ion-buttons expand="full">          <ion-button expand="full" (click)="AddPause()">            <div class="alarm">              <div class="label">                {{alarm.key}}              </div>              <div class="value">                {{alarm.value}}              </div>            </div>                      </ion-button>        </ion-buttons>      </ion-item>      <!-- End Option -->      <ion-item-options side="end">        <ion-item-option (click)="DeletePause(alarm)" color="danger">Delete</ion-item-option>      </ion-item-options>    </ion-item-sliding>      </div>  <!-- ADD PAUSE BUTTON -->  <div class="addAlarmContainer">    <ion-buttons expand="full">      <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>    </ion-buttons>  </div>  <!-- CANCEL/CONFIRM BUTTONS -->  <div class="buttonsContainer">    <ion-buttons>      <ion-button (click)="Cancel()">Cancel</ion-button>      <ion-button (click)="Save()">OK</ion-button>    </ion-buttons>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'SettingsPopoverComponent', 'selector': 'app-settings-popover'}];
-=======
-        var COMPONENT_TEMPLATE = '<div><div class="settingsContainer">      <div class="title">    Settings  </div>    <div *ngFor="let alarm of settings.alarms; let idx = index">            <ion-item *ngIf="alarm.enabled">      <ion-label>{{alarm.key}}</ion-label>      <ion-datetime displayFormat="HH:mm"         placeholder="Select date"        [value]="alarm.value"         (ionChange)="onTimeChange($event, idx)">      </ion-datetime>    </ion-item>        <!-- Sliding item with text options on both sides -->    <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">      <ion-item>        <ion-buttons expand="full">          <ion-button expand="full" (click)="AddPause(alarm)">            <div class="alarm">              <div class="label">                {{alarm.key}}              </div>              <div class="value">                {{alarm.value}}              </div>            </div>                      </ion-button>        </ion-buttons>      </ion-item>      <!-- End Option -->      <ion-item-options side="end">        <ion-item-option (click)="DeletePause(alarm)" color="danger">Delete</ion-item-option>      </ion-item-options>    </ion-item-sliding>      </div>  <!-- ADD PAUSE BUTTON -->  <div class="addAlarmContainer">    <ion-buttons expand="full">      <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>    </ion-buttons>  </div>  <!-- CANCEL/CONFIRM BUTTONS -->  <div class="buttonsContainer">    <ion-buttons>      <ion-button (click)="Cancel()">Cancel</ion-button>      <ion-button (click)="Save()">OK</ion-button>    </ion-buttons>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="settingsContainer">      <div class="title">    Settings  </div>    <div *ngFor="let alarm of alarmService.Alarms; let idx = index">            <ion-item *ngIf="!alarm.isPause">      <ion-label>{{alarm.key}}</ion-label>      <ion-datetime displayFormat="HH:mm"         placeholder="Select date"        [value]="alarm.value"         (ionChange)="onTimeChange($event, idx)">      </ion-datetime>    </ion-item>        <!-- Sliding item with text options on both sides -->    <ion-item-sliding *ngIf="alarm.isPause" class="addAlarmContainer">      <ion-item>        <ion-buttons expand="full">          <ion-button expand="full" (click)="AddPause(alarm)">            <div class="alarm">              <div class="label">                {{alarm.key}}              </div>              <div class="value">                {{alarm.value}}              </div>            </div>                      </ion-button>        </ion-buttons>      </ion-item>      <!-- End Option -->      <ion-item-options side="end">        <ion-item-option (click)="DeletePause(alarm)" color="danger">Delete</ion-item-option>      </ion-item-options>    </ion-item-sliding>      </div>  <!-- ADD PAUSE BUTTON -->  <div class="addAlarmContainer">    <ion-buttons expand="full">      <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>    </ion-buttons>  </div>  <!-- DAY CHECKBOX -->  <div class="checkbox-container">    <div class="checkbox-title">      Repeat every    </div>    <div class="checkbox-list">      <div *ngFor="let day of days; let idx = index">        <div class="checkbox">          <div class="day-name">            {{day}}          </div>          <ion-checkbox color="primary"></ion-checkbox>        </div>      </div>    </div>  </div>  <!-- CANCEL/CONFIRM BUTTONS -->  <div class="buttonsContainer">    <ion-buttons>      <ion-button (click)="Cancel()">Cancel</ion-button>      <ion-button (click)="Save()">OK</ion-button>    </ion-buttons>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HistoryComponent', 'selector': 'app-history'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'SettingsPopoverComponent', 'selector': 'app-settings-popover'}];
->>>>>>> Dev
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SettingsPopoverComponent'};
 </script>
@@ -1687,9 +1618,9 @@ export class SettingsPopoverComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
