@@ -1,4 +1,4 @@
-import { PickerColumnOption } from "../MODELS/PickerOption";
+import { PickerColumnOption } from "../MODELS/INTERFACES/PickerOption";
 import { Utility } from "./Utility";
 
 export namespace CONSTANT {

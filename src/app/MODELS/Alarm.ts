@@ -7,29 +7,19 @@
 *     04:00 => 400
 */
 
+import { IAlarm } from "./INTERFACES/IAlarm";
+
 /**
  * Alarm is identified by an idex, a value and a key
  */
-export interface Alarm {
-    key: string;
-    value: string;
-    isPause: boolean;
-    index: number;
-    duration?: number;
-}
-
-/**
- * 
- */
-export class Alarm implements Alarm {
+export class Alarm implements IAlarm {
         
-    /**
-     * Alarm class
-     * @param {string} key 
-     * @param {string} value 
-     * @param {boolean} isPause 
-     * @param {number} duration 
-     */
+    key: string = null;
+    value: string = null;
+    index: number = null;
+    isPause: boolean = null;
+    duration: number = null;
+
     constructor(
         key: string = null, 
         value: string = null, 
@@ -63,7 +53,8 @@ export class Alarm implements Alarm {
 
     /**
      * Update value and index of the alarm
-     * @param val 
+     * 
+     * @param {sting | Alarm} val if value is passed, the index is Automatically update
      */
     public update(val: string | Alarm) {
         console.log('Updating alarm...');
@@ -78,6 +69,9 @@ export class Alarm implements Alarm {
             }
             if (val.key) {
                 this.key = val.key;
+            }
+            if (val.isPause) {
+                this.isPause = val.isPause;
             }
         }
     }
