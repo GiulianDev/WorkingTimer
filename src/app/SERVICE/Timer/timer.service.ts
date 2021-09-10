@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { timeToString } from 'src/app/COMMON/Utility';
+import { Utility } from 'src/app/COMMON/Utility';
 import { Status, TimeList } from 'src/app/MODELS/Interfaces';
 import { NotificationService } from '../Notification/notification.service';
 import { StorageService } from '../Storage/storage.service';
@@ -166,19 +166,6 @@ export class TimerService {
 
   GetStoppedTimes() {
     return this.timeList.stop;
-  }
-
-  /**
-   * 
-   * Get the current hour and minutes as number (ex. 13:15 => 1315)
-   */
-   getCurrentTimeAsIndex() {
-    let current = new Date();
-    let hour = current.getHours()
-    let min = current.getMinutes()
-    let dateStr = this.zeroPrefix(hour, 2) + ":" + this.zeroPrefix(min, 2);
-    let dateIdx = timeToString(dateStr);
-    return dateIdx;
   }
 
   /**

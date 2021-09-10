@@ -5,6 +5,8 @@ import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { PickerOptions } from "@ionic/core";
 import { Settings } from 'src/app/MODELS/Settings';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
+import { CONSTANT } from 'src/app/COMMON/CONSTANT';
+import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
 
 @Component({
   selector: 'app-settings-popover',
@@ -15,43 +17,62 @@ export class SettingsPopoverComponent implements OnInit {
 
   private customPickerOptions; 
   private settings: Settings;
-
-
-  hours: string[] = 
-    [
-      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-      "12", "13", "14", "16", "17", "18", "19", "20", "21", "22", "23"
-    ];
-
-  minutes: string[] = 
-    [
-      "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
-      "12", "13", "14", "16", "17", "18", "19", "20", "21", "22", "23", "24",
-      "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-      "37", "38", "39", "40"
-    ];
+  private alarms: Alarm[];
+  private alarmTmp: Alarm;
+  private alarmTmpValue: string;
+  private alarmTmpIndex: number;
+  private days = CONSTANT.DAYS;
 
 
   constructor(
     private popoverController: PopoverController,
     private storageService: StorageService,
+    private alarmService: AlarmService,
     private pickerController: PickerController,
     public alertController: AlertController,
     public alert: AlertService
   ) {}
 
   ngOnInit() {
-    console.log("Loading settings...")
-    this.loadSettings();
-    console.log(this.settings)
+    // console.log("Loading settings...")
+    // this.loadSettings();
+    // console.log(this.settings);
+
+    // this.alarms = this.alarmService.GetAlarms();
+    // this.alarms = Object.assign([], this.alarmService.GetAlarms());
+    // this.alarms = [...this.alarmService.GetAlarms()];
+
+    //     console.log(this.alarms);
+
+  }
+
+  /**
+   * Update time values
+   * @param val : string (HH:mm)
+   * @param idx : index of the Alarms array to update
+   */
+  onTimeChange(val, idx) {
+    // Todo
+    // update alarm
+    // let copy = Object.assign({}, original );
+    // this.tmpSettings.alarms = Object.assign([], this.settings.alarms); //{...this.settings};
+    let time: string = val.detail.value;
+    // this.settings.updateAlaram(time, idx);
+    // alarm.update(val.detail.value);
+    console.log(val);
+    console.log(idx);
+    this.alarmTmpValue = time;
+    this.alarmTmpIndex  = idx;
   }
 
   /**
    * Save new settings on the local storage
    */
   Save() {
-    console.log("Saving settings...")
-    this.storageService.SaveSettings(this.settings);
+    // ToDo
+    // la logica di salvataggio deve essere spostata all'interno dell'alarm service 
+
+    this.alarmService.updateAlarm(this.alarmTmpValue, this.alarmTmpIndex);
     this.DismissClick();
   }
   
@@ -60,7 +81,6 @@ export class SettingsPopoverComponent implements OnInit {
    */
   async Cancel() {
     console.log("Cancel")
-    this.settings = await this.storageService.getStoredSettings();
     this.DismissClick();
   }
 
@@ -89,19 +109,6 @@ export class SettingsPopoverComponent implements OnInit {
     this.settings = this.storageService.getSettings();
   }
 
-  /**
-   * Update time values
-   * @param val : string (HH:mm)
-   * @param idx : index of the Alarms array to update
-   */
-   onTimeChange(val, idx) {
-    // let copy = Object.assign({}, original );
-    // this.tmpSettings.alarms = Object.assign([], this.settings.alarms); //{...this.settings};
-    let time = val.detail.value;
-    this.settings.updateAlaram(time, idx);
-    console.log(this.settings.alarms);
-  }
-
 
   /**
    * Dismiss settings pop-over
@@ -126,56 +133,72 @@ export class SettingsPopoverComponent implements OnInit {
           handler:(value:any) => {
             // console.log(value);
             var str: string = value.hours.value + ':' + value.minutes.value;
-            let res = this.settings.addAlarm(str);
+            // let res = this.settings.addAlarm(str);
 
-            if (res.succeded == false) {
+            // if (res.succeded == false) {
 
-            }
-            this.alert.presentWarningAlert(res.msg);
+            // }
+            this.showAlarmDurationPicker();
+            // this.alert.presentWarningAlert(res.msg);
             
           }
         }
       ],
-      columns:[{
+      columns:[
+      {
         name:'hours',
-        prefix:'H',
-        options:this.getHoursOptions(alarm)
-      }, {
+        optionsWidth: '2rem',
+        align: 'right',
+        options: CONSTANT.MINUTES_OPTS
+      }
+      , {
         name:'minutes',
-        prefix:'m',
-        options:this.getMinutesOptions()
-      }, {
-        name:'duration',
-        prefix:'duration',
-        options: this.getMinutesOptions()
-      }],
-      // ToDo - non funziona
-      // cssClass : 'pickerClassName'
+        optionsWidth: '2rem',
+        align: 'left',
+        // selectedIndex: alarm ? alarm.getMinutesIdex() : null,
+        options: CONSTANT.MINUTES_OPTS
+      }
+    ],
+    // cssClass: 'my-custom-picker',
     };
     let picker = await this.pickerController.create(options);
     picker.present()
   }
 
 
-  getHoursOptions(alarm: Alarm = null){
-    console.log('Getting hours...');
-    let options = [];
-    this.hours.forEach(x => {
-      let obj = {text:x,value:x};
-      if (alarm != null) {
-        let h = alarm.getHour();
+
+  async showAlarmDurationPicker(alarm: Alarm = null) {
+    let options: PickerOptions = {
+      buttons: [
+        {
+          text: "Cancel",
+          role: 'cancel'
+        },
+        {
+          text:'Ok',
+          handler:(value:any) => {
+            // console.log(value);
+            var str: string = value.hours.value + ':' + value.minutes.value;
+            // let res = this.settings.addAlarm(str);
+
+            // if (res.succeded == false) {
+
+            // }
+            // this.alert.presentWarningAlert(res.msg);
+            
+          }
+        }
+      ],
+      columns:[
+      {
+        name:'minutes',
+        prefix: 'Duration: ',
+        options: CONSTANT.MINUTES_OPTS
       }
-      options.push(obj);
-    });
-    return options;
+    ],
+    // cssClass: 'my-custom-picker',
+    };
+    let picker = await this.pickerController.create(options);
+    picker.present()
   }
-
-  getMinutesOptions(){
-    let options = [];
-    this.minutes.forEach(x => {
-      options.push({text:x,value:x});
-    });
-    return options;
-  }
-
 }

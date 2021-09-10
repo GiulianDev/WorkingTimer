@@ -5,10 +5,10 @@
     Settings
   </div>
   
-  <div *ngFor="let alarm of settings.alarms; let idx = index">
+  <div *ngFor="let alarm of alarmService.Alarms; let idx = index">
     
     
-    <ion-item *ngIf="alarm.enabled">
+    <ion-item *ngIf="!alarm.isPause">
       <ion-label>{{alarm.key}}</ion-label>
       <ion-datetime displayFormat="HH:mm" 
         placeholder="Select date"
@@ -18,7 +18,7 @@
     </ion-item>
     
     <!-- Sliding item with text options on both sides -->
-    <ion-item-sliding *ngIf="!alarm.enabled" class="addAlarmContainer">
+    <ion-item-sliding *ngIf="alarm.isPause" class="addAlarmContainer">
       <ion-item>
         <ion-buttons expand="full">
           <ion-button expand="full" (click)="AddPause(alarm)">
@@ -29,8 +29,7 @@
               <div class="value">
                 {{alarm.value}}
               </div>
-            </div>
-            
+            </div>            
           </ion-button>
         </ion-buttons>
       </ion-item>
@@ -49,6 +48,23 @@
     <ion-buttons expand="full">
       <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>
     </ion-buttons>
+  </div>
+
+  <!-- DAY CHECKBOX -->
+  <div class="checkbox-container">
+    <div class="checkbox-title">
+      Repeat every
+    </div>
+    <div class="checkbox-list">
+      <div *ngFor="let day of days; let idx = index">
+        <div class="checkbox">
+          <div class="day-name">
+            {{day}}
+          </div>
+          <ion-checkbox color="primary"></ion-checkbox>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- CANCEL/CONFIRM BUTTONS -->

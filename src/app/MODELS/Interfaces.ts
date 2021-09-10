@@ -1,13 +1,13 @@
-export enum LABELS {
-    START  = "IN",
-    STOP   = "OUT",
-    PAUSE  = "PAUSE"
-}
+// export enum LABELS {
+//     START  = "IN",
+//     STOP   = "OUT",
+//     PAUSE  = "PAUSE"
+// }
 
-export enum DEFAULT_VAL {
-    START  = "08:30",
-    STOP   = "18:00",
-}
+// export enum DEFAULT_VAL {
+//     START  = "08:30",
+//     STOP   = "18:00",
+// }
 
 export enum DateFormat {
     Year = "YYYY",
@@ -16,9 +16,9 @@ export enum DateFormat {
     HourMinuteSeconds = "HH:mm:ss"
 }
 
-export enum SETTINGS {
-    ALARMS = "Alarms"
-}
+// export enum SETTINGS {
+//     ALARMS = "Alarms"
+// }
 
 export class TimeList {
     constructor() {
