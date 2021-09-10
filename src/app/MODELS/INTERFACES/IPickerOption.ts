@@ -1,4 +1,4 @@
-export interface PickerColumnOption {
+export interface IPickerColumnOption {
     text?: string;
     value?: any;
     disabled?: boolean;
