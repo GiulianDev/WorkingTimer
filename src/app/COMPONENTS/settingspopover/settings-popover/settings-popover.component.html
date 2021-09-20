@@ -5,9 +5,10 @@
     Settings
   </div>
   
-  <div *ngFor="let alarm of alarmService.Alarms; let idx = index">
+  <div *ngFor="let alarm of Alarms; let idx = index">
     
     
+  <!-- 
     <ion-item *ngIf="!alarm.isPause">
       <ion-label>{{alarm.key}}</ion-label>
       <ion-datetime displayFormat="HH:mm" 
@@ -15,13 +16,31 @@
         [value]="alarm.value" 
         (ionChange)="onTimeChange($event, idx)">
       </ion-datetime>
-    </ion-item>
+    </ion-item> 
+  -->
+
+  <div *ngIf="!alarm.isPause" class="addAlarmContainer">
+    <ion-item>
+      <ion-buttons expand="full">
+        <ion-button expand="full" (click)="UpdateAlarm(alarm, idx)">
+          <div class="alarm">
+            <div class="label">
+              {{alarm.key}}
+            </div>
+            <div class="value">
+              {{alarm.value}}
+            </div>
+          </div>            
+        </ion-button>
+      </ion-buttons>
+    </ion-item> 
+  </div>
     
     <!-- Sliding item with text options on both sides -->
     <ion-item-sliding *ngIf="alarm.isPause" class="addAlarmContainer">
       <ion-item>
         <ion-buttons expand="full">
-          <ion-button expand="full" (click)="AddPause(alarm)">
+          <ion-button expand="full" (click)="UpdateAlarm(alarm, idx)">
             <div class="alarm">
               <div class="label">
                 {{alarm.key}}

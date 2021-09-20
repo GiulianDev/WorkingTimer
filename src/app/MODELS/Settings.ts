@@ -1,5 +1,5 @@
 import { LABELS } from "../COMMON/LABELS";
-import { Alarm } from "./Alarm";
+import { Alarm } from "./CLASSES/Alarm";
 
 /**
  * Settings contains:
@@ -75,20 +75,5 @@ export class Settings {
         return {succeded: true, msg:'Pause updated'};
     }
     
-    /**
-     * Delete a specific alarm from alarms array
-     * @param alarm alarm to delete (type Alarm)
-     * @returns Object {succeded: boolean, msg: string}
-     */
-    deleteAlarm(alarm: Alarm) {
-        // var existingAlarm = this.alarms.filter(x => x.index == alarm.index);
-        // var f = this.alarms.find(x => x.index == alarm.index);
-        for (var idx = this.alarms.length - 1; idx >= 0; --idx) {
-            if (this.alarms[idx].index == alarm.index) {
-                this.alarms.splice(idx,1);
-                return {succeded: true, msg:'Alarm deleted'};
-            }
-        }
-        return {succeded: false, msg:'Alarm not deleted'};
-    }
+    
 }

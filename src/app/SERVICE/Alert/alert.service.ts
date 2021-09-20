@@ -20,6 +20,8 @@ export class AlertService {
    *   if (res) {
    *     // codes
    *   }
+   * }, err => {
+   *     // manage the error
    * });
    */
   async presentConfirmAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WOOOPS'): Promise<any> {

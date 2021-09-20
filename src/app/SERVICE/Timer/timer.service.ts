@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { KEYS } from 'src/app/COMMON/KEYS';
 import { Utility } from 'src/app/COMMON/Utility';
-import { Status, TimeList } from 'src/app/MODELS/Interfaces';
+import { TimeList } from 'src/app/MODELS/CLASSES/TimeList';
+import { Timer } from 'src/app/MODELS/CLASSES/Timer';
+import { IStatus } from 'src/app/MODELS/INTERFACES/IStatus';
+import { ITimer } from 'src/app/MODELS/INTERFACES/ITimer';
 import { NotificationService } from '../Notification/notification.service';
-import { StorageService } from '../Storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,99 +14,136 @@ import { StorageService } from '../Storage/storage.service';
 export class TimerService {
 
 
-  private running = false
+  private _timer: Timer = new Timer();
 
-  public timeBegan = null
-  public timeStopped:any = null
-  public stoppedDuration:any = 0
-  public started = null
-  public blankTime = "00:00.00"
-  public time: string = "00:00.00"
-  public timeList: TimeList = new TimeList;
-  public stoppedList: Date[] = [];
-  public startedList: Date[] = [];
+  // private running = false
 
-  public clickCounter: number = 0;
+  // public timeBegan = null
+  // public timeStopped:any = null
+  // public stoppedDuration:any = 0
+  // public started = null
+  // public blankTime = "00:00.00"
+  // private _time: string = "00:00.00"
+  // private _timeList: TimeList = new TimeList();
+  // public stoppedList: Date[] = [];
+  // public startedList: Date[] = [];
 
   constructor(
     public platform: Platform,
-    public storageService: StorageService,
     public notificationService: NotificationService
-  ) { 
-    // subscribe to on pause event
-    this.onPause();
-    // this.onResume();
-    var savedStatus: Status = this.storageService.getStatus();
-    console.log("Saved status: ", savedStatus);
-
-    if (savedStatus?.isRunning) {
-
-      this.running = true;
-      this.timeList = savedStatus.timeList;
-
-      this.timeBegan = this.timeList.start[0];
-      this.timeStopped = this.timeList.stop[this.timeList.stop.length];
-      this.clickCounter = savedStatus.clickCounter;
-      this.started = setInterval(this.clockRunning.bind(this), 10);
-    }
-
+  ) {
+    console.log("Timer: ", this._timer);
   }
 
+
+  //#region _______MEANGE TIMER FINCTIONS_____________________________
 
   /**
    * Start timer
    */
   start() {
-    if(this.running) {
+    console.log("Start");
+    if(this._timer.running) {
       return;
     }
-    if (this.timeBegan === null) {
+    if (this._timer.timeBegan === null) {
         this.reset();
-        this.timeBegan = new Date();
+        this._timer.timeBegan = new Date();
     }
-    if (this.timeStopped !== null) {
-      let newStoppedDuration:any = (+new Date() - this.timeStopped)
-      this.stoppedDuration = this.stoppedDuration + newStoppedDuration;
+    if (this._timer.timeStopped !== null) {
+      let newStoppedDuration:any = (+new Date() - this._timer.timeStopped)
+      this._timer.stoppedDuration = this._timer.stoppedDuration + newStoppedDuration;
     }
     this.timeList.start.push(new Date());
-    this.started = setInterval(this.clockRunning.bind(this), 10);
-    this.running = true;
-    this.clickCounter++;
+    this._timer.started = setInterval(this.clockRunning.bind(this), 10);
+    this._timer.running = true;
   }
   
   /**
    * Stop timer
    */
   stop() {
-    this.running = false;
-    this.timeStopped = new Date();
-    this.timeList.stop.push(this.timeStopped);
+    this._timer.running = false;
+    this._timer.timeStopped = new Date();
+    this.timeList.stop.push(this._timer.timeStopped);
     this.calcDiff();
-    clearInterval(this.started);
-    // this.clickCounter++;
+    clearInterval(this._timer.started);
   }
   
   /**
    * Reset timer
    */
   reset() {
-      this.running = false;
-      clearInterval(this.started);
-      this.stoppedDuration = 0;
-      this.timeBegan = null;
-      this.timeStopped = null;
-      this.time = this.blankTime;
-      this.timeList = new TimeList;
-      this.clickCounter = 0;
+      this._timer.running = false;
+      clearInterval(this._timer.started);
+      this._timer.stoppedDuration = 0;
+      this._timer.timeBegan = null;
+      this._timer.timeStopped = null;
+      this._timer.time = this._timer.blankTime;
+      this._timer = new Timer();
+      // this.clickCounter = 0;
   }
+
+  //#endregion
+
   
+
+
+  //#region _______GET METHODS____________________________
+
+  /**
+   * Return true if timer is running
+   */
+   get Running(): boolean {
+    return this._timer.running;
+  }
+
+  get time() {
+    return this._timer.time;
+  }
+
+  get timeList() {
+    return this._timer;
+  }
+
+  GetStartedTimes() {
+    return this.timeList.start;
+  }
+
+  GetStoppedTimes() {
+    return this.timeList.stop;
+  }
+
+  //#endregion
+
+
+
+  //#region _______SET METHODS____________________________
+  
+  set timeList(timer: Timer) {
+    this._timer = timer;
+    this._timer.timeStopped = new Date(timer.timeStopped);
+    this._timer.timeBegan = new Date(timer.timeBegan);
+    if (timer.running) {
+      this._timer.started = setInterval(this.clockRunning.bind(this), 10);
+    }
+  }
+
+  //#endregion
+
+
+
+
+
+
+
   /**
    * Add digit-1 zeros at the begin of the number
    * @param num 
    * @param digit number of zeros
    * @returns 
    */
-  zeroPrefix(num, digit) {
+   zeroPrefix(num, digit) {
     let zero = '';
     for(let i = 0; i < digit; i++) {
       zero += '0';
@@ -114,12 +154,12 @@ export class TimerService {
 
   clockRunning(){
     let currentTime:any = new Date()
-    let timeElapsed:any = new Date(currentTime - this.timeBegan - this.stoppedDuration)
+    let timeElapsed:any = new Date(currentTime - this._timer.timeBegan - this._timer.stoppedDuration)
     let hour = timeElapsed.getUTCHours()
     let min  = timeElapsed.getUTCMinutes()
     let sec  = timeElapsed.getUTCSeconds()
     let ms   = timeElapsed.getUTCMilliseconds();
-    this.time =
+    this._timer.time =
       this.zeroPrefix(hour, 2) + ":" +
       this.zeroPrefix(min, 2) + ":" +
       this.zeroPrefix(sec, 2);
@@ -152,56 +192,8 @@ export class TimerService {
   }
 
 
-  GetTime() {
-    return this.time;
-  }
-
-  GetTimeList() {
-    return this.timeList;
-  }
-
-  GetStartedTimes() {
-    return this.timeList.start;
-  }
-
-  GetStoppedTimes() {
-    return this.timeList.stop;
-  }
-
-  /**
-   * Return true if timer is running
-   */
-  isRunning(): boolean {
-    return this.running;
-  }
-
-  /**
-   * Save the current status to local storage on platform.pause event
-   */
-  onPause() {
-    this.platform.pause.subscribe(async () => {
-      var status: Status = {
-        isRunning : this.running, 
-        timeList: this.timeList,
-        clickCounter: this.clickCounter
-      };   
-      this.storageService.SaveStatus(status);
-
-      // add notification
-      if (this.isTimerActive()) {
-        console.log("Adding local notification...");
-        let msg: string = "Your working hour is still tracked";
-        this.notificationService.addLocalNotification(msg);
-      } else {
-        let p = this.notificationService.getPending();
-        console.log(p);
-      }
-    })
-      
-  }
-
   isTimerActive(): boolean {
-    if (this.running) return true;
+    if (this._timer.running) return true;
     else if (this.timeList.start.length > 0) return true;
     return false;
   }

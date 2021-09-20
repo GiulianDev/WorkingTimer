@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlertController, PickerController, PopoverController } from '@ionic/angular';
-import { Alarm } from 'src/app/MODELS/Alarm';
+import { Alarm } from 'src/app/MODELS/CLASSES/Alarm';
 import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { PickerOptions } from "@ionic/core";
 import { Settings } from 'src/app/MODELS/Settings';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
-import { CONSTANT } from 'src/app/COMMON/CONSTANT';
 import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
+import { KEYS } from 'src/app/COMMON/KEYS';
+import { Alarms } from 'src/app/MODELS/CLASSES/Alarms';
+import { LABELS } from 'src/app/COMMON/LABELS';
+import { IReturnMsg } from 'src/app/MODELS/INTERFACES/IReturnMsg';
+import { Options } from 'src/app/MODELS/CLASSES/Options';
 
 @Component({
   selector: 'app-settings-popover',
@@ -15,13 +19,14 @@ import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
 })
 export class SettingsPopoverComponent implements OnInit {
 
-  private customPickerOptions; 
-  private settings: Settings;
-  private alarms: Alarm[];
-  private alarmTmp: Alarm;
-  private alarmTmpValue: string;
-  private alarmTmpIndex: number;
-  private days = CONSTANT.DAYS;
+  // private customPickerOptions; 
+  // private settings: Settings;
+  private _alarms: Alarms;
+  private _alarmTmp: Alarm;
+  private _selectedAlarmIdx: number;
+  private PICKER_OPTIONS = new Options();
+  // private alarmTmpValue: string;
+  // private alarmTmpIndex: number;
 
 
   constructor(
@@ -33,81 +38,92 @@ export class SettingsPopoverComponent implements OnInit {
     public alert: AlertService
   ) {}
 
-  ngOnInit() {
-    // console.log("Loading settings...")
-    // this.loadSettings();
-    // console.log(this.settings);
+    
 
-    // this.alarms = this.alarmService.GetAlarms();
-    // this.alarms = Object.assign([], this.alarmService.GetAlarms());
-    // this.alarms = [...this.alarmService.GetAlarms()];
 
-    //     console.log(this.alarms);
-
+  ngOnInit(): void {
+    console.log("Initializing setting...");
+    this._alarms = new Alarms(this.alarmService.Alarms);
+    console.log(this._alarms);
   }
 
+  public get Alarms(): Alarm[] {
+    return this._alarms.Alarms;
+  }
+
+
+
+
+  //#region BUTTONS
+
   /**
-   * Update time values
-   * @param val : string (HH:mm)
-   * @param idx : index of the Alarms array to update
+   * Calcel the current temporary user settings and reload stored settings
    */
-  onTimeChange(val, idx) {
-    // Todo
-    // update alarm
-    // let copy = Object.assign({}, original );
-    // this.tmpSettings.alarms = Object.assign([], this.settings.alarms); //{...this.settings};
-    let time: string = val.detail.value;
-    // this.settings.updateAlaram(time, idx);
-    // alarm.update(val.detail.value);
-    console.log(val);
-    console.log(idx);
-    this.alarmTmpValue = time;
-    this.alarmTmpIndex  = idx;
+  public Cancel() {
+    console.log("Cancel")
+    this.DismissClick();
   }
 
   /**
    * Save new settings on the local storage
    */
-  Save() {
-    // ToDo
-    // la logica di salvataggio deve essere spostata all'interno dell'alarm service 
+  public Save() {
+    console.log(this.Alarms);
+    this.alarmService.Alarms = this._alarms.Alarms;
 
-    this.alarmService.updateAlarm(this.alarmTmpValue, this.alarmTmpIndex);
+    this.storageService.SaveAlarms(this.Alarms);
     this.DismissClick();
   }
-  
+
   /**
-   * Calcel the current temporary user settings and reload stored settings
+   * Update an existing alarm
+   * @param alarm 
+   * @param idx 
    */
-  async Cancel() {
-    console.log("Cancel")
-    this.DismissClick();
+  UpdateAlarm(alarm: Alarm, idx: number) {
+    console.log("Selected alarm: ", alarm);
+    console.log("Alarm index: ", idx);
+    this._selectedAlarmIdx = idx;
+    this.showAlarmPicker(alarm);
   }
 
 
   /**
    * Add a pause to the time array
    */
-  AddPause(alarm: Alarm = null) {
-    console.log("Selected alarm: ", alarm);
-    this.showAlarmPicker(alarm);
+  AddPause() {
+    // this._selectedAlarmIdx = null;
+    this.showAlarmPicker();
   }
 
   /**
    * Delete pause
    * @param alarm 
    */
-  DeletePause(alarm) {
+  DeletePause(alarm: Alarm) {
     console.log(alarm);
-    this.settings.deleteAlarm(alarm);
+    this._alarms.delete(alarm);
   }
+
+  //#endregion
+
+
+
+
+
+
+
 
   /**
    * Load User Settings
    */
-  async loadSettings() {
-    this.settings = this.storageService.getSettings();
-  }
+  // async loadSettings() {
+  //   // this.settings = this.storageService.getSettings();
+  // }
+
+
+
+
 
 
   /**
@@ -116,10 +132,6 @@ export class SettingsPopoverComponent implements OnInit {
   async DismissClick() {
     await this.popoverController.dismiss();
   }
-
-
-
-
 
   async showAlarmPicker(alarm: Alarm = null) {
     let options: PickerOptions = {
@@ -130,17 +142,32 @@ export class SettingsPopoverComponent implements OnInit {
         },
         {
           text:'Ok',
-          handler:(value:any) => {
-            // console.log(value);
-            var str: string = value.hours.value + ':' + value.minutes.value;
-            // let res = this.settings.addAlarm(str);
+          handler:(value: any) => {
+            console.log("Selected value: ", value);
+            let valueStr: string = value.hours.value + ':' + value.minutes.value;
 
-            // if (res.succeded == false) {
+            if (alarm) {
+              // update
+              this._alarmTmp = new Alarm(valueStr, alarm.key, alarm.isPause, alarm.duration);
+            } else {
+              // insert
+              this._alarmTmp = new Alarm(valueStr, LABELS.PAUSE, true);
+            }
 
-            // }
-            this.showAlarmDurationPicker();
-            // this.alert.presentWarningAlert(res.msg);
+            console.log("temporary alarm: ", this._alarmTmp);
             
+            if (this._alarmTmp.isPause) {
+              // open duration picker
+              this.showAlarmDurationPicker(this._alarmTmp);
+            } else {
+              // update
+              let response: IReturnMsg = this._alarms.update(this._alarmTmp, this._selectedAlarmIdx);
+              console.log(this.alarmService.Alarms);
+              console.log(response.msg);
+              if (response.succeded == false) {
+                this.alert.presentWarningAlert(response.msg);
+              }
+            }
           }
         }
       ],
@@ -149,14 +176,17 @@ export class SettingsPopoverComponent implements OnInit {
         name:'hours',
         optionsWidth: '2rem',
         align: 'right',
-        options: CONSTANT.MINUTES_OPTS
+        selectedIndex: alarm ? this.PICKER_OPTIONS.GetHourIdx(alarm.hour) : null,
+        options: this.PICKER_OPTIONS.HOURS_OPTIONS
       }
       , {
         name:'minutes',
         optionsWidth: '2rem',
         align: 'left',
-        // selectedIndex: alarm ? alarm.getMinutesIdex() : null,
-        options: CONSTANT.MINUTES_OPTS
+        // ToDo
+        // deve essere l'indice nell'array di minuti
+        selectedIndex: alarm ? this.PICKER_OPTIONS.GetMinuteIdx(alarm.minutes) : null,
+        options: this.PICKER_OPTIONS.MINUTES_OPTS
       }
     ],
     // cssClass: 'my-custom-picker',
@@ -167,7 +197,7 @@ export class SettingsPopoverComponent implements OnInit {
 
 
 
-  async showAlarmDurationPicker(alarm: Alarm = null) {
+  async showAlarmDurationPicker(alarm: Alarm) {
     let options: PickerOptions = {
       buttons: [
         {
@@ -176,16 +206,20 @@ export class SettingsPopoverComponent implements OnInit {
         },
         {
           text:'Ok',
-          handler:(value:any) => {
-            // console.log(value);
-            var str: string = value.hours.value + ':' + value.minutes.value;
-            // let res = this.settings.addAlarm(str);
-
-            // if (res.succeded == false) {
-
-            // }
-            // this.alert.presentWarningAlert(res.msg);
-            
+          handler:(value: any) => {
+            console.log("Selected value: ", value);
+            this._alarmTmp.duration = +value?.minutes?.value;
+            console.log("pause duration: ", this._alarmTmp); 
+            let response: IReturnMsg;
+            if (this._selectedAlarmIdx == null) {
+              response = this._alarms.push(this._alarmTmp);
+            } else {
+              response = this._alarms.update(this._alarmTmp, this._selectedAlarmIdx);
+            }
+            console.log(response.msg);
+            if (response.succeded == false) {
+              this.alert.presentWarningAlert(response.msg);
+            }
           }
         }
       ],
@@ -193,7 +227,7 @@ export class SettingsPopoverComponent implements OnInit {
       {
         name:'minutes',
         prefix: 'Duration: ',
-        options: CONSTANT.MINUTES_OPTS
+        options: this.PICKER_OPTIONS.MINUTES_OPTS
       }
     ],
     // cssClass: 'my-custom-picker',

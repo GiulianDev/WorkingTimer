@@ -1,3 +1,5 @@
+import { Alarm } from "../MODELS/CLASSES/Alarm";
+
 export namespace Utility {
     
     export function GetTime(maxVal: number = 99, digits: number = 2): string[] {
@@ -34,23 +36,32 @@ export namespace Utility {
     }
     
     
+    /**
+     * Convert the time value from string to number, used as index
+     * 
+     * ex.
+     * 
+     *     12:00 => 1200 
+     *     04:00 => 400
+     * @param timeStr 
+     * @returns 
+     */
+    export function timeToIndex(timeStr: string | Alarm): number {
+    let tmpTime: string;
+    if(typeof(timeStr) == "string") {
+        tmpTime = timeStr.replace(":", "");
+    } else {
+        tmpTime = timeStr.value;
+    }
+    var timeNumber: number = + tmpTime;
+    return timeNumber;
+    }
     
     
 }
 
 
-// export function getHoursOptions(alarm: Alarm = null){
-//     console.log('Getting hours...');
-//     let options = [];
-//     HOURS.forEach(x => {
-//         let obj = {text:x, value:x};
-//         if (alarm != null) {
-//             let h = alarm.getHour();
-//         }
-//         options.push(obj);
-//     });
-//     return options;
-// }
+
 
 
 

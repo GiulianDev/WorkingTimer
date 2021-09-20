@@ -20,7 +20,7 @@
     <div class="timeContainer">
 
       <!-- Current Timer -->
-      <div class="time">{{timerService.GetTime()}}</div>
+      <div class="time">{{timerService.time}}</div>
 
       <div class="timeListContainer">
 
@@ -28,7 +28,7 @@
           <div class="timesText">
             Start
           </div>
-          <div *ngFor="let time of timeList.start" class="timesText">
+          <div *ngFor="let time of timerService.timeList.start" class="timesText">
             {{time | date : 'HH:mm'}}
           </div>
         </div>
@@ -37,7 +37,7 @@
           <div class="timesText">
             Stop
           </div>
-          <div *ngFor="let time of timeList.stop" class="timesText">
+          <div *ngFor="let time of timerService.timeList.stop" class="timesText">
               {{time | date : 'HH:mm'}}
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="timesText">
             Partial
           </div>
-          <div *ngFor="let time of timeList.diff" class="timesText">
+          <div *ngFor="let time of timerService.timeList.diff" class="timesText">
               {{time}}
           </div>
         </div>
@@ -69,6 +69,8 @@
     <div class="resetButtonContainer">
       <ion-button expand="full" color="danger" (click)="Reset()">Reset</ion-button>
     </div>
+
+    <ion-button expand="full" color="danger" (click)="SaveStatus()">Save Status</ion-button>
 
   </div>
     

@@ -1,14 +1,19 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
-import { AlertController, PopoverController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController, Platform, PopoverController } from '@ionic/angular';
 import { LABELS } from 'src/app/COMMON/LABELS';
 import { SettingsPopoverComponent } from 'src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component';
+import { IStatus } from 'src/app/MODELS/INTERFACES/IStatus';
 import { AdvertisementService } from 'src/app/SERVICE/Advertisement/advertisement.service';
-import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
 import { AlertService } from 'src/app/SERVICE/Alert/alert.service';
-import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
 import { TimerService } from 'src/app/SERVICE/Timer/timer.service';
-import { TimeList } from '../../MODELS/Interfaces';
+import { TimeList } from 'src/app/MODELS/CLASSES/TimeList';
+import { AlarmService } from 'src/app/SERVICE/Alarm/alarm.service';
+import { StorageService } from 'src/app/SERVICE/Storage/storage.service';
+import { Alarm } from 'src/app/MODELS/CLASSES/Alarm';
+import { IReturnMsg } from 'src/app/MODELS/INTERFACES/IReturnMsg';
+import { NotificationService } from 'src/app/SERVICE/Notification/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +23,18 @@ import { TimeList } from '../../MODELS/Interfaces';
 export class HomePage {
 
 
+  private _status: IStatus;
+  // private _alarms: Alarm[] = [];
+  private _clickCounter: number = 0;
+
   private _startStopTxt: string = LABELS.START;
   private time: string;
   private stopped: Date[] = [];
   private started: Date[] = [];
-  private timeList: TimeList = new TimeList();
-  
-  private offset;  // time offset between current time and alarm time
+  // private timeList: TimeList = new TimeList();
+
+
+  // private offset;  // time offset between current time and alarm time
 
   // private clickCounter: number = 0; // count the number of click on Start/Stop timer button
 
@@ -32,39 +42,42 @@ export class HomePage {
    * CONSTRUCTOR
    */
   constructor(
+    private route: ActivatedRoute,
+    public platform: Platform,
     private timerService: TimerService,
-    private alarmService: AlarmService,
+    public storageService: StorageService,
     private popoverController: PopoverController,
-    private storageService: StorageService,
     public alertController: AlertController,
-    public alert: AlertService,
-    public advertisementService: AdvertisementService
+    public alertService: AlertService,
+    public advertisementService: AdvertisementService,
+    private alarmService: AlarmService,
+    private notificationService: NotificationService
   ) { 
+
+    this._status = this.route.snapshot.data.status;
+    console.log('Status: ', this._status);
+
+    // this._alarms = this.alarmService.Alarms;
+    // console.log('Alarms: ', this._alarms);
+  
+    // Retrieving timeList from storage status
+    if (this._status?.timeList) {
+      this.timerService.timeList = this._status.timeList;
+    }
+    console.log('timeList: ', this.timerService.timeList);
+
+    // subscribe to on pause event
+    this.onPause();
 
     // this.advertisementService.initialize();
     // this.advertisementService.banner();
 
-    
-    // ToDo
-    // let User manage the offset
-    this.offset = 15;
-
-    // ToDo
-    // recover time lists from timer service
-    // in case of app closed while running
-
-    // this.timerService. ...
-
-    this.timeList = this.timerService.timeList;
-
-    
     this.UpdateGUI();
-
   }
 
 
   UpdateGUI() {
-    this._startStopTxt = this.timerService.isRunning() ? LABELS.STOP : LABELS.START;
+    this._startStopTxt = this.timerService.Running ? LABELS.STOP : LABELS.START;
   }
 
 
@@ -75,50 +88,32 @@ export class HomePage {
    */
   async OnFabTimerClick() {
     
+    // console.log("Alarms: ", this._alarms);
+    
     // check for alarm
-    let alarm = this.storageService.getAlarmByIndex(this.timerService.clickCounter);
+    this.alarmService.checkAlarm(this._clickCounter)
+    .then( res => {
 
-    // ToDo
-    // sistemare questo discorso dell'indice per gestire l'if
-    let currentTime: number = 1; //this.alarmService.getCurrentTimeIndex();
+      console.log(res);
+      this.StartStopTimer();
 
-    if (alarm) {
-
-      let t = this.storageService.getAlarmCount();
-      console.log(t);
-      console.log('click count: ', this.timerService.clickCounter);
-
-
-      let msg = null;
-
-      console.log("Alarm: ", alarm);
-      console.log("Scheduled: ", alarm.index);
-      console.log("Current: ", currentTime);
-      // check if it is too late for today working day
-      if (currentTime > (this.storageService.getLastAlarm().index)) {
-        msg = "You are out of your working hours!";
-      }
-
-      if (currentTime < (alarm.index - this.offset))
-      {
-        msg =  "Not time yet!";
-      }
-
-      await this.alert.presentConfirmAlert(msg)
+    }, err => {
+      this.alertService.presentConfirmAlert(err.msg)
       .then( res => {
         if (res) {
           console.log('Confirmed');
           this.StartStopTimer();
-
-
-
         } else {
           console.log('Canceled')
         }
       })
 
+    })
 
-    } 
+
+    /*
+    
+
     else if (this.timerService.clickCounter == this.storageService.getAlarmCount()) {
       this.StartStopTimer();
     }
@@ -137,7 +132,12 @@ export class HomePage {
         }
       })
     }
+
+
+    */
   }
+
+
 
 
   /**
@@ -145,7 +145,7 @@ export class HomePage {
    * and increment click counter
    */
   StartStopTimer() {
-    if (this.timerService.isRunning()) 
+    if (this.timerService.Running) 
     {
       this.timerService.stop();
     } 
@@ -153,9 +153,11 @@ export class HomePage {
     {
       this.timerService.start();
     }
+    this._clickCounter++;
     this.UpdateGUI();
-    this.timeList = this.timerService.GetTimeList();
   }
+
+
 
   /**
    * Reset timer and click counter
@@ -163,10 +165,61 @@ export class HomePage {
   Reset() {
     console.log("Resetting...");
     this.timerService.reset();
-    this.timeList = this.timerService.GetTimeList();
-    // console.log(this.timeList)
-    // this.clickCounter = 0;
+    this._clickCounter = 0;
   }
+
+
+
+  /**
+   * Save the current status to local storage on platform.pause event
+   */
+  onPause() {
+    console.log("Subscribing on pause event...");
+    this.platform.pause.subscribe(async () => {
+      this.SaveStatus();
+    })
+  }
+
+
+  /**
+   * Save current timer status on storage
+   */
+  SaveStatus() {
+    console.log("Saving status...");
+    // this.timerService.timeList.total = this.timerService.time;
+    var status: IStatus = {
+      isRunning : this.timerService.Running, 
+      timeList: this.timerService.timeList,
+      clickCounter: this._clickCounter
+    };   
+    this.storageService.SaveStatus(status)
+    .then(res => {
+      // add notification
+      if (res.succeded) {
+        // ToDo
+        // da controllare sia il caso is running
+        // sia nel caso non sia in running se cmq è avviato e ci sono altri alarm schedulati
+        if (this.timerService.Running) {
+          console.log("Adding local notification...");
+          let msg: string = "Your working hour is still tracked";
+          // ToDo
+          // mange the next alarm notification
+          // When exit from the application, if running, the next alarm notification is schduled
+          // this.alarmService.
+          this.notificationService.addLocalNotification(msg);
+        } else {
+          if (this._clickCounter > 0) {
+            
+          }
+          let p = this.notificationService.getPending();
+          console.log(p);
+        }
+      }
+    }, err => {
+      
+    })
+  }
+
 
 
 
@@ -176,11 +229,14 @@ export class HomePage {
   async showSettings() {
     const popover = await this.popoverController.create({
       component: SettingsPopoverComponent,
-      translucent: true
+      translucent: true,
     });
     await popover.present();
     const { role } = await popover.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+
+
+  
 
 }
