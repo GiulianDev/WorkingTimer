@@ -59,13 +59,13 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#getHousOptions" title="src/app/COMMON/CONSTANT.ts" ><b>getHousOptions</b>&nbsp;&nbsp;&nbsp;(src/.../CONSTANT.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#getMinutesOptions" title="src/app/COMMON/CONSTANT.ts" ><b>getMinutesOptions</b>&nbsp;&nbsp;&nbsp;(src/.../CONSTANT.ts)</a>
-                        </li>
-                        <li>
                             <a href="#GetTime" title="src/app/COMMON/Utility.ts" ><b>GetTime</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#index2time" title="src/app/COMMON/Utility.ts" ><b>index2time</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#timeToIndex" title="src/app/COMMON/Utility.ts" ><b>timeToIndex</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
                         </li>
                         <li>
                             <a href="#zeroPrefix" title="src/app/COMMON/Utility.ts" ><b>zeroPrefix</b>&nbsp;&nbsp;&nbsp;(src/.../Utility.ts)</a>
@@ -77,53 +77,7 @@
     </table>
 </section>
 
-    <h3>src/app/COMMON/CONSTANT.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getHousOptions"></a>
-                    <span class="name">
-                        <span ><b>getHousOptions</b></span>
-                        <a href="#getHousOptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getHousOptions()</code>
-                </td>
-            </tr>
-
-
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getMinutesOptions"></a>
-                    <span class="name">
-                        <span ><b>getMinutesOptions</b></span>
-                        <a href="#getMinutesOptions"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getMinutesOptions()</code>
-                </td>
-            </tr>
-
-
-
-
-        </tbody>
-    </table>
-</section>    <h3>src/app/COMMON/Utility.ts</h3>
+    <h3>src/app/COMMON/Utility.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -183,6 +137,126 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="index2time"></a>
+                    <span class="name">
+                        <span ><b>index2time</b></span>
+                        <a href="#index2time"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>index2time(time)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>time</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="timeToIndex"></a>
+                    <span class="name">
+                        <span ><b>timeToIndex</b></span>
+                        <a href="#timeToIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>timeToIndex(timeStr)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Convert the time value from string to number, used as index</p>
+<p>ex.</p>
+<div><pre class="line-numbers"><code class="language-none">12:00 =&gt; 1200 
+04:00 =&gt; 400</code></pre></div></div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>timeStr</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </div>
                     <div class="io-description">

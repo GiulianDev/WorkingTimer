@@ -61,12 +61,18 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/MODELS/Interfaces.ts</code>
+            <code>src/app/MODELS/CLASSES/TimeList.ts</code>
         </p>
 
 
 
 
+            <p class="comment">
+                <h3>Implements</h3>
+            </p>
+            <p class="comment">
+                            <code><a href="../interfaces/ITimeList.html" target="_self" >ITimeList</a></code>
+            </p>
 
 
             <section>
@@ -129,7 +135,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/MODELS/Interfaces.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="3" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:3</a></div>
                             </td>
                         </tr>
 
@@ -162,7 +168,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/MODELS/Interfaces.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -189,7 +195,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/MODELS/Interfaces.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -216,7 +222,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/MODELS/Interfaces.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/MODELS/Interfaces.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -270,7 +276,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/MODELS/Interfaces.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -297,7 +303,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/MODELS/Interfaces.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/MODELS/CLASSES/TimeList.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -316,18 +322,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum DateFormat {
-    Year &#x3D; &quot;YYYY&quot;,
-    YearMonth &#x3D;	&quot;YYYY-MM&quot;,
-    HourMinute &#x3D; &quot;HH:mm&quot;,
-    HourMinuteSeconds &#x3D; &quot;HH:mm:ss&quot;
-}
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ITimeList } from &quot;../INTERFACES/ITimeList&quot;;
 
-// export enum SETTINGS {
-//     ALARMS &#x3D; &quot;Alarms&quot;
-// }
-
-export class TimeList {
+export class TimeList implements ITimeList {
     constructor() {
         this.start &#x3D; [];
         this.stop &#x3D; [];
@@ -342,20 +339,7 @@ export class TimeList {
     diffms?: number[];
     total?: string;
     totalms?: number;
-}
-
-
-
-export interface Status {
-    isRunning: boolean,
-    timeList: TimeList,
-    clickCounter: number
-}
-
-
-
-
-</code></pre>
+}</code></pre>
     </div>
 </div>
 

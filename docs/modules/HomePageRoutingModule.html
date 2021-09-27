@@ -138,14 +138,14 @@
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { TimerService } from &#x27;src/app/SERVICE/Timer/timer.service&#x27;;
 import { HomePage } from &#x27;./home.page&#x27;;
-import { HomeResolver } from &#x27;./home.resolve&#x27;;
+import { HomeResolve } from &#x27;./home.resolve&#x27;;
 
 const routes: Routes &#x3D; [
   {
     path: &#x27;&#x27;,
     component: HomePage,
     resolve: {
-      bool: HomeResolver
+      status: HomeResolve
     }
   }
 ];
@@ -155,7 +155,7 @@ const routes: Routes &#x3D; [
   exports: [RouterModule],
   providers: [
     TimerService,
-    HomeResolver]
+    HomeResolve]
 })
 export class HomePageRoutingModule {}
 </code></pre>

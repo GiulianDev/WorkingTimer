@@ -192,8 +192,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:71</a></div>
                 </td>
             </tr>
 
@@ -291,15 +291,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>presentConfirmAlert(msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, subheader: string | null, header: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>presentConfirmAlert(msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, header: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -312,6 +312,8 @@ this.myservice.presentConfirmAlert(&#39;message&#39;)
   if (res) {
     // codes
   }
+}, err =&gt; {
+    // manage the error
 });</p>
 </div>
 
@@ -344,25 +346,6 @@ this.myservice.presentConfirmAlert(&#39;message&#39;)
 
                                     <td>
                                         <p>message to display</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>subheader</td>
-                                    <td>
-                                            <code>string | null</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>null</code>
-                                    </td>
-
-                                    <td>
-                                        <p>(optional) subheader to display (Default null)</p>
 
                                     </td>
                                 </tr>
@@ -401,6 +384,8 @@ this.myservice.presentConfirmAlert(&#39;message&#39;)
   if (res) {
     // codes
   }
+}, err =&gt; {
+    // manage the error
 });</p>
 
                     </div>
@@ -430,8 +415,8 @@ this.myservice.presentConfirmAlert(&#39;message&#39;)
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/SERVICE/Alert/alert.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -573,13 +558,14 @@ export class AlertService {
    *   if (res) {
    *     // codes
    *   }
+   * }, err &#x3D;&gt; {
+   *     // manage the error
    * });
    */
-  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, subheader: string | null &#x3D; null, header: string &#x3D; &#x27;WOOOPS&#x27;): Promise&lt;any&gt; {
+  async presentConfirmAlert(msg: string &#x3D; &#x27;Are you sure?&#x27;, header: string &#x3D; &#x27;WOOOPS&#x27;): Promise&lt;any&gt; {
     return new Promise(async (resolve) &#x3D;&gt; {
       const alert &#x3D; await this.alertController.create({
         header: header,
-        subHeader: subheader,
         message: msg,
         buttons: [
           {

@@ -95,13 +95,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HomePageRoutingModule.html" data-type="entity-link" >HomePageRoutingModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' : 'data-target="#xs-injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' }>
+                                        'data-target="#injectables-links-module-HomePageRoutingModule-3aa10de549ab4f0a1e92cf2a011aa9ae"' : 'data-target="#xs-injectables-links-module-HomePageRoutingModule-3aa10de549ab4f0a1e92cf2a011aa9ae"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' :
-                                        'id="xs-injectables-links-module-HomePageRoutingModule-71db93850d70571a6d66e500667387fa"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HomePageRoutingModule-3aa10de549ab4f0a1e92cf2a011aa9ae"' :
+                                        'id="xs-injectables-links-module-HomePageRoutingModule-3aa10de549ab4f0a1e92cf2a011aa9ae"' }>
                                         <li class="link">
                                             <a href="injectables/TimerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TimerService</a>
                                         </li>
@@ -138,10 +138,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Alarms.html" data-type="entity-link" >Alarms</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Options.html" data-type="entity-link" >Options</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Settings.html" data-type="entity-link" >Settings</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TimeList.html" data-type="entity-link" >TimeList</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Timer.html" data-type="entity-link" >Timer</a>
                             </li>
                         </ul>
                     </li>
@@ -182,7 +188,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
                             <li class="link">
-                                <a href="guards/HomeResolver.html" data-type="entity-link" >HomeResolver</a>
+                                <a href="guards/HomeResolve.html" data-type="entity-link" >HomeResolve</a>
                             </li>
                         </ul>
                     </li>
@@ -201,7 +207,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/IPickerColumnOption.html" data-type="entity-link" >IPickerColumnOption</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Status.html" data-type="entity-link" >Status</a>
+                                <a href="interfaces/IReturnMsg.html" data-type="entity-link" >IReturnMsg</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IStatus.html" data-type="entity-link" >IStatus</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ITimeList.html" data-type="entity-link" >ITimeList</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ITimer.html" data-type="entity-link" >ITimer</a>
                             </li>
                         </ul>
                     </li>

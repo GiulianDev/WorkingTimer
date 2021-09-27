@@ -110,9 +110,6 @@
                             <li>
                                 <a href="#addAlarmn" >addAlarmn</a>
                             </li>
-                            <li>
-                                <a href="#deleteAlarm" >deleteAlarm</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -266,82 +263,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="deleteAlarm"></a>
-                    <span class="name">
-                        <span ><b>deleteAlarm</b></span>
-                        <a href="#deleteAlarm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>deleteAlarm(alarm: <a href="../classes/Alarm.html" target="_self">Alarm</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/MODELS/Settings.ts:83</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Delete a specific alarm from alarms array</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>alarm</td>
-                                    <td>
-                                                <code><a href="../classes/Alarm.html" target="_self" >Alarm</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>alarm to delete (type Alarm)</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{ succeded: boolean; msg: string; }</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Object {succeded: boolean, msg: string}</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
 
@@ -353,7 +274,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LABELS } from &quot;../COMMON/LABELS&quot;;
-import { Alarm } from &quot;./Alarm&quot;;
+import { Alarm } from &quot;./CLASSES/Alarm&quot;;
 
 /**
  * Settings contains:
@@ -429,22 +350,7 @@ export class Settings {
         return {succeded: true, msg:&#x27;Pause updated&#x27;};
     }
     
-    /**
-     * Delete a specific alarm from alarms array
-     * @param alarm alarm to delete (type Alarm)
-     * @returns Object {succeded: boolean, msg: string}
-     */
-    deleteAlarm(alarm: Alarm) {
-        // var existingAlarm &#x3D; this.alarms.filter(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
-        // var f &#x3D; this.alarms.find(x &#x3D;&gt; x.index &#x3D;&#x3D; alarm.index);
-        for (var idx &#x3D; this.alarms.length - 1; idx &gt;&#x3D; 0; --idx) {
-            if (this.alarms[idx].index &#x3D;&#x3D; alarm.index) {
-                this.alarms.splice(idx,1);
-                return {succeded: true, msg:&#x27;Alarm deleted&#x27;};
-            }
-        }
-        return {succeded: false, msg:&#x27;Alarm not deleted&#x27;};
-    }
+    
 }</code></pre>
     </div>
 </div>
