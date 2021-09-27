@@ -50,6 +50,9 @@
         width: 100%;
         justify-content: space-between;
         padding: 1px 6px;
+        .label {
+            display: flex;
+        }
     }
     
     .pickerClassName {

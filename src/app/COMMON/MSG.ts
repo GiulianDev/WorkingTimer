@@ -2,6 +2,7 @@ export namespace MSG {
 
     export const ALARM_UPDATE: string = "Alarm updated";
     export const ALARM_UPDATE_ERROR: string = "An error occurred while updating alarm";
+    export const ALARM_INVALID: string = "You cannot set this time value";
 
     export const PAUSE_UPDATE: string = "Pause updated";
     export const PAUSE_EXIST: string = "A PAUSE at the same time ALREADY EXISTS!";

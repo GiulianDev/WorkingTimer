@@ -3,6 +3,7 @@ import { Utility } from 'src/app/COMMON/Utility';
 import { Alarm } from 'src/app/MODELS/CLASSES/Alarm';
 import { Alarms } from 'src/app/MODELS/CLASSES/Alarms';
 import { IReturnMsg } from 'src/app/MODELS/INTERFACES/IReturnMsg';
+import { NotificationService } from '../Notification/notification.service';
 import { StorageService } from '../Storage/storage.service';
 
 @Injectable({
@@ -17,45 +18,39 @@ export class AlarmService {
 
   // ToDo
   // let User manage the offset
-  private offset: number = 5;; 
+  private offset: number = 5;
 
   /**
-   * When the service is instantiated,
-   * Alarms are retrived from the storage
+   * When the service is instantiated => Alarms are retrived from the storage
    * @param storageService 
    */
-  constructor(private storageService: StorageService) { 
+  constructor(
+    private storageService: StorageService,
+    private notificationService: NotificationService
+    ) { 
     this.storageService.getStoredAlarm()
     .then(alarms => {
       if (alarms != null) {
         this.Alarms = alarms;
       }
-      console.log(this.Alarms);
+      console.log("Alarms: ", this._alarms);
     });
   }
 
-
-
-
+  //#region _________GET______________________________________
   public get Alarms(): Alarm[] {
-    return this._alarms.Alarms;
+    return this._alarms.alarms;
   }
 
-  public set Alarms(alarms: Alarm[]) {
-    this._alarms.Alarms = alarms;
+  public get alarmsIdx(): number[] {
+    return this._alarms.alarmsIdx;
   }
 
-  /**
-   * @returns the last alarm in the alarms array
-   */
   get lastAlarm(): Alarm {
     return this.Alarms[this.Alarms.length - 1];
   }
 
-  /**
-   * 
-   * Get the current hour and minutes as number index (ex. 13:15 => 1315)
-   */
+  /** Get the current hour and minutes as number index (ex. 13:15 => 1315) */
   get currentTimeIndex() {
     let current = new Date();
     let hour = current.getHours()
@@ -64,76 +59,61 @@ export class AlarmService {
     let dateIdx = Utility.timeToIndex(dateStr);
     return dateIdx;
   }
+  //#endregion
 
-
-
-    
+  //#region _________SET______________________________________
+  public set Alarms(alarms: Alarm[]) {
+    this._alarms.alarms = alarms;
+  }
+  //#endregion
   
-  // public set Alarms(alarms: Alarm[]) {
-  //   // this._alarms.Alarms = alarms;
-  // }
-
-
 
   /**
-   * Check if the alarm could be add:
-   * Thae alarm cannot be out of range or overwrite an existing one
+   * Check if is too late or too early for the working day
    * @param index alarm position index in the alarms array
    * @returns 
    */
-  public checkAlarm(index: number): Promise<IReturnMsg> {
-
-    return new Promise((resolve, reject) => {
-      
-      // check for alarm
-      let alarm = this.Alarms[index];
-      console.log('Next alarm: ', alarm)
-  
-      // ToDo
-      // sistemare questo discorso dell'indice per gestire l'if
-      let currentTime: number = this.currentTimeIndex;
-  
-      let msg = null;
-      if (alarm) {
-  
-        let nAlarms = this.Alarms.length;
-        console.log('Alarms number: ', nAlarms);
-        console.log('click count: ', index);
-        console.log("Alarm: ", alarm);
-        console.log("Scheduled: ", alarm.index);
-        console.log("Current: ", currentTime);
-
-        if (currentTime < (alarm.index - this.offset)) {
-          msg =  "Not time yet!";
-          let res = {succeded: false, msg: msg};
-          reject(res);
-        }
-
-
-        // check if it is too late for today working day
-        if (currentTime > (this.lastAlarm.index)) {
-          msg = "You are out of your working hours!";
-          let res = {succeded: false, msg: msg};
-          reject(res);
-        }
-  
-        
-
-        msg = "Successfull";
-        let res = {succeded: false, msg: msg};
-        resolve(res);
-
-      } else {
-        msg = "Successfull";
-        let res = {succeded: false, msg: msg};
-        resolve(res);
+  public checkForAlarm(counter: number): IReturnMsg {
+    let alarm = this.alarmsIdx[counter];
+    let currentTime: number = this.currentTimeIndex;
+    let msg = null;
+    if (counter == this.alarmsIdx.length - 1) {
+      msg = "This is the end!";
+      let res = {succeded: false, msg: msg};
+        return res;
+    }
+    if (alarm) {
+      console.log("Scheduled alarm: ", alarm);
+      console.log("Current index: ", currentTime);
+      if (currentTime < (alarm - this.offset)) {
+        msg =  "Not time yet!";
+        let res = {succeded: true, msg: msg};
+        return res;
       }
+      // check if it is too late for today working day
+      if (currentTime > (this.lastAlarm.index)) {
+        msg = "You are out of your working hours!";
+        let res = {succeded: true, msg: msg};
+        return res;
+      }
+      msg = "Successfull";
+      let res = {succeded: true, msg: msg};
+      return res;
 
-    })
-
-
+    } else {
+      msg = "No alarms found!";
+      let res = {succeded: true, msg: msg};
+      return res;
+    }
   }
 
+
+  public pushNotification(counter: number) {
+    console.log("pushing notification...");
+    let alarmIdx = this.alarmsIdx[counter];
+    let test = Utility.index2time(alarmIdx);
+    this.notificationService.addNotification(test)
+  }
 
 
 
@@ -209,13 +189,6 @@ export class AlarmService {
 
 
 
-
-
-
-  
-  
-
-
   // public updateAlarm(value: string, idx: number = null) {
   //   // this._alarms.update(value);
   // }
@@ -235,12 +208,6 @@ export class AlarmService {
   //   var alarm: Alarm = new Alarm(key, value, true); 
   //   return alarm;
   // }
-  
-  
-
-  
-  
-  
   
   
   

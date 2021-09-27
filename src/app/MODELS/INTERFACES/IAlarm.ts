@@ -3,5 +3,5 @@ export interface IAlarm {
     value: string;
     isPause: boolean;
     index: number;
-    duration?: number;
+    duration?: string;
 }

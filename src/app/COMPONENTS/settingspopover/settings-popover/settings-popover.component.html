@@ -8,35 +8,36 @@
   <div *ngFor="let alarm of Alarms; let idx = index">
     
     
-  <!-- 
-    <ion-item *ngIf="!alarm.isPause">
-      <ion-label>{{alarm.key}}</ion-label>
-      <ion-datetime displayFormat="HH:mm" 
+    <!-- 
+      <ion-item *ngIf="!alarm.isPause">
+        <ion-label>{{alarm.key}}</ion-label>
+        <ion-datetime displayFormat="HH:mm" 
         placeholder="Select date"
         [value]="alarm.value" 
         (ionChange)="onTimeChange($event, idx)">
       </ion-datetime>
     </ion-item> 
-  -->
-
-  <div *ngIf="!alarm.isPause" class="addAlarmContainer">
-    <ion-item>
-      <ion-buttons expand="full">
-        <ion-button expand="full" (click)="UpdateAlarm(alarm, idx)">
-          <div class="alarm">
-            <div class="label">
-              {{alarm.key}}
-            </div>
-            <div class="value">
-              {{alarm.value}}
-            </div>
-          </div>            
-        </ion-button>
-      </ion-buttons>
-    </ion-item> 
-  </div>
+    -->
     
-    <!-- Sliding item with text options on both sides -->
+    <!-- NOT SLIDING -->
+    <div *ngIf="!alarm.isPause" class="addAlarmContainer">
+      <ion-item>
+        <ion-buttons expand="full">
+          <ion-button expand="full" (click)="UpdateAlarm(alarm, idx)">
+            <div class="alarm">
+              <div class="label">
+                {{alarm.key}}
+              </div>
+              <div class="value">
+                {{alarm.value}}
+              </div>
+            </div>            
+          </ion-button>
+        </ion-buttons>
+      </ion-item> 
+    </div>
+    
+    <!-- SLIDING item with DELETE option -->
     <ion-item-sliding *ngIf="alarm.isPause" class="addAlarmContainer">
       <ion-item>
         <ion-buttons expand="full">
@@ -44,6 +45,9 @@
             <div class="alarm">
               <div class="label">
                 {{alarm.key}}
+              </div>
+              <div class="duration">
+                ({{alarm.duration}})
               </div>
               <div class="value">
                 {{alarm.value}}
@@ -59,16 +63,16 @@
     </ion-item-sliding>
     
   </div>
-
-
-
+  
+  
+  
   <!-- ADD PAUSE BUTTON -->
   <div class="addAlarmContainer">
     <ion-buttons expand="full">
       <ion-button expand="full" (click)="AddPause()">Add pause</ion-button>
     </ion-buttons>
   </div>
-
+  
   <!-- DAY CHECKBOX -->
   <div class="checkbox-container">
     <div class="checkbox-title">
@@ -85,7 +89,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- CANCEL/CONFIRM BUTTONS -->
   <div class="buttonsContainer">
     <ion-buttons>
@@ -93,5 +97,5 @@
       <ion-button (click)="Save()">OK</ion-button>
     </ion-buttons>
   </div>
-
+  
 </div>

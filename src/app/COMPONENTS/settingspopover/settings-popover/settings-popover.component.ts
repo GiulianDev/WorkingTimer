@@ -48,7 +48,7 @@ export class SettingsPopoverComponent implements OnInit {
   }
 
   public get Alarms(): Alarm[] {
-    return this._alarms.Alarms;
+    return this._alarms.alarms;
   }
 
 
@@ -69,7 +69,7 @@ export class SettingsPopoverComponent implements OnInit {
    */
   public Save() {
     console.log(this.Alarms);
-    this.alarmService.Alarms = this._alarms.Alarms;
+    this.alarmService.Alarms = this._alarms.alarms;
 
     this.storageService.SaveAlarms(this.Alarms);
     this.DismissClick();
@@ -81,8 +81,6 @@ export class SettingsPopoverComponent implements OnInit {
    * @param idx 
    */
   UpdateAlarm(alarm: Alarm, idx: number) {
-    console.log("Selected alarm: ", alarm);
-    console.log("Alarm index: ", idx);
     this._selectedAlarmIdx = idx;
     this.showAlarmPicker(alarm);
   }
@@ -92,7 +90,7 @@ export class SettingsPopoverComponent implements OnInit {
    * Add a pause to the time array
    */
   AddPause() {
-    // this._selectedAlarmIdx = null;
+    this._selectedAlarmIdx = null;
     this.showAlarmPicker();
   }
 
@@ -101,8 +99,8 @@ export class SettingsPopoverComponent implements OnInit {
    * @param alarm 
    */
   DeletePause(alarm: Alarm) {
-    console.log(alarm);
-    this._alarms.delete(alarm);
+    let res = this._alarms.delete(alarm);
+    console.log(res.msg);
   }
 
   //#endregion
@@ -133,6 +131,11 @@ export class SettingsPopoverComponent implements OnInit {
     await this.popoverController.dismiss();
   }
 
+
+
+
+
+
   async showAlarmPicker(alarm: Alarm = null) {
     let options: PickerOptions = {
       buttons: [
@@ -160,11 +163,9 @@ export class SettingsPopoverComponent implements OnInit {
               // open duration picker
               this.showAlarmDurationPicker(this._alarmTmp);
             } else {
-              // update
               let response: IReturnMsg = this._alarms.update(this._alarmTmp, this._selectedAlarmIdx);
-              console.log(this.alarmService.Alarms);
-              console.log(response.msg);
-              if (response.succeded == false) {
+              if (response!.succeded == false) {
+                console.log(response);
                 this.alert.presentWarningAlert(response.msg);
               }
             }
@@ -207,16 +208,18 @@ export class SettingsPopoverComponent implements OnInit {
         {
           text:'Ok',
           handler:(value: any) => {
-            console.log("Selected value: ", value);
-            this._alarmTmp.duration = +value?.minutes?.value;
-            console.log("pause duration: ", this._alarmTmp); 
+            // add duration
+            this._alarmTmp.duration = value?.hours?.value + ":" + value?.minutes?.value;
+            console.log("temporary alarm: ", this._alarmTmp);
             let response: IReturnMsg;
             if (this._selectedAlarmIdx == null) {
-              response = this._alarms.push(this._alarmTmp);
+              // add new pause
+              response = this._alarms.add(this._alarmTmp);
             } else {
+              // update existing one
               response = this._alarms.update(this._alarmTmp, this._selectedAlarmIdx);
             }
-            console.log(response.msg);
+            // console.log(response.msg);
             if (response.succeded == false) {
               this.alert.presentWarningAlert(response.msg);
             }
@@ -224,11 +227,22 @@ export class SettingsPopoverComponent implements OnInit {
         }
       ],
       columns:[
-      {
-        name:'minutes',
-        prefix: 'Duration: ',
-        options: this.PICKER_OPTIONS.MINUTES_OPTS
-      }
+        {
+          name:'hours',
+          optionsWidth: '2rem',
+          align: 'right',
+          selectedIndex: alarm ? this.PICKER_OPTIONS.GetHourIdx(alarm.hour) : null,
+          options: this.PICKER_OPTIONS.HOURS_OPTIONS
+        }
+        , {
+          name:'minutes',
+          optionsWidth: '2rem',
+          align: 'left',
+          // ToDo
+          // deve essere l'indice nell'array di minuti
+          selectedIndex: alarm ? this.PICKER_OPTIONS.GetMinuteIdx(alarm.minutes) : null,
+          options: this.PICKER_OPTIONS.MINUTES_OPTS
+        }
     ],
     // cssClass: 'my-custom-picker',
     };

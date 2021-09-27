@@ -57,6 +57,31 @@ export namespace Utility {
     return timeNumber;
     }
     
+
+
+    export function index2time(time: number): string {
+        console.log("index to time");
+        let timeStr: string = time.toString();
+        let hh = "";
+        let mm = "";
+        if (timeStr.length == 4) {
+            hh = this.zeroPrefix(timeStr.slice(0,2), 2);
+            mm = this.zeroPrefix(timeStr.slice(2,4), 2);
+        }
+        if (timeStr.length == 3) {
+            hh = this.zeroPrefix(timeStr.slice(0,1), 2);
+            mm = this.zeroPrefix(timeStr.slice(1,3), 2);
+        }
+        if (timeStr.length == 2) {
+            hh = "00";
+            mm = this.zeroPrefix(timeStr, 2);
+        }
+        if (timeStr.length == 1) {
+            hh = "00";
+            mm = this.zeroPrefix(timeStr, 2);
+        }
+        return hh + ":" + mm;
+    }
     
 }
 

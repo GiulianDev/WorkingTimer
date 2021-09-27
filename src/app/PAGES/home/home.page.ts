@@ -24,19 +24,12 @@ export class HomePage {
 
 
   private _status: IStatus;
-  // private _alarms: Alarm[] = [];
   private _clickCounter: number = 0;
 
   private _startStopTxt: string = LABELS.START;
   private time: string;
   private stopped: Date[] = [];
   private started: Date[] = [];
-  // private timeList: TimeList = new TimeList();
-
-
-  // private offset;  // time offset between current time and alarm time
-
-  // private clickCounter: number = 0; // count the number of click on Start/Stop timer button
 
   /**
    * CONSTRUCTOR
@@ -56,9 +49,6 @@ export class HomePage {
 
     this._status = this.route.snapshot.data.status;
     console.log('Status: ', this._status);
-
-    // this._alarms = this.alarmService.Alarms;
-    // console.log('Alarms: ', this._alarms);
   
     // Retrieving timeList from storage status
     if (this._status?.timeList) {
@@ -87,54 +77,36 @@ export class HomePage {
    * Start/Stop timer function
    */
   async OnFabTimerClick() {
-    
-    // console.log("Alarms: ", this._alarms);
-    
+        
     // check for alarm
-    this.alarmService.checkAlarm(this._clickCounter)
-    .then( res => {
-
-      console.log(res);
-      this.StartStopTimer();
-
-    }, err => {
-      this.alertService.presentConfirmAlert(err.msg)
+    let res = this.alarmService.checkForAlarm(this._clickCounter);
+    if (res.succeded) {
+      this.alertService.presentConfirmAlert(res.msg)
       .then( res => {
         if (res) {
           console.log('Confirmed');
           this.StartStopTimer();
+          // add a notification
+          this.alarmService.pushNotification(this._clickCounter);
+
         } else {
           console.log('Canceled')
-        }
+        }  
       })
-
-    })
-
-
-    /*
-    
-
-    else if (this.timerService.clickCounter == this.storageService.getAlarmCount()) {
-      this.StartStopTimer();
-    }
-    
-    else {
-      // this.StartStopTimer();
-      let subheader = "You are done for today!";
-      let msg = "Do you want to reset timer?"
-      await this.alert.presentConfirmAlert(msg, subheader)
+    } else {
+      // reset
+      this.alertService.presentConfirmAlert(res.msg, "URRA!")
       .then( res => {
         if (res) {
           console.log('Confirmed');
           this.Reset();
+          // ToDo
+          // gestire lo storage del working day per la history e fare tutti i calcoli del mese
         } else {
           console.log('Canceled')
-        }
+        }  
       })
     }
-
-
-    */
   }
 
 
@@ -154,6 +126,7 @@ export class HomePage {
       this.timerService.start();
     }
     this._clickCounter++;
+    console.log("Click counter: ", this._clickCounter);
     this.UpdateGUI();
   }
 

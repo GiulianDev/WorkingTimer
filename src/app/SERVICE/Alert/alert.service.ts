@@ -24,11 +24,10 @@ export class AlertService {
    *     // manage the error
    * });
    */
-  async presentConfirmAlert(msg: string = 'Are you sure?', subheader: string | null = null, header: string = 'WOOOPS'): Promise<any> {
+  async presentConfirmAlert(msg: string = 'Are you sure?', header: string = 'WOOOPS'): Promise<any> {
     return new Promise(async (resolve) => {
       const alert = await this.alertController.create({
         header: header,
-        subHeader: subheader,
         message: msg,
         buttons: [
           {
