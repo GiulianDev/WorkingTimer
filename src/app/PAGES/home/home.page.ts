@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, Platform, PopoverController } from '@ionic/angular';
 import { LABELS } from 'src/app/COMMON/LABELS';
 import { SettingsPopoverComponent } from 'src/app/COMPONENTS/settingspopover/settings-popover/settings-popover.component';
@@ -44,7 +44,8 @@ export class HomePage {
     public alertService: AlertService,
     public advertisementService: AdvertisementService,
     private alarmService: AlarmService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { 
 
     this._status = this.route.snapshot.data.status;
@@ -207,6 +208,11 @@ export class HomePage {
     await popover.present();
     const { role } = await popover.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
+  }
+
+
+  goToBackdoor() {
+    this.router.navigate(['backdoor']);
   }
 
 

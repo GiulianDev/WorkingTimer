@@ -14,12 +14,16 @@ export class NotificationService {
 
   private notification: LocalNotificationSchema;
   private _ID: number = 439209432321129530;
+  private _ID2: number = 87786976667880798;
 
   constructor(public toastController: ToastController) { }
 
 
 
   async addNotification(time: string) {
+
+    await this.deleteLocalNotification();
+
     console.log("Adding notification...");
     
     let [hh, mm] = time.split(":");
@@ -36,11 +40,17 @@ export class NotificationService {
       id: this._ID,
       smallIcon: 'res://logo',
       schedule: {
-        at: alarmDate
+        at: alarmDate,
+        repeats: true
       },
       extra: {
       }
     };
+    await LocalNotifications.schedule({
+      notifications: [
+        this.notification
+      ]
+    });
     this.presentToast(msg, 1);
   }
 
@@ -70,7 +80,7 @@ export class NotificationService {
     this.notification = {
       title: "YOU ARE LUCKY",
       body: msg,
-      id: this._ID,
+      id: this._ID2,
       smallIcon: 'res://logo',
       schedule: {
         // every: "day",
@@ -88,20 +98,38 @@ export class NotificationService {
         this.notification
       ]
     });
-    
-    // let msg = 'Added notification at ';
-    // this.presentToast(msg);
   }
 
 
+  /**
+   * Cancel notification by id
+   * @param id 
+   * @returns 
+   */
   async deleteLocalNotification() {
-    // await LocalNotifications.cancel(this._ID);
+    console.log("Deleting notification");
+    return LocalNotifications.getPending().then( res => {
+      var index = res.notifications.map(x => {
+        return x["id"];
+      }).indexOf(this._ID);
+      console.log("index: ", index);
+      res.notifications.splice(index, 1);
+      LocalNotifications.cancel(res);
+    }, err => {
+      console.log(err);
+    })
+
   }
 
 
-  async getPending() {
-    return await LocalNotifications.getPending();
+  async update() {
+    // return await LocalNotifications.update();
   }
+
+  getPending() {
+    return LocalNotifications.getPending();
+  }
+
   /**
    * 
    * @returns number of seconds from 1970

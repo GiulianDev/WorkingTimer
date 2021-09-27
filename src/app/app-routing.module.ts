@@ -7,10 +7,14 @@ const routes: Routes = [
     loadChildren: () => import('./PAGES/home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'backdoor',
+    loadChildren: () => import('./PAGES/backdoor/backdoor.module').then( m => m.BackdoorPageModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

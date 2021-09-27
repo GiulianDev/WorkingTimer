@@ -5,20 +5,8 @@
     Settings
   </div>
   
+  <!-- ALARMS -->
   <div *ngFor="let alarm of Alarms; let idx = index">
-    
-    
-    <!-- 
-      <ion-item *ngIf="!alarm.isPause">
-        <ion-label>{{alarm.key}}</ion-label>
-        <ion-datetime displayFormat="HH:mm" 
-        placeholder="Select date"
-        [value]="alarm.value" 
-        (ionChange)="onTimeChange($event, idx)">
-      </ion-datetime>
-    </ion-item> 
-    -->
-    
     <!-- NOT SLIDING -->
     <div *ngIf="!alarm.isPause" class="addAlarmContainer">
       <ion-item>
@@ -36,7 +24,6 @@
         </ion-buttons>
       </ion-item> 
     </div>
-    
     <!-- SLIDING item with DELETE option -->
     <ion-item-sliding *ngIf="alarm.isPause" class="addAlarmContainer">
       <ion-item>

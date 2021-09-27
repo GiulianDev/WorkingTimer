@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>backdoor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let notification of notifications; let idx = index">
+
+    {{notification.title}}
+    {{notification.body}}
+    {{notification.schedule.at | date: 'dd/MM' }}
+  </div>
+
+</ion-content>

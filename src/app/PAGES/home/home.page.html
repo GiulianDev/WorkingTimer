@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <!-- title -->
-    <ion-title>
+    <ion-title (click)="goToBackdoor()">
       EchoTimer
     </ion-title>
     <!-- settings button -->
@@ -19,11 +19,11 @@
 
     <div class="timeContainer">
 
-      <!-- Current Timer -->
+      <!-- TIMER -->
       <div class="time">{{timerService.time}}</div>
 
+      <!-- TIME LIST -->
       <div class="timeListContainer">
-
         <div class="timesList left">
           <div class="timesText">
             Start
@@ -50,10 +50,7 @@
               {{time}}
           </div>
         </div>
-
-
       </div>
-
     </div>
 
     <!-- start/stop fab button -->
