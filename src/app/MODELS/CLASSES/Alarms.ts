@@ -80,7 +80,7 @@ export class Alarms {
       }
     }
     if (position == this._alarms.length - 1) {
-      if (alarm.index < this.alarmsIdx[this._alarmsIdx.length - 1]) {
+      if (alarm.index < this.alarmsIdx[0]) {
         return {succeded: false, msg: MSG.ALARM_INVALID};
       } else {
         this._alarms[position] = alarm;

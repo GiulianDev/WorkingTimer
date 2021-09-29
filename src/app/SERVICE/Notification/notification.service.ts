@@ -15,6 +15,7 @@ export class NotificationService {
   private notification: LocalNotificationSchema;
   private _ID: number = 439209432321129530;
   private _ID2: number = 87786976667880798;
+  private _offset: number = 1;
 
   constructor(public toastController: ToastController) { }
 
@@ -29,9 +30,9 @@ export class NotificationService {
     let [hh, mm] = time.split(":");
     let msg = "next alarm at " + time;
     var today = new Date();
-    var alarmDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), +hh, +mm, 0);
+    var alarmDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), +hh, +mm - this._offset, 0);
     if (alarmDate < today) {
-      alarmDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, +hh, +mm, 0);
+      alarmDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1, +hh, +mm - this._offset, 0);
     }
     console.log("Next alarm date: ", alarmDate);
     this.notification = {

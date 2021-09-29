@@ -139,6 +139,7 @@ export class HomePage {
   Reset() {
     console.log("Resetting...");
     this.timerService.reset();
+    this.notificationService.deleteLocalNotification();
     this._clickCounter = 0;
   }
 
